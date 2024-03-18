@@ -4,102 +4,81 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ningen Paper Press</title>
-
   <link rel="stylesheet" href="/css/default.css">
-  <link rel="stylesheet" href="/index.css">
-  <link rel="stylesheet" href="/css/section.css">
-  <link rel="stylesheet" href="/css/comment.css">
+  <link rel="stylesheet" href="/css/index.css">
 </head>
-<body>
-  <div class="header"><a href="index.html">ningen paper press</a> Hello. Ningen is a publishing agency and expanded publishing practice that works through collaborative means to question the conventions of publishing. This site is a work in progress, but feel free to browse things at your leisure. Please <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">follow us</a> for further updates!</div>
+<body onLoad="initClock()">
 
-  <div class="wrap">
-    <div class="section">
-      <ul class="list">
-        <li class="menu"><a href="/html/about.html">About</a></li>
-        <li class="menu" onclick="alert()"><a href="">Monthly Zine</a></li>
-        <li class="menu"><a href="/html/library.html">Online Library</a></li>
-        <li class="menu">Stuff</li>
-          <ul>
-            <li class="menu"><a href="/html/t-shirt.html">T-shirts</a></li>
-            <li class="menu"><a href="/html/zines.html">Zines</a></li>
-            <li class="menu" onclick="alert()"><a href="">Small Graphics</a></li>
-          </ul>
-        <li class="menu" onclick="alert()"><a href="">Shop</a></li>
-        <li class="menu"><a href="/html/contact.html">Contact</a></li>
-      </ul>
-    
-      <div class="hover-img_001">
-        <div class="hover-key">.</div>
-        <img id="img_001" src="img/img_001.jpeg">
-      </div>
-    
-      <div class="hover-img_002">
-        <div class="hover-key">.</div>
-        <img id="img_002" src="img/img_002.jpeg">
-      </div>
-    
-      <div class="hover-img_003">
-        <div class="hover-key">.</div>
-        <img id="img_003" src="img/img_003.jpeg">
-      </div>
-    
-      <div class="hover-img_004">
-        <div class="hover-key">.</div>
-        <img id="img_004" src="img/img_004.jpeg">
-      </div>
-    
-      <div class="hover-img_005">
-        <div class="hover-key">.</div>
-        <img id="img_005" src="img/img_005.jpeg">
-      </div>
-    
-      <div class="hover-img_006">
-        <div class="hover-key">.</div>
-        <img id="img_006" src="img/img_006.jpeg">
-      </div>
-    
-      <div class="hover-img_007">
-        <div class="hover-key">.</div>
-        <img id="img_007" src="img/img_007.jpeg">
-      </div>
-    
-      <div class="hover-img_008">
-        <div class="hover-key">.</div>
-        <img id="img_008" src="img/img_008.jpeg">
-      </div>
-    
+<div class="section">
+  <div class="left-section">
+    <div class="time-header">
+      <div class="logo"><img src="/img/logo/logo-ningen.png"></div>
+      <div id="timedate"><a id="y">0</a>.<a id="mon">0</a>.<a id="d">1</a>.<a id="h">12</a>:<a id="m">00</a>:<a id="s">00</a>:<a id="mi">000</a></div>
     </div>
-    
-    <div class="section">
-
+    <div class="header">
+      Hey. Wake Up! It's time to print - <br>
+      www. Ningen Paper Press. Com <br>
+      Can you check the index below...? Please ...
+    </div>
+  
+    <div class="menu-list">
+      <div id="menu"><a href="" onclick="alert()">Monthly Zines</a></div>
+      <div id="menu"><a href="/html/library.html">Index Library</a></div>
+      <div id="menu"><a href="/html/shop.html">Ningen Paper Shop</a></div>
+      <div id="menu"><a href="/html/about.html">About</a></div>
+    </div>
+  
+    <ul class="place-list">
+      YOU CAN CHECK OUR PUBLICATIONS BELOW PLACES:
+      <li>{Korea}
+        <ol>froggy office (Jeonju)</ol>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="right-section">
+    <div class="contact">
+      <div class="contact-title">
+        <div id="title">Contact</div><img src="/img/logo/img-02.png">
+      </div>
+      
       <div class="card-footer">
         <form onsubmit="addComment(event)">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Say something to Ningen." required>
+            <input type="text" class="form-control" placeholder="Feel free to reach us anytime and anywhere..." required>
           </div>
-          <button type="submit" class="btn btn-primary">Post</button>
+          <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
         <div class="comments mt-3">
         </div>
       </div>
-
+      <div class="des">
+        Do you want to make your own book? <br>
+        If you have any inspiring stories, <br>
+        please reach our publisher. <br>
+        We are always waiting for you.
+      </div>
+      <div class="links">
+        <a href="">ningenpaperpress@gmail.com</a>
+        <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaper.press</a>
+        <a href="https://www.instagram.com/ningenpaper.shop/" target="_blank">@ningenpaper.shop</a>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="footer">©2024 ningenpaperpress. You can contact us at <a href="">ningenpaperpress [at] gmail.com</a>.</div>
+<img id="member" src="/img/logo/img-01.png">
+<div class="tag">
+  <h1>Welcome...</h1>
+  <h2>Ningen...</h2>
+  <h3>Paper...</h3>
+  <h4>Web...</h4>
+</div>
+
+
+<div class="footer">2024 ningenpaperpress. You can contact us at <a href="mailto: ningenpaperpress@gmail.com">ningenpaperpress(at)gmail.com</a>.</div>
+  
 </body>
-<script>
-  function alert() {
-  var txt;
-  if (confirm("Under Construction. Will let you know when it's ready.")) {
-    txt = "You pressed OK!";
-  } else {
-    txt = "You pressed Cancel!";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-</script>
-<script src="/js/section.js"></script>
-<script src="/js/comment.js"></script>
+<script src="/js/clock.js"></script>
+<script src="/js/alert.js"></script>
 </html>
