@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ningen Paper Press</title>
+
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/css/section.css">
+  <link rel="stylesheet" href="/css/comment.css">
+</head>
+<body>
+  <div class="header"><a href="index.html">ningen paper press</a> Hello. Ningen is a publishing agency and expanded publishing practice that works through collaborative means to question the conventions of publishing. This site is a work in progress, but feel free to browse things at your leisure. Please <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">follow us</a> for further updates!</div>
+
+  <div class="wrap">
+    <div class="section">
+      <ul class="list">
+        <li class="menu"><a href="/html/about.html">About</a></li>
+        <li class="menu" onclick="alert()"><a href="">Monthly Zine</a></li>
+        <li class="menu"><a href="/html/library.html">Online Library</a></li>
+        <li class="menu">Stuff</li>
+          <ul>
+            <li class="menu"><a href="/html/t-shirt.html">T-shirts</a></li>
+            <li class="menu"><a href="/html/zines.html">Zines</a></li>
+            <li class="menu" onclick="alert()"><a href="">Small Graphics</a></li>
+          </ul>
+        <li class="menu" onclick="alert()"><a href="">Shop</a></li>
+        <li class="menu"><a href="/html/contact.html">Contact</a></li>
+      </ul>
+    
+      <div class="hover-img_001">
+        <div class="hover-key">.</div>
+        <img id="img_001" src="img/img_001.jpeg">
+      </div>
+    
+      <div class="hover-img_002">
+        <div class="hover-key">.</div>
+        <img id="img_002" src="img/img_002.jpeg">
+      </div>
+    
+      <div class="hover-img_003">
+        <div class="hover-key">.</div>
+        <img id="img_003" src="img/img_003.jpeg">
+      </div>
+    
+      <div class="hover-img_004">
+        <div class="hover-key">.</div>
+        <img id="img_004" src="img/img_004.jpeg">
+      </div>
+    
+      <div class="hover-img_005">
+        <div class="hover-key">.</div>
+        <img id="img_005" src="img/img_005.jpeg">
+      </div>
+    
+      <div class="hover-img_006">
+        <div class="hover-key">.</div>
+        <img id="img_006" src="img/img_006.jpeg">
+      </div>
+    
+      <div class="hover-img_007">
+        <div class="hover-key">.</div>
+        <img id="img_007" src="img/img_007.jpeg">
+      </div>
+    
+      <div class="hover-img_008">
+        <div class="hover-key">.</div>
+        <img id="img_008" src="img/img_008.jpeg">
+      </div>
+    
+    </div>
+    
+    <div class="section">
+
+      <div class="card-footer">
+        <form onsubmit="addComment(event)">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Say something to Ningen." required>
+          </div>
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+        <div class="comments mt-3">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">©2024 ningenpaperpress. You can contact us at <a href="">ningenpaperpress [at] gmail.com</a>.</div>
+</body>
+<script>
+  function alert() {
+  var txt;
+  if (confirm("Under Construction. Will let you know when it's ready.")) {
+    txt = "You pressed OK!";
+  } else {
+    txt = "You pressed Cancel!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+<script src="/js/section.js"></script>
+<script src="/js/comment.js"></script>
+</html>

@@ -1,0 +1,65 @@
+
+@font-face{
+  font-family: 'gulim';
+  src: url('/font/굴림.ttc');
+}
+
+
+.item{
+  display: flex;
+  gap: 20px;
+}
+
+.item-image{
+  width: 700px;
+}
+
+img{
+  width: 700px;
+}
+
+.title{
+  font-family: 'vel-2';
+}
+
+button{
+  width: 300px;
+  height: 48px;
+  font-size: 24px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 20px 0;
+  font-family: 'vel';
+}
+
+button:hover{
+  background-color: grey;
+}
+
+.des{
+  word-break: keep-all;
+  margin-right: 60px;
+}
+
+#myBtn{
+  position: fixed;
+  text-align: center;
+  bottom: 100px;
+  right: 50%;
+  font-size: 60px;
+  font-family: 'vel-2';
+}
+
+#myBtn:hover{
+  cursor: pointer;
+  color: red;
+}
+
+#kr{
+  font-family: 'gulim';
+  font-size: 20px;
+  line-height: 1.7;
+  opacity: 70%;
+}
