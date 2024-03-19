@@ -1,0 +1,138 @@
+body{
+  display: flex;
+}
+.left{
+  width: 65%;
+}
+
+#header{
+  display: flex;
+  gap: 1rem;
+}
+
+#header img{
+  height: 28px;
+}
+
+#timedate{
+  font-size: 2rem;
+  color: blue;
+  padding: 2px;
+}
+
+#timedate a{
+  color: blue;
+}
+
+#menu-list{
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.menu a{
+  color: black;
+  text-decoration: underline;
+}
+
+.menu a:hover{
+  color: red;
+}
+
+li{
+  list-style-type: none;
+}
+
+#title{
+  margin-bottom: .5rem;
+}
+
+#title img{
+  margin-left: .5rem;
+  width: 1rem;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form textarea{
+  padding: 1rem;
+  width: 24rem;
+  font-size: 1rem;
+}
+
+form button{
+  width: 8rem;
+  height: 2rem;
+}
+
+#des{
+  margin: 2rem 0;
+}
+
+#links{
+  display: flex;
+  flex-direction: column;
+}
+
+#links a{
+  color: black;
+  text-decoration: none;
+}
+
+#links a:hover{
+  color: red;
+}
+
+.fixed img{
+  height: 30rem;
+  position: fixed;
+  bottom: 0;
+  right: 5%;
+}
+
+.tag{
+  display: flex;
+  position: fixed;
+  bottom: 50%;
+  right: 40%;
+}
+
+@media screen and (max-width: 390px) {
+  body{
+    display: block;
+  }
+  .left{
+    width: 100%;
+  }
+  #header{
+    gap: .5rem;
+  }
+  #header img{
+    height: 18px;
+  }
+  #timedate{
+    font-size: 1.5rem;
+  }
+  #header-description p{
+    font-size: 1.1rem;
+  } 
+  #menu-list{
+    flex-direction: column;
+  }
+  #place-list{
+    font-size: 1.1rem;
+  }  
+  form textarea{
+    padding: 1rem;
+    width: 20rem;
+    font-size: 1rem;
+  }
+  #des{
+    font-size: 2rem;
+  }
+ 
+}

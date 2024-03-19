@@ -1,0 +1,63 @@
+.header a{
+  font-family: 'fifteen-2'
+}
+
+.item{
+  display: flex;
+  gap: 1rem;
+}
+
+.item-image{
+  width: 40rem;
+}
+
+img{
+  width: 40rem;
+}
+
+.title{
+  font-family: 'gulim';
+}
+
+button{
+  width: 16rem;
+  height: 3rem;
+  font-family: 'gulim';
+  font-size: 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+button:hover{
+  background-color: grey;
+}
+
+.des{
+  word-break: keep-all;
+  margin-right: 60px;
+}
+
+#myBtn{
+  position: fixed;
+  text-align: center;
+  bottom: 100px;
+  right: 50%;
+  font-size: 60px;
+  font-family: 'gulim';
+}
+
+#myBtn:hover{
+  cursor: pointer;
+  color: red;
+}
+
+.des{
+  font-family: 'gulim';
+  font-size: 20px;
+  line-height: 1.7;
+  opacity: 70%;
+}
+

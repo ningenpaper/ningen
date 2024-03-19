@@ -1,0 +1,54 @@
+@font-face{
+  font-family: 'fifteen';
+  src: url('/font/fifteen/FifteenTwenty-Oblique.otf');
+}
+
+@font-face{
+  font-family: 'fifteen-2';
+  src: url('/font/fifteen/FifteenTwenty-DemiOblique.otf');
+}
+
+@font-face{
+  font-family: 'gulim';
+  src: url('/font/굴림.ttc');
+}
+
+*{
+  margin: 0rem;
+  padding: 0rem;
+  font-family: 'fifteen';
+  line-height: .9;
+}
+
+body{
+  margin: 1rem;
+  font-size: 1.5rem;
+  background-color: #fcfedc;
+}
+
+a{
+  color: black;
+  text-decoration: none;
+}
+
+a:hover{
+  color: red;
+}
+
+.footer{
+  position: fixed;
+  bottom: 1rem;
+}
+
+.footer a{
+  font-family: 'fifteen-2';
+}
+
+@media screen and (max-width: 390px) {
+  body{
+    background-color: #dbe2e3;
+  }
+  .fixed{
+    display: none;
+  }
+}

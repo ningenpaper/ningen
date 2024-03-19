@@ -1,0 +1,27 @@
+.header a{
+  font-family: 'fifteen-2'
+}
+
+.collection{
+  display: flex;
+}
+
+.item-title{
+  font-family: 'gulim';
+  line-height: 1.5rem;
+}
+
+.item{
+  margin-right: .5rem;
+  width: 10rem;
+}
+
+
+img{
+  width: 10rem;
+}
+
+.item-title{
+  word-break: keep-all;
+  font-size: 1rem;
+}

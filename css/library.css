@@ -1,0 +1,32 @@
+@font-face{
+  font-family: 'gulim';
+  src: url('/font/굴림.ttc');
+}
+
+.header a{
+  font-family: 'fifteen-2';
+}
+
+.list-of-books{
+  font-family: 'gulim';
+  text-align: center;
+  margin: 2rem;
+}
+
+.book{
+  font-family: 'gulim';
+  line-height: 1.8rem;
+}
+
+.book a{
+  color: blue;
+  text-decoration: underline;
+  font-family: 'gulim';
+}
+
+img {
+  width: 200px;
+  position: fixed;
+  display: none;
+  pointer-events: none;
+}

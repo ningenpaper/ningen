@@ -1,0 +1,36 @@
+@font-face{
+  font-family: 'gulim';
+  src: url('/font/굴림.ttc');
+}
+
+.header a{
+  font-family: 'fifteen-2';
+}
+
+img{
+  width: 20rem;
+}
+
+.member{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+  gap: 80px;
+  font-size: 1rem;
+}
+
+.des{
+  font-family: 'gulim';
+  line-height: 1.2;
+  background-color: none;
+}
+
+.des a{
+  font-family: 'gulim';
+}
+
+#underline{
+  text-decoration: underline;
+}
+
