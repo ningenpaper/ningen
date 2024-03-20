@@ -30,3 +30,13 @@ img {
   display: none;
   pointer-events: none;
 }
+
+@media screen and (max-width: 390px) {
+  .header{
+    font-size: 1.2rem;
+  }
+
+  .list-of-books{
+    font-size: 1rem;
+  }
+}
