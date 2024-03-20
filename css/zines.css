@@ -61,3 +61,21 @@ button:hover{
   opacity: 70%;
 }
 
+@media screen and (max-width: 390px) {
+  .item{
+    display: block;
+    margin-bottom: 20rem;
+  }
+  .item-image{
+    width: 20rem;
+  }
+  img{
+    width: 20rem;
+  }
+  .footer{
+    display: none;
+  }
+  .item-info{
+    margin-top: 1rem;
+  }
+}
