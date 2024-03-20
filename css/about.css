@@ -34,3 +34,21 @@ img{
   text-decoration: underline;
 }
 
+@media screen and (max-width: 390px) {
+  .member{
+    display: block;
+  }
+  img{
+    width: 12rem;
+  }
+  .des{
+    font-size: .8rem;
+  }
+  .member-1{
+    margin-bottom: 4rem;
+  }
+  .footer{
+    display: none;
+  }
+}
+
