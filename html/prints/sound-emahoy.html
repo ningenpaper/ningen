@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOUND SERIES: Emahoy Tsege Mariam Gebru</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Sound-Series-Emahoy-Tsege-Mariam-Gebru.jpg" />
+      </div>
+        <div class="item-info">
+          <div class="title">SOUND SERIES: Emahoy Tsege Mariam Gebru</div>
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $7</p>
+          </div>
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/7" 
+            target="_blank"
+            class="to-cart"
+          > 
+            <button>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Text: Ganghyeon Paeg <br />
+        Design: Ganghyeon Paeg<br /><br />
+
+        140×210mm <br />
+        20 pages <br />
+        Printed August 2024
+      </div>
+      <div class="content">
+        SOUND SERIES is a small-format publication by Ningen that introduces musicians with distinctive aesthetics and narratives who remain lesser known. This issue features Emahoy Tsegué-Maryam Guèbrou, an Ethiopian pianist and composer. Born in Ethiopia in 1923, Emahoy studied classical music in Europe and built her own musical world, moving between monastic life and secular musical pursuits. Her music blends Ethiopian traditional melodies with Western piano styles, creating a quiet sorrow and meditative feeling that gently touches the listener’s deepest places. Beneath the gentle repetition, slow pace, and simple structures lies an intense inner world. Emahoy’s music evokes a sense of maternal love that you might unexpectedly encounter at the end of the day or around some quiet corner of life.
+      </div>
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 7; // 1개 가격
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

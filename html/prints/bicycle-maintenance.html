@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Rough Guide to Bicycle Maintenance</title> 
+    <!-- //Change -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/A-Rough-Guide-To-Bicycle-Maintenance.png" />
+      </div>
+        <div class="item-info">
+          <div class="title">
+            A Rough Guide to Bicycle Maintenance
+          </div>
+              <!-- //Change -->
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $12</p>
+          </div>
+              <!-- //Change -->
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/12" 
+            target="_blank"
+            class="to-cart"
+          > 
+              <!-- //Change -->
+            <button>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Written by Shelly Lynn Jackson<br>
+        Reprinted by Ningen Paper Press<br>
+        <br>
+        148×210mm<br>
+        16p<br>
+        Original 2023, First edition repressed in August 2024
+      </div>
+          <!-- //Change -->
+      <div class="content">
+        Shelley, Portland’s most devoted bicycle lover, shares how to truly care for your own bike. This book covers essential knowledge for any cyclist, including at-home repair techniques, bearing maintenance, tuning, and tips on navigating bike shops as a woman.
+Originally presented as a bicycle repair workshop at the Portland volunteer collective Zine Symposium in 2003, it is now reissued by Ningen Paper Press.
+      </div>
+          <!-- //Change -->
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 12; // 1개 가격    <!-- //Change -->
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

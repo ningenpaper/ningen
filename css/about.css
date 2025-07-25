@@ -1,54 +1,55 @@
-@font-face{
-  font-family: 'gulim';
-  src: url('/font/굴림.ttc');
+#translation {
+  width: 60rem;
+  font-family: "acumin-pro";
+  font-size: 1.5rem;
+  line-height: 0.95;
+  font-style: oblique;
+
+  cursor: pointer;
 }
 
-.header a{
-  font-family: 'fifteen-2';
+img {
+  width: 50rem;
 }
 
-img{
-  width: 20rem;
-}
-
-.member{
-  width: 100%;
+.members {
   display: flex;
-  justify-content: center;
-  margin: 50px 0;
-  gap: 80px;
-  font-size: 1rem;
+  gap: 8rem;
 }
 
-.des{
-  font-family: 'gulim';
-  line-height: 1.2;
-  background-color: none;
+.members p {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
 }
 
-.des a{
-  font-family: 'gulim';
+p a {
+  text-decoration: none;
 }
 
-#underline{
-  text-decoration: underline;
+p a:hover {
+  color: #ff0000;
 }
 
-@media screen and (max-width: 390px) {
-  .member{
-    display: block;
+@media (max-width: 768px) {
+  #translation {
+    width: auto;
+    font-size: 1.2rem;
   }
-  img{
-    width: 12rem;
+
+  .members {
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  .des{
-    font-size: .8rem;
+
+  .members p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
   }
-  .member-1{
-    margin-bottom: 4rem;
-  }
-  .footer{
-    display: none;
+
+  img {
+    width: 90%;
+    height: 100%;
+    padding: 1rem;
   }
 }
-

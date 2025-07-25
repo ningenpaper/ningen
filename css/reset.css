@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "fifteen";
+  src: url("/font/FifteenTwenty-Oblique.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 2rem;
+  background-color: #fcfedc;
+  margin-bottom: 20rem;
+}
+
+a {
+  color: #000;
+}
+
+::selection {
+  background: #93ff17; /* 드래그 시 배경색 */
+  color: #000000; /* 드래그 시 글자색 */
+}
+
+.header {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #ff0000;
+}
+
+.header img {
+  width: 1rem;
+  transform: rotate(90deg);
+  transform-origin: center;
+  margin-right: 1rem;
+}
+
+.footer {
+  font-family: "fifteen";
+  font-size: 1.2rem;
+  position: fixed;
+  bottom: 1rem;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #ff0000;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    background-color: #dbe2e3;
+    margin: 1rem;
+    margin-bottom: 10rem;
+  }
+}

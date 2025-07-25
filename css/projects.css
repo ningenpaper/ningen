@@ -1,0 +1,93 @@
+.description {
+  font-family: "acumin-pro";
+  word-break: keep-all;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.description p span:hover {
+  color: #ff0000;
+}
+
+.collection {
+  display: flex;
+}
+
+.event {
+  width: 15rem;
+}
+.event a {
+  text-decoration: none;
+}
+
+.event a:hover {
+  color: #ff0000;
+}
+.event img {
+  width: 15rem;
+}
+
+.event-title {
+  font-family: "acumin-pro";
+  font-size: 1.2rem;
+  padding: 0.1rem 0.3rem;
+}
+
+.event-date {
+  font-family: "acumin-pro";
+  font-size: 1rem;
+  padding: 0.1rem 0.3rem;
+}
+
+.category {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+  margin: 3rem 0rem 1rem 0rem;
+}
+
+#translation {
+  width: 80rem;
+  font-family: "acumin-pro";
+  font-size: 1.5rem;
+  line-height: 0.95;
+  font-style: oblique;
+
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #translation {
+    width: auto;
+    font-size: 1.2rem;
+  }
+
+  .category {
+    font-size: 1.5rem;
+  }
+
+  .collection {
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .event {
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  .event img {
+    width: 100%;
+    height: auto;
+  }
+
+  .event-title {
+    font-size: 1.1rem;
+    padding: 0.2rem 0;
+  }
+
+  .event-date {
+    font-size: 1rem;
+    padding: 0.1rem 0;
+  }
+}

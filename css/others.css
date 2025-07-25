@@ -1,0 +1,50 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* 스크롤 제거 */
+}
+
+.alert {
+  font-family: "fifteen";
+  font-size: 2rem;
+}
+
+.go-back {
+  font-family: "fifteen";
+  font-size: 2rem;
+}
+
+.go-back a {
+  text-decoration: none;
+}
+
+.go-back a:hover {
+  color: #ff0000;
+}
+
+.image {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, -50%);
+}
+
+.image img {
+  width: 40rem;
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+@media (max-width: 768px) {
+  .alert {
+    font-size: 1.5rem;
+  }
+
+  .go-back {
+    font-size: 1.5rem;
+  }
+
+  .image img {
+    width: 10rem;
+  }
+}

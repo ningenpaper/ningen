@@ -1,39 +1,109 @@
-.header a{
-  font-family: 'fifteen-2'
+.item-image img {
+  width: 25rem;
 }
 
-.collection{
-  display: flex;
+.title {
+  font-family: "acumin-pro";
+  font-size: 1.5rem;
 }
 
-.item-title{
-  font-family: 'gulim';
-  line-height: 1.5rem;
+button {
+  padding: 0.3rem 0.5rem 0rem 0.5rem;
+  font-family: "fifteen";
+  font-size: 1.2rem;
 }
 
-.item{
-  margin-right: .5rem;
-  width: 10rem;
+a {
+  text-decoration: none;
 }
 
-
-img{
-  width: 10rem;
-}
-
-.item-title{
-  word-break: keep-all;
+input {
+  font-family: "acumin-pro";
   font-size: 1rem;
+  border: none;
+  background-color: #fcfedc;
+  width: 3rem;
 }
 
-@media screen and (max-width: 390px) {
-  .collection{
-    display: block;
+.des {
+  font-family: "acumin-pro";
+}
+
+.price-info {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+}
+
+label input {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+}
+
+.content {
+  border: 1px solid black;
+  font-style: oblique;
+  width: 60rem;
+  font-family: "acumin-pro";
+  font-size: 1.5rem;
+  line-height: 1;
+  word-break: keep-all;
+  margin-top: 3rem;
+}
+
+.cart {
+  position: relative;
+  top: -0.3rem;
+}
+
+.price-container {
+  width: 25rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .item-image img {
+    width: 100%;
+    max-width: 100%;
   }
-  #second{
-    margin-top: 4rem;
+
+  .content {
+    width: 90%;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    padding: 0.5rem;
   }
-  .item{
-    margin-bottom: 2rem;
+
+  .price-container {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .price-info {
+    font-size: 1.2rem;
+  }
+
+  label input {
+    font-size: 1.2rem;
+    width: 100%;
+    max-width: 5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .des {
+    font-size: 1rem;
+    padding-top: 1rem;
   }
 }

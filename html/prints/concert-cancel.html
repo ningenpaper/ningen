@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concert Cancel Culture (Stop!)</title> 
+    <!-- //Change -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Concert-Cancel-Culture-(Stop!).png" />
+        <!-- Change -->
+      </div>
+        <div class="item-info">
+          <div class="title">
+            Concert Cancel Culture (Stop!)
+          </div>
+              <!-- //Change -->
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $7</p>
+          </div>
+              <!-- //Change -->
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/7" 
+            target="_blank"
+            class="to-cart"
+          > 
+              <!-- //Change -->
+            <button>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Text: Chae Ahn<br>
+Translation: Chae Ahn<br>
+Design: Chae Ahn<br>
+<br>
+118×210mm<br>
+22p<br>
+Printed in August 2024
+      </div>
+          <!-- //Change -->
+      <div class="content">
+        What happens when an artist’s urgent message for the times is seen as filthy, obscene, or socially corrupt? Concert Cancel Culture examines the phenomenon of protest movements that call for the cancellation of international concerts on religious or social grounds. Drawing on the author’s firsthand experiences of religious life in Korea and Indonesia, it explores the contradictions of faith and the cultural limits imposed by excessive religious fervor.
+      </div>
+          <!-- //Change -->
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 7; // 1개 가격    <!-- //Change -->
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

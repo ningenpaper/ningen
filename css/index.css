@@ -1,138 +1,196 @@
-body{
+body {
   display: flex;
 }
-.left{
-  width: 65%;
+
+.left {
+  width: 60%;
 }
 
-#header{
-  display: flex;
-  gap: 1rem;
-}
-
-#header img{
-  height: 28px;
-}
-
-#timedate{
+#timedate {
+  font-family: "fifteen";
   font-size: 2rem;
-  color: blue;
-  padding: 2px;
+  color: #0000ff;
 }
 
-#timedate a{
-  color: blue;
+#timedate a {
+  color: #0000ff;
 }
 
-#menu-list{
-  display: flex;
-  gap: 1rem;
-  margin: 2rem 0;
+#title {
+  font-size: 2rem;
+  font-family: "fifteen";
 }
 
-.menu a{
-  color: black;
-  text-decoration: underline;
-}
-
-.menu a:hover{
-  color: red;
-}
-
-li{
-  list-style-type: none;
-}
-
-#title{
-  margin-bottom: .5rem;
-}
-
-#title img{
-  margin-left: .5rem;
-  width: 1rem;
-}
-
-form{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-form textarea{
-  padding: 1rem;
-  width: 24rem;
-  font-size: 1rem;
-}
-
-form button{
-  width: 8rem;
-  height: 2rem;
-}
-
-#des{
-  margin: 2rem 0;
-}
-
-#links{
-  display: flex;
-  flex-direction: column;
-}
-
-#links a{
-  color: black;
+#title a {
   text-decoration: none;
 }
 
-#links a:hover{
-  color: red;
+#title a:hover {
+  color: #ff0000;
 }
 
-.fixed img{
-  height: 30rem;
+#header-description {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+}
+
+#header-description a {
+  text-decoration: none;
+}
+
+#header-description a:hover {
+  color: #ff0000;
+}
+
+#menu-list {
+  display: flex;
+  gap: 1rem;
+  font-family: "fifteen";
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  color: #000;
+  text-decoration: underline;
+  text-decoration-color: #000;
+}
+
+#menu-list a:hover {
+  color: #ff0000;
+  text-decoration-color: #ff0000;
+}
+
+#contact {
+  margin-top: -0.2rem;
+  font-family: "fifteen";
+  font-size: 1.5rem;
+}
+
+#contact img {
+  width: 0.9rem;
+}
+
+#message {
+  width: 30rem;
+  height: 2rem;
+  padding: 0.6rem;
+  line-height: 1.2;
+  font-family: "fifteen";
+  font-size: 1rem;
+}
+
+button {
+  font-family: "fifteen";
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+#des {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#links {
+  font-family: "fifteen";
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+#links a {
+  text-decoration: none;
+}
+
+#links a:hover {
+  color: #ff0000;
+}
+
+.fixed img {
+  height: 35rem;
   position: fixed;
   bottom: 0;
-  right: 5%;
+  right: 2rem;
 }
 
-.tag{
+.tag {
   display: flex;
   position: fixed;
+  font-family: "fifteen";
+  font-size: 1.5rem;
   bottom: 50%;
   right: 40%;
 }
 
-@media screen and (max-width: 390px) {
-  body{
-    display: block;
-  }
-  .left{
-    width: 100%;
-  }
-  #header{
-    gap: .5rem;
-  }
-  #header img{
-    height: 18px;
-  }
-  #timedate{
-    font-size: 1.5rem;
-  }
-  #header-description p{
-    font-size: 1.1rem;
-  } 
-  #menu-list{
+@media screen and (max-width: 768px) {
+  body {
     flex-direction: column;
   }
-  #place-list{
-    font-size: 1.1rem;
-  }  
-  form textarea{
-    padding: 1rem;
-    width: 20rem;
+
+  .left,
+  .right {
+    width: 100%;
+    float: none;
+  }
+
+  #menu-list {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #message {
+    width: 90%;
+    font-size: 0.9rem;
+  }
+
+  .menu {
+    font-size: 1.5rem;
+  }
+
+  .fixed img {
+    display: none;
+  }
+
+  .tag {
+    position: static;
+    flex-direction: column;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .footer {
+    position: static;
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  #contact {
+    margin-top: 2rem;
+  }
+
+  #timedate {
+    font-size: 1.9rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #title,
+  #header-description,
+  #menu-list,
+  #contact,
+  #des,
+  #links {
+    font-size: 1.2rem;
+  }
+
+  .footer {
     font-size: 1rem;
   }
-  #des{
-    font-size: 2rem;
+}
+
+@media screen and (max-width: 400px) {
+  #timedate {
+    font-size: 1.7rem;
   }
- 
 }

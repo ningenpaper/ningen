@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOUND SERIES: Terry Riley</title> 
+    <!-- //Change -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Sound-Series-Terry-Riley.jpg" />
+      </div>
+        <div class="item-info">
+          <div class="title">SOUND SERIES: Terry Riley</div>
+              <!-- //Change -->
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $7</p>
+          </div>
+              <!-- //Change -->
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/7" 
+            target="_blank"
+            class="to-cart"
+          > 
+              <!-- //Change -->
+            <button>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Text: Ganghyeon Paeg <br />
+        Design: Ganghyeon Paeg<br /><br />
+
+        140×210mm <br />
+        20 pages <br />
+        Printed August 2024
+      </div>
+          <!-- //Change -->
+      <div class="content">
+        SOUND SERIES is a small-format publication by Ningen that introduces musicians with distinctive aesthetics and narratives who remain lesser known. This issue features Terry Riley, a pioneering minimalist composer who helped establish the aesthetics of improvisation, spirituality, and repetition.
+
+In the 1960s, he was instrumental in shaping the early form of minimal music centered in California, creating new forms of repetition and layering within simple, flexible structures that are still seen as the essence of minimalism today. Terry Riley’s music is built less on traditional notation or directives and more on performer autonomy and attentive listening, blending influences from Indian classical music, jazz, drone, and electronic music.
+
+He continues to make music while raising cattle in the Sierra Nevada foothills of California. Within his low, steady repetitions unfolds a slowly evolving fabric of sound—inviting you to savor a sense of freedom and continuity embedded within.
+      </div>
+          <!-- //Change -->
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 7; // 1개 가격    <!-- //Change -->
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

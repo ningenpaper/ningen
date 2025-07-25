@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life + Cook Letter Issue 1</title> 
+    <!-- //Change -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Life-Cook-Letter-Issue-1.png" />
+      </div>
+        <div class="item-info">
+          <div class="title">
+            Life + Cook Letter Issue 1
+          </div>
+              <!-- //Change -->
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY: No Stock
+            </label>
+            <p id="total">PRICE: N/A</p>
+          </div>
+              <!-- //Change -->
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/12" 
+            target="_blank"
+            class="to-cart"
+          > 
+              <!-- //Change -->
+            <button disabled>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Text and Photography: Jisu Hwang<br>
+        Design: Ganghyeon Paeg<br>
+        <br>
+        297×420mm<br>
+        2p<br>
+        Printed in January 2024
+      </div>
+          <!-- //Change -->
+      <div class="content">
+        Chef Jisu, Hwang creates recipes by recalling thousands of memorable moments and put into a palatable meal. Away from the logical way of cooking, ’Number of Cases‘ introduces various multicultural dishes as a way of life.Three months ago, she closed her kitchen called the Number of Cases in Nusan-dong, Seoul, and now travels to kitchens in cities worldwide.”Life + Cook Letter Issue 1“ features stories from Seoul, Jeju, Tokyo, and Fukuoka, introducing several recipes created through new encounters and tips discovered in world kitchens.
+      </div>
+          <!-- //Change -->
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 12; // 1개 가격    <!-- //Change -->
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

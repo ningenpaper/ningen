@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Froggy Office T-shirt Catalogue</title> 
+    <!-- //Change -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Froggy-Office-T-Shirt-Catalogue.png" />
+        <!-- Change -->
+      </div>
+        <div class="item-info">
+          <div class="title">
+            Froggy Office T-shirt Catalogue
+          </div>
+              <!-- //Change -->
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $9</p>
+          </div>
+              <!-- //Change -->
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/9" 
+            target="_blank"
+            class="to-cart"
+          > 
+              <!-- //Change -->
+            <button>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Text and Photography: Ganghyun Paeg<br>
+        Design: Ganghyun Paeg<br>
+        <br>
+        148×210mm<br>
+        36p<br>
+        Printed in May 2023
+      </div>
+          <!-- //Change -->
+      <div class="content">
+        Introducing some provocative T-shirts unearthed by Froggy Office. They're still on sale at our office. Feel free to read through and pick one that speaks to you.
+      </div>
+          <!-- //Change -->
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 9
+      ; // 1개 가격    <!-- //Change -->
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

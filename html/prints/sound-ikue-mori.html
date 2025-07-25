@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOUND SERIES: Ikue Mori</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Sound-Series-Ikue-Mori.png" />
+      </div>
+        <div class="item-info">
+          <div class="title">SOUND SERIES: Ikue Mori</div>
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $7</p>
+          </div>
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/7"
+            target="_blank"
+            class="to-cart"
+          >
+            <button>CHECK OUT</button>
+          </a>
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Text: Ganghyeon Paeg <br />
+        Design: Ganghyeon Paeg<br /><br />
+
+        140×210mm <br />
+        20 pages <br />
+        Printed August 2024
+      </div>
+      <div class="content">
+        SOUND SERIES is a small-format publication by Ningen that introduces musicians with
+        distinctive aesthetics and narratives who remain lesser known. This issue features Ikue
+        Mori, an artist who has developed her own language at the boundaries of noise, electronic
+        music, and improvisation. Born in Japan, Ikue Mori moved to New York in 1977 and began her
+        musical career as the drummer for the legendary no wave band DNA. She later abandoned the
+        drums to fully pursue electronic and experimental music using drum machines, laptops, and
+        samplers. Her sound consists of writhing, organic dissonance, intuitive rhythms spat out by
+        electronic devices, and strange silences. Treating the computer like a living organism, she
+        manipulates the shape and movement of sound with a visual sensibility, making her
+        performances resemble a kind of visual art.
+      </div>
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 7; // 1개 가격
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

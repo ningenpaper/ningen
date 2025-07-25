@@ -1,0 +1,22 @@
+.book {
+  font-family: "acumin-pro";
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.book a {
+  color: #0000ff;
+}
+
+.book img {
+  width: 200px;
+  position: fixed;
+  display: none;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .book {
+    margin: 0.5rem 0;
+  }
+}

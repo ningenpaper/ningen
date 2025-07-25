@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuseahe</title> 
+    <!-- //Change -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Nuseahe.png" />
+      </div>
+        <div class="item-info">
+          <div class="title">
+            Nuseahe
+          </div>
+              <!-- //Change -->
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $25</p>
+          </div>
+              <!-- //Change -->
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/25" 
+            target="_blank"
+            class="to-cart"
+          > 
+              <!-- //Change -->
+            <button>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Drawing: E.Haesun<br>
+        Translation: Chae Ahn<br>
+        Design: Ganghyeon Paeg<br>
+        <br>
+        240×350mm<br>
+        40p<br>
+        Printed in November 2024
+      </div>
+          <!-- //Change -->
+      <div class="content">
+        Nuseahe, also known as Drawings for Tattoos by the artist Haesun Lee , is a collection of 89 small tattoo designs that can be engraved on skin. Haesun Lee creates dreamy drawings that evoke memories of daily life and habits, connecting to a world of imagination. As the drawings in Nuseahe puts the purpose for tattoos, they were portrayed with far more delicate and intimate lines, unlike the bold and sharp look of her original work.This book includes a conversation with the publisher about the drawings and the artist‘s own perspective.
+      </div>
+          <!-- //Change -->
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 25; // 1개 가격    <!-- //Change -->
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>

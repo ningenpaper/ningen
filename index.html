@@ -1,80 +1,73 @@
 <!DOCTYPE html>
-<html lang="kr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ningen Paper Press</title>
-  <link rel="stylesheet" href="/css/default.css">
-  <link rel="stylesheet" href="/css/index.css">
-  <link rel="icon" href="/img/main/logo-ningen.ico">
-</head>
-<body onLoad="initClock()">
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ningen Paper Press</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/index.css">
+  </head>
+  <body onLoad="initClock()">
 
-<div class="left">
-  <div id="header">
-    <img src="/img/main/logo-ningen.png" alt="Logo of Ningen Paper Press">
-    <div id="timedate"><a id="y">0</a>.<a id="mon">0</a>.<a id="d">1</a>.<a id="h">12</a>:<a id="m">00</a>:<a id="s">00</a>:<a id="mi">000</a></div>
-  </div>
+    <div class="left">
 
-  <div id="header-description">
-    <p>Hey. Wake Up! It's time to print - <br>
-      www.ningenpaperpress.com <br>
-      Can you check the index below...? Please ...</p>
-  </div>
+        <div id="timedate"><a id="y">0</a>.<a id="mon">0</a>.<a id="d">1</a>.<a id="h">12</a>:<a id="m">00</a>:<a id="s">00</a>:<a id="mi">000</a></div>
+        <div id="title"><a href="index.html">Ningen Paper Press</a></div>
+        
+        <div id="header-description">
+          <p>Hey. Wake Up! It's time to print<br>
+            <a href="index.html">www.ningenpaperpress.com </a><br>
+            Can you check the index below...? Please...</p>
+        </div>
+        
+        <div id="menu-list">
+          <div class="menu"><a href="/html/index-library.html">Index</a></div>
+          <div class="menu"><a href="/html/prints.html">Prints</a></div>
+          <div class="menu"><a href="/html/others.html">Others</a></div>
+          <div class="menu"><a href="/html/projects.html">Projects</a></div>
+          <div class="menu"><a href="/html/about.html">About</a></div>
+        </div>
+   
+    </div>
 
-  <div id="menu-list">
-    <div class="menu"><a href="" onclick="alert()">Monthly Zines</a></div>
-    <div class="menu"><a href="/html/library.html">Index Library</a></div>
-    <div class="menu"><a href="/html/shop.html">Ningen Paper Shop</a></div>
-    <div class="menu"><a href="/html/about.html">About</a></div>
-  </div>
+     <div class="right" style="z-index:2">
+      <div id="contact">Contact <img src="/img/hand.png"></div>
+      <form onsubmit="sendMail(); return false">
+        <textarea id="message" placeholder="Feel free to reach us anytime and anywhere..."></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+
+      <div id="des">
+        Do you want to make your own book? <br>
+        If you have any provocative contents, <br>
+        please reach our publisher. <br>
+        We are always waiting for you.
+      </div>
+      <div id="links">
+        <div>ningenpaperpress@gmail.com</div>
+        <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaper.press</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
     
-  <div id="place-list">
-    YOU CAN CHECK OUR PUBLICATIONS BELOW PLACES:
-    <ul>{Korea}
-      <li>&emsp;froggy office (Jeonju)</li>
-      <li>&emsp;.</li>
-      <li>&emsp;.</li>
-      <li>&emsp;.</li>
-      <li>&emsp;.</li>
-      <li>&emsp;.</li>
-    </ul>
-  </div>
-</div>
+    <div class="fixed" style="z-index:1">
 
-<div class="right" style="z-index:2">
-  <div id="title">Contact<img src="/img/main/img-02.png"></div>
-  <form>
-    <textarea id="message" placeholder="Feel free to reach us anytime and anywhere...only English... please...sorry...:P"></textarea>
-    <button onclick="sendMail(); return false">Send Message</button>
-  </form>
-  <div id="des">
-    Do you want to make your own book? <br>
-    If you have any provocative contents, <br>
-    please reach our publisher. <br>
-    We are always waiting for you.
-  </div>
-  <div id="links">
-    <a href="mailto:ningenpaperpress@gmail.com?Subject=Hello%20Ningen">ningenpaperpress@gmail.com</a>
-    <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaper.press</a>
-    <a href="https://www.instagram.com/ningenpaper.shop/" target="_blank">@ningenpaper.shop</a>
-  </div>
-</div>
+      <img id="member" src="/img/index-ningen-photo.png">
+      <div class="tag">
+        <h1>Welcome...</h1>
+        <h2>Ningen...</h2>
+        <h3>Paper...</h3>
+        <h4>Web...</h4>
+      </div>
 
-<div class="fixed" style="z-index:1">
-  <div class="tag">
-    <h1>Welcome...</h1>
-    <h2>Ningen...</h2>
-    <h3>Paper...</h3>
-    <h4>Web...</h4>
-  </div>
-  <img id="member" src="/img/main/img-01.png">
-</div>
-
-
-
-  <script src="/js/script.js"></script>
-  <script src="/js/time.js"></script>
-  <script src="/js/alert.js"></script>
-</body>
+     
+      <script src="/js/time.js"></script>
+      <script src="/js/message.js"></script>
+  </body>
 </html>

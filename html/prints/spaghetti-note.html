@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PEOPLE WIKI SERIES ISSUE 1</title> 
+    <!-- //Change -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/item.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/index.html">ningen paper press</a> sells
+      <a href="/html/prints.html">print matters</a>.
+    </div>
+
+    <div class="item">
+      <div class="item-image">
+        <img src="/zines/cover/Collected-Spaghetti-Notes-Note-Version.png" />
+      </div>
+        <div class="item-info">
+          <div class="title">
+            PEOPLE WIKI SERIES ISSUE 1: Collected Spaghetti Notes (Note Version)
+          </div>
+              <!-- //Change -->
+
+        <div class="price-container">
+          <div class="price-info">
+            <label>
+              QUANTITY:
+              <input type="number" id="quantity" value="1" min="1" onchange="updatePayPalLink()" />
+            </label>
+            <p id="total">PRICE: $9</p>
+          </div>
+              <!-- //Change -->
+          <a class="cart"
+            id="paypal-button"
+            href="https://www.paypal.com/paypalme/ningenpaperpress/9" 
+            target="_blank"
+            class="to-cart"
+          > 
+              <!-- //Change -->
+            <button>CHECK OUT</button> 
+          </a>
+
+        </div>
+
+        </div>
+
+        
+      </div>
+      <div class="des">
+        Text: Ganghyeon Paeg<br>
+        Design: Ganghyeon Paeg<br>
+        <br>
+        140×210mm<br>
+        20p<br>
+        Printed in March 2024
+      </div>
+          <!-- //Change -->
+      <div class="content">
+        My Spaghetti Tastes Bad. There is a musician who begins with the seemingly simple question, What is habitual spaghetti? and through this, raises deeper, endless questions about life itself. In today’s world where people tend to chase only the storyline rather than the substance, he stubbornly repeats his attempts without any shortcuts, searching for accidental patterns. The number 90 might be the very law of the world he has come to understand. Yet, for him, making spaghetti was never an easy task. The first installment of Ningen Paper’s People Wiki Series focuses on Byun Unnsu, a musician active in the ambient duo HOSOO in Korea, and his humble hobby. His long journey of making spaghetti 90 times over six months, using similar ingredients and methods each time, has become both a reflection and a habit. The title is set as My Spaghetti Tastes Bad, and it will be translated into two languages so friends living in two different countries can enjoy it together.
+      </div>
+          <!-- //Change -->
+    </div>
+
+    <div class="footer">
+      2025 Ningen Paper Press. Check out our latest news
+      <a href="https://www.instagram.com/ningenpaper.press/" target="_blank">@ningenpaperpress</a>.
+    </div>
+
+    <script>
+      const unitPrice = 9; // 1개 가격    <!-- //Change -->
+      function updatePayPalLink() {
+        const quantity = parseInt(document.getElementById("quantity").value) || 1;
+        const total = unitPrice * quantity;
+        document.getElementById("total").innerText = `PRICE: $${total}`;
+        document.getElementById(
+          "paypal-button"
+        ).href = `https://www.paypal.com/paypalme/ningenpaperpress/${total}`;
+      }
+    </script>
+  </body>
+</html>
