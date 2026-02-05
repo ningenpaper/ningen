@@ -1,0 +1,58 @@
+/* ===== COLLECTION ===== */
+.collection {
+  font-family: "acumin-pro";
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1rem;
+  max-width: 40rem;
+}
+
+/* ===== ITEM ===== */
+.collection .item {
+  width: 12rem;
+}
+
+.collection .item-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.item-title {
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.collection a {
+  text-decoration: none;
+}
+
+.collection a:hover {
+  color: #ff0000;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 780px) {
+  .collection {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  .item {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .item-title {
+    width: 90vw;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+  }
+}

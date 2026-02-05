@@ -1,0 +1,55 @@
+#translation {
+  width: 60rem;
+  font-family: "acumin-pro";
+  font-size: 1.5rem;
+  line-height: 0.95;
+  font-style: oblique;
+  cursor: pointer;
+}
+
+img {
+  width: 50rem;
+}
+
+.members {
+  display: flex;
+  gap: 8rem;
+}
+
+.members p {
+  font-family: "fifteen";
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  font-style: oblique;
+}
+
+.members p a {
+  text-decoration: none;
+}
+
+.members p a:hover {
+  color: #ff0000;
+}
+
+@media (max-width: 768px) {
+  #translation {
+    width: auto;
+    font-size: 1.2rem;
+  }
+
+  .members {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .members p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  img {
+    width: 90%;
+    height: 100%;
+    padding: 1rem;
+  }
+}

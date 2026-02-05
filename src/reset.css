@@ -1,0 +1,127 @@
+/* ===== CSS RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #93ff17;
+  color: #000;
+}
+
+/* ===== FONTS ===== */
+@font-face {
+  font-family: "Fifteen";
+  src: url("./font/FifteenTwenty.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fifteen";
+  src: url("./font/FifteenTwenty-Demi.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fifteen";
+  src: url("./font/FifteenTwenty-Oblique.woff2") format("woff2");
+  font-weight: 400;
+  font-style: oblique;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fifteen";
+  src: url("./font/FifteenTwenty-DemiOblique.woff2") format("woff2");
+  font-weight: 500;
+  font-style: oblique;
+  font-display: swap;
+}
+
+@import url("https://use.typekit.net/qpr0mrx.css");
+
+/* ===== VARIABLES ===== */
+:root {
+  /* Typography */
+  --font-title: "Fifteen", monospace;
+  --font-body: "acumin-pro", monospace;
+  --weight-regular: 400;
+  --weight-bold: 500;
+
+  /* Colors */
+  --color-bg: #fcfedc;
+  --color-text: #000;
+  --color-hover: #ff0000;
+  --color-selection: #93ff17;
+}
+
+/* ===== BASE ===== */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  padding: 2rem;
+  margin: 0;
+  margin-bottom: 20rem;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-hover);
+}
+
+/* ===== HEADER ===== */
+.header {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-style: oblique;
+}
+
+.header a {
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #ff0000;
+}
+
+.header img {
+  width: 1rem;
+  transform: rotate(90deg);
+  transform-origin: center;
+  margin-right: 1rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  position: fixed;
+  bottom: 1rem;
+  font-style: oblique;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #ff0000;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    background-color: #dbe2e3;
+    padding: 1rem;
+    margin: 0;
+    margin-bottom: 10rem;
+  }
+}
