@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/ningen/static/css/main.17532bb0.css",
-    "main.js": "/ningen/static/js/main.c302493e.js",
-    "static/media/FifteenTwenty-DemiOblique.woff2": "/ningen/static/media/FifteenTwenty-DemiOblique.deeaa8bfe77b6cfc5708.woff2",
-    "static/media/FifteenTwenty-Oblique.woff2": "/ningen/static/media/FifteenTwenty-Oblique.ee498edcb4572587cf1a.woff2",
-    "static/media/FifteenTwenty-Demi.woff2": "/ningen/static/media/FifteenTwenty-Demi.5e440304d56e48cd84ba.woff2",
-    "static/media/FifteenTwenty.woff2": "/ningen/static/media/FifteenTwenty.4acb40f7b3f81ff3c854.woff2",
-    "index.html": "/ningen/index.html",
-    "main.17532bb0.css.map": "/ningen/static/css/main.17532bb0.css.map",
-    "main.c302493e.js.map": "/ningen/static/js/main.c302493e.js.map"
+    "main.css": "/static/css/main.4bc37051.css",
+    "main.js": "/static/js/main.c302493e.js",
+    "static/media/FifteenTwenty-DemiOblique.woff2": "/static/media/FifteenTwenty-DemiOblique.deeaa8bfe77b6cfc5708.woff2",
+    "static/media/FifteenTwenty-Oblique.woff2": "/static/media/FifteenTwenty-Oblique.ee498edcb4572587cf1a.woff2",
+    "static/media/FifteenTwenty-Demi.woff2": "/static/media/FifteenTwenty-Demi.5e440304d56e48cd84ba.woff2",
+    "static/media/FifteenTwenty.woff2": "/static/media/FifteenTwenty.4acb40f7b3f81ff3c854.woff2",
+    "index.html": "/index.html",
+    "main.4bc37051.css.map": "/static/css/main.4bc37051.css.map",
+    "main.c302493e.js.map": "/static/js/main.c302493e.js.map"
   },
   "entrypoints": [
-    "static/css/main.17532bb0.css",
+    "static/css/main.4bc37051.css",
     "static/js/main.c302493e.js"
   ]
 }
