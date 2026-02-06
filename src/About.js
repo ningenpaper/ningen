@@ -87,8 +87,6 @@ function About() {
         </p>
       </div>
 
-      <img src="/img/about-ningen-photo2.PNG" alt="Ningen members" />
-
       <div className="footer">
         2025 Ningen Paper Press. Check out our latest news{" "}
         <a
