@@ -1,0 +1,273 @@
+.cart-content {
+  font-family: "acumin-pro", sans-serif;
+  margin-top: 2rem;
+}
+
+.empty-cart {
+  font-size: 1.2rem;
+}
+
+.cart-table {
+  width: 100%;
+  max-width: 60rem;
+  border-collapse: collapse;
+}
+
+.cart-table thead th {
+  font-family: "fifteen", sans-serif;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: normal;
+  border-bottom: 1px solid #000;
+}
+
+.cart-table thead th:nth-child(1) {
+  width: 55%;
+}
+
+.cart-table thead th:nth-child(2) {
+  width: 20%;
+}
+
+.cart-table thead th:nth-child(3) {
+  width: 10%;
+}
+
+.cart-table thead th:nth-child(4) {
+  width: 15%;
+  text-align: right;
+}
+
+.cart-table tbody tr {
+  border-bottom: 1px solid #000;
+}
+
+.cart-table tbody td {
+  padding: 0.6rem 0;
+  vertical-align: top;
+}
+
+.product-cell {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.product-image img {
+  width: 6rem;
+  height: auto;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.language-cell {
+  font-size: 1rem;
+}
+
+.quantity-cell select {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  top: -0.3rem;
+}
+
+.price-cell {
+  text-align: right;
+}
+
+.price {
+  font-family: "fifteen", sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.remove-btn {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.remove-btn:hover {
+  color: #ff0000;
+}
+
+.cart-summary {
+  max-width: 60rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.subtotal {
+  font-family: "fifteen", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  margin-left: 75%;
+}
+
+/* ===== SHIPPING SECTION ===== */
+.shipping-section {
+  max-width: 60rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #000;
+}
+
+.section-title {
+  font-family: "fifteen", sans-serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-family: "fifteen", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+
+.form-row {
+  margin-bottom: 0.8rem;
+}
+
+.form-row.two-columns {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row.two-columns .input-wrapper {
+  flex: 1;
+}
+
+.form-row.two-columns .form-input {
+  flex: 1;
+}
+
+.input-wrapper {
+  flex: 1;
+}
+
+.form-input {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid #000;
+  background: transparent;
+  outline: none;
+}
+
+.form-input.full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: #666;
+}
+
+select.form-input {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.mandatory-note {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.invoice-section {
+  margin-top: 3rem;
+}
+
+.invoice-form {
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-label {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+  appearance: none;
+  background: transparent;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23000' d='M6.5 12L3 8.5l1.5-1.5 2 2 5-5L13 5.5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.order-btn {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 1rem;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.order-btn:hover {
+  background: #333;
+}
+
+.order-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.send-success {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 1rem;
+  color: #2e7d32;
+  margin-top: 1rem;
+}
+
+.send-error {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 1rem;
+  color: #ff0000;
+  margin-top: 1rem;
+}
+
+/* ===== ERROR STYLES ===== */
+.input-error {
+  border-color: #ff0000 !important;
+  background-color: #fff !important;
+}
+
+.error-message {
+  font-family: "acumin-pro", sans-serif;
+  font-size: 0.8rem;
+  color: #ff0000;
+  margin-top: 0.3rem;
+  display: block;
+}

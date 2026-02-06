@@ -100,6 +100,29 @@ a:hover {
   margin-right: 1rem;
 }
 
+/* ===== PRINTS HEADER WITH CART ===== */
+.prints-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-button {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-style: oblique;
+  border: 1px solid #000;
+  background: transparent;
+  padding: 0.3rem 0.8rem;
+  text-decoration: none;
+  color: #000;
+}
+
+.cart-button:hover {
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
 /* ===== FOOTER ===== */
 .footer {
   font-family: var(--font-title);

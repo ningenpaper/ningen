@@ -1,8 +1,18 @@
+import { Link } from "react-router-dom";
+import { useCart } from "./CartContext";
+
 function ProductList({ products }) {
+  const { cartCount } = useCart();
+
   return (
     <>
-      <div className="header">
-        <a href="/">ningen paper press</a> sells print matters. Take them on a reasonable price.
+      <div className="header prints-header">
+        <span>
+          <Link to="/">ningen paper press</Link> sells print matters. Take them on a reasonable price.
+        </span>
+        <Link to="/cart" className="cart-button">
+          cart{cartCount > 0 ? `(${cartCount})` : ""}
+        </Link>
       </div>
 
       <div className="collection">
@@ -13,12 +23,12 @@ function ProductList({ products }) {
 
           return (
             <div key={index} className="item">
-              <a href={`/product/${folderName}`}>
+              <Link to={`/product/${folderName}`}>
                 <div className="item-image">
                   <img src={imagePath} alt={product["Product Name"]} />
                 </div>
                 <div className="item-title">{product["Product Name"]}</div>
-              </a>
+              </Link>
             </div>
           );
         })}

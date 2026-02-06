@@ -3,9 +3,9 @@
   font-family: "acumin-pro";
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 1rem;
-  max-width: 40rem;
+  max-width: 90rem;
 }
 
 /* ===== ITEM ===== */

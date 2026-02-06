@@ -64,10 +64,10 @@ function Main() {
         </div>
 
         <nav id="menu-list">
-          <Link to="/index">Index</Link>
           <Link to="/prints">Prints</Link>
-          <Link to="/others">Others</Link>
           <Link to="/projects">Projects</Link>
+          <Link to="/others">Public Audio</Link>
+          <Link to="/index">pdf Library</Link>
           <Link to="/about">About</Link>
         </nav>
       </div>

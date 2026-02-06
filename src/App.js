@@ -5,9 +5,11 @@ import Main from "./Main";
 import IndexLibrary from "./IndexLibrary";
 import ProductList from "./ProductList";
 import ProductDetail from "./ProductDetail";
+import ShoppingCart from "./ShoppingCart";
 import Others from "./Others";
 import Projects from "./Projects";
 import About from "./About";
+import { CartProvider } from "./CartContext";
 import "./reset.css";
 import "./body.css";
 
@@ -37,17 +39,20 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/index" element={<IndexLibrary />} />
-        <Route path="/prints" element={<ProductList products={products} />} />
-        <Route path="/product/:folderName" element={<ProductDetail products={products} />} />
-        <Route path="/others" element={<Others />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/index" element={<IndexLibrary />} />
+          <Route path="/prints" element={<ProductList products={products} />} />
+          <Route path="/product/:folderName" element={<ProductDetail products={products} />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/others" element={<Others />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

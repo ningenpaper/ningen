@@ -1,12 +1,16 @@
-import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useCart } from "./CartContext";
 import "./ProductDetail.css";
 
 function ProductDetail({ products }) {
   const { folderName } = useParams();
-  const [quantity, setQuantity] = useState(1);
+  const { addToCart, cartCount } = useCart();
 
   const product = products.find((p) => p["Folder Name"] === folderName);
+
+  const handleAddToCart = () => {
+    addToCart(product, 1);
+  };
 
   if (!product) {
     return <div className="container">Product not found</div>;
@@ -14,14 +18,18 @@ function ProductDetail({ products }) {
 
   const category = product["Category"];
   const price = parseInt(product["Price"]) || 0;
-  const total = price * quantity;
   const imagePath = `/images/products/${category}/${folderName}`;
 
   return (
     <>
-      <div className="header">
-        <a href="/">ningen paper press</a> sells{" "}
-        <a href="/prints">print matters</a>.
+      <div className="header prints-header">
+        <span>
+          <Link to="/">ningen paper press</Link> sells{" "}
+          <Link to="/prints">print matters</Link>.
+        </span>
+        <Link to="/cart" className="cart-button">
+          cart{cartCount > 0 ? `(${cartCount})` : ""}
+        </Link>
       </div>
 
       <div className="item">
@@ -34,25 +42,11 @@ function ProductDetail({ products }) {
 
           <div className="price-container">
             <div className="price-info">
-              <label>
-                QUANTITY:{" "}
-                <input
-                  type="number"
-                  value={quantity}
-                  min="1"
-                  onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-                />
-              </label>
-              <p id="total">PRICE: ${total}</p>
+              <p id="total">PRICE: ${price}</p>
             </div>
-            <a
-              className="cart"
-              href={`https://www.paypal.com/paypalme/ningenpaperpress/${total}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button>CHECK OUT</button>
-            </a>
+            <button className="checkout-btn" onClick={handleAddToCart}>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>
