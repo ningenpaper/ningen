@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.db045532.css",
-    "main.js": "/static/js/main.8335d6c6.js",
+    "main.js": "/static/js/main.c13d6984.js",
     "static/media/FifteenTwenty-DemiOblique.woff2": "/static/media/FifteenTwenty-DemiOblique.deeaa8bfe77b6cfc5708.woff2",
     "static/media/FifteenTwenty-Oblique.woff2": "/static/media/FifteenTwenty-Oblique.ee498edcb4572587cf1a.woff2",
     "static/media/FifteenTwenty-Demi.woff2": "/static/media/FifteenTwenty-Demi.5e440304d56e48cd84ba.woff2",
     "static/media/FifteenTwenty.woff2": "/static/media/FifteenTwenty.4acb40f7b3f81ff3c854.woff2",
     "index.html": "/index.html",
     "main.db045532.css.map": "/static/css/main.db045532.css.map",
-    "main.8335d6c6.js.map": "/static/js/main.8335d6c6.js.map"
+    "main.c13d6984.js.map": "/static/js/main.c13d6984.js.map"
   },
   "entrypoints": [
     "static/css/main.db045532.css",
-    "static/js/main.8335d6c6.js"
+    "static/js/main.c13d6984.js"
   ]
 }
