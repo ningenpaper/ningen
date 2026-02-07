@@ -74,7 +74,7 @@ function Main() {
 
       <div className="right">
         <div id="contact">
-          Contact <img src="/img/hand.png" alt="hand" />
+          Contact <img src="/web-image/hand.png" alt="hand" />
         </div>
         <form onSubmit={sendMail}>
           <textarea
@@ -107,7 +107,7 @@ function Main() {
       </div>
 
       <div className="fixed">
-        <img id="member" src="/img/index-ningen-photo.png" alt="Ningen members" />
+        <img id="member" src="/web-image/index-ningen-photo.png" alt="Ningen members" />
         <div className="tag">
           <h1>Welcome...</h1>
           <h2>Ningen...</h2>

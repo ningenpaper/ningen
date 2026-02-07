@@ -12,7 +12,7 @@ function Others() {
 
       <div className="image">
         <Link to="/">
-          <img src="/img/hand.png" alt="hand" />
+          <img src="/web-image/hand.png" alt="hand" />
         </Link>
       </div>
 

@@ -18,7 +18,7 @@ function ProductDetail({ products }) {
 
   const category = product["Category"];
   const price = parseInt(product["Price"]) || 0;
-  const imagePath = `/images/products/${category}/${folderName}`;
+  const imagePath = `/prints/${folderName}`;
 
   return (
     <>

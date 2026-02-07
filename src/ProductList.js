@@ -19,7 +19,7 @@ function ProductList({ products }) {
         {products.map((product, index) => {
           const folderName = product["Folder Name"];
           const category = product["Category"];
-          const imagePath = `/images/products/${category}/${folderName}/main.webp`;
+          const imagePath = `/prints/${folderName}/main.webp`;
 
           return (
             <div key={index} className="item">

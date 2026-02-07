@@ -526,7 +526,7 @@ City: ${invoiceForm.city}`.trim();
                     <td className="product-cell">
                       <div className="product-image">
                         <img
-                          src={`/images/products/${item.category}/${item.folderName}/main.webp`}
+                          src={`/prints/${item.folderName}/main.webp`}
                           alt={item.name}
                         />
                       </div>
