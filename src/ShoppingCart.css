@@ -271,3 +271,73 @@ select.form-input {
   margin-top: 0.3rem;
   display: block;
 }
+
+/* ===== MOBILE 320px ===== */
+@media (max-width: 480px) {
+  .cart-table thead th {
+    font-size: 0.7rem;
+  }
+
+  .cart-table tbody td {
+    padding: 0.4rem 0;
+  }
+
+  .product-cell {
+    gap: 0.4rem;
+  }
+
+  .product-image img {
+    width: 2rem;
+    min-width: 2rem;
+    flex-shrink: 0;
+  }
+
+  .product-name {
+    font-size: 0.7rem;
+  }
+
+  .language-cell {
+    font-size: 0.7rem;
+  }
+
+  .quantity-cell select {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .price {
+    font-size: 0.9rem;
+  }
+
+  .remove-btn {
+    font-size: 0.6rem;
+  }
+
+  .subtotal {
+    font-size: 1rem;
+    margin-left: 50%;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .form-input {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .form-row.two-columns {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .order-btn {
+    font-size: 0.85rem;
+    width: 100%;
+  }
+
+  .checkbox-label {
+    font-size: 0.85rem;
+  }
+}
