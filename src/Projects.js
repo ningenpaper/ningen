@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Papa from "papaparse";
 import "./Projects.css";
 
 function Projects() {
@@ -46,30 +45,10 @@ function Projects() {
   const [currentText, setCurrentText] = useState(translations[0]);
 
   useEffect(() => {
-    // ningen-projects Google Sheet CSV URL
-    const SHEET_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4_rOojS9VB08roKpF1LbnHYlVlpSbZwjpZomcG2h9BpPsCJjR6NCfdJzob4esBt7oXwAfIqh8ZzKc/pub?output=csv";
-
-    fetch(SHEET_URL)
-      .then((response) => {
-        console.log("Response status:", response.status);
-        return response.text();
-      })
+    fetch("/api/projects")
+      .then((response) => response.json())
       .then((data) => {
-        console.log("Raw CSV data:", data);
-        Papa.parse(data, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            console.log("Parsed projects data:", results.data);
-            console.log("Number of projects:", results.data.length);
-            if (results.data.length > 0) {
-              console.log("First project:", results.data[0]);
-              console.log("Column names:", Object.keys(results.data[0]));
-            }
-            setProjects(results.data);
-          },
-        });
+        setProjects(data);
       })
       .catch((error) => {
         console.error("Error fetching projects data:", error);
@@ -83,7 +62,7 @@ function Projects() {
 
   // Group projects by category
   const groupedProjects = projects.reduce((acc, project) => {
-    const category = project.Category || "Others";
+    const category = project.category || "Others";
     if (!acc[category]) {
       acc[category] = [];
     }
@@ -105,18 +84,17 @@ function Projects() {
         <div key={category}>
           <p className="category">[{category}]</p>
           <div className="collection">
-            {items.map((project, index) => (
-              <div key={index} className="event">
-                <a href={project.Link || ""}>
-                  <div className="event-image">
-                    <img
-                      src={project.Image}
-                      alt={project.Title}
-                    />
-                  </div>
-                  <div className="event-title">{project.Title}</div>
-                  <div className="event-date">{project.Date}</div>
-                </a>
+            {items.map((project) => (
+              <div key={project.id} className="event">
+                <div className="event-image">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                  />
+                </div>
+                <div className="event-title">{project.title}</div>
+                <div className="event-date">{project.date}</div>
+                {project.place && <div className="event-place">{project.place}</div>}
               </div>
             ))}
           </div>

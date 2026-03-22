@@ -1,29 +1,17 @@
 import { useState, useEffect } from "react";
-import Papa from "papaparse";
 import "./IndexLibrary.css";
 
 function IndexLibrary() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    // ningen-index Google Sheet CSV URL
-    const SHEET_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTZO5KMls4n9X-cPzblFblh4Mam04m5C2dNd7XZgMRdddW6l-Q2LUGydEEIv0EVRXaDkMasfkTH2z6L/pub?output=csv";
-
-    fetch(SHEET_URL)
-      .then((response) => response.text())
+    fetch("/api/library")
+      .then((response) => response.json())
       .then((data) => {
-        Papa.parse(data, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            console.log("Index data:", results.data);
-            setBooks(results.data);
-          },
-        });
+        setBooks(data);
       })
       .catch((error) => {
-        console.error("Error fetching index data:", error);
+        console.error("Error fetching library data:", error);
       });
   }, []);
 
@@ -58,13 +46,13 @@ function IndexLibrary() {
       </div>
 
       <div className="list-of-books">
-        {books.map((book, index) => {
-          const title = book.Title?.endsWith('.pdf') ? book.Title : `${book.Title}.pdf`;
+        {books.map((book) => {
+          const title = book.title?.endsWith('.pdf') ? book.title : `${book.title}.pdf`;
           return (
-            <div key={index} className="book">
-              ▣ {book.Author},{" "}
+            <div key={book.id} className="book">
+              ▣ {book.author},{" "}
               <a
-                href={book.PDF}
+                href={book.pdf}
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={showImage}
@@ -72,7 +60,7 @@ function IndexLibrary() {
                 onMouseLeave={hideImage}
               >
                 {title}
-                {book.Image && <img src={book.Image} alt={book.Title} />}
+                {book.image && <img src={book.image} alt={book.title} />}
               </a>
             </div>
           );

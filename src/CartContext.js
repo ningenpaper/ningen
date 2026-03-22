@@ -6,14 +6,11 @@ export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (product, quantity) => {
-    console.log("addToCart called:", product, quantity);
     setCartItems((prev) => {
-      const existing = prev.find(
-        (item) => item.folderName === product["Folder Name"]
-      );
+      const existing = prev.find((item) => item.slug === product.slug);
       if (existing) {
         return prev.map((item) =>
-          item.folderName === product["Folder Name"]
+          item.slug === product.slug
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
@@ -21,25 +18,25 @@ export function CartProvider({ children }) {
       return [
         ...prev,
         {
-          folderName: product["Folder Name"],
-          name: product["Product Name"],
-          price: parseInt(product["Price"]) || 0,
-          category: product["Category"],
-          language: product["Language(s)"] || "",
+          slug: product.slug,
+          name: product.name,
+          price: product.price || 0,
+          language: product.language || "",
+          mainImage: product.mainImage,
           quantity,
         },
       ];
     });
   };
 
-  const removeFromCart = (folderName) => {
-    setCartItems((prev) => prev.filter((item) => item.folderName !== folderName));
+  const removeFromCart = (slug) => {
+    setCartItems((prev) => prev.filter((item) => item.slug !== slug));
   };
 
-  const updateQuantity = (folderName, quantity) => {
+  const updateQuantity = (slug, quantity) => {
     setCartItems((prev) =>
       prev.map((item) =>
-        item.folderName === folderName ? { ...item, quantity } : item
+        item.slug === slug ? { ...item, quantity } : item
       )
     );
   };

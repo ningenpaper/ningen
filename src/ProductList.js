@@ -16,22 +16,16 @@ function ProductList({ products }) {
       </div>
 
       <div className="collection">
-        {products.map((product, index) => {
-          const folderName = product["Folder Name"];
-          const category = product["Category"];
-          const imagePath = `/prints/${folderName}/main.webp`;
-
-          return (
-            <div key={index} className="item">
-              <Link to={`/product/${folderName}`}>
-                <div className="item-image">
-                  <img src={imagePath} alt={product["Product Name"]} />
-                </div>
-                <div className="item-title">{product["Product Name"]}</div>
-              </Link>
-            </div>
-          );
-        })}
+        {products.map((product) => (
+          <div key={product.id} className="item">
+            <Link to={`/product/${product.slug}`}>
+              <div className="item-image">
+                <img src={product.mainImage} alt={product.name} />
+              </div>
+              <div className="item-title">{product.name}</div>
+            </Link>
+          </div>
+        ))}
       </div>
 
       <div className="footer">

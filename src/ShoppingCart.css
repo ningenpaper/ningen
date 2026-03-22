@@ -225,18 +225,18 @@ select.form-input {
 }
 
 .order-btn {
-  font-family: "acumin-pro", sans-serif;
-  font-size: 1rem;
-  background: #000;
-  color: #fff;
-  border: none;
+  font-family: "Fifteen", sans-serif;
+  font-size: 1.2rem;
+  background-color: none;
+  color: #000;
+  border: 1px solid black;
   padding: 0.8rem 2rem;
   cursor: pointer;
   margin-top: 2rem;
 }
 
 .order-btn:hover {
-  background: #333;
+  background: none;
 }
 
 .order-btn:disabled {

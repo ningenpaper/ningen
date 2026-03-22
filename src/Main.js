@@ -67,8 +67,9 @@ function Main() {
           <Link to="/prints">Prints</Link>
           <Link to="/projects">Projects</Link>
           <Link to="/others">Public Audio</Link>
-          <Link to="/index">pdf Library</Link>
+          <Link to="/index">Pdf Library</Link>
           <Link to="/about">About</Link>
+          <Link to="/wholesale">Wholesale</Link>
         </nav>
       </div>
 

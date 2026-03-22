@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { useCart } from "./CartContext";
 import "./ShoppingCart.css";
@@ -290,9 +290,8 @@ const FormInput = ({ type = "text", placeholder, value, onChange, error }) => (
 );
 
 function ShoppingCart() {
-  const { cartItems, removeFromCart, updateQuantity } = useCart();
-  const [sameAsShipping, setSameAsShipping] = useState(true);
-
+  const { cartItems, removeFromCart, updateQuantity, clearCart } = useCart();
+  const navigate = useNavigate();
   const [shippingForm, setShippingForm] = useState({
     country: "",
     company: "",
@@ -306,18 +305,6 @@ function ShoppingCart() {
     vat: "",
     email: "",
     phone: "",
-  });
-
-  const [invoiceForm, setInvoiceForm] = useState({
-    country: "",
-    company: "",
-    firstname: "",
-    surname: "",
-    street: "",
-    addressSuffix: "",
-    province: "",
-    zipcode: "",
-    city: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -334,32 +321,16 @@ function ShoppingCart() {
     }
   };
 
-  const handleInvoiceChange = (field, value) => {
-    setInvoiceForm((prev) => ({ ...prev, [field]: value }));
-    if (errors[`invoice_${field}`]) {
-      setErrors((prev) => ({ ...prev, [`invoice_${field}`]: false }));
-    }
-  };
-
   const validateForm = () => {
     const newErrors = {};
 
-    // Shipping required fields
     if (!shippingForm.firstname.trim()) newErrors.firstname = true;
     if (!shippingForm.surname.trim()) newErrors.surname = true;
     if (!shippingForm.street.trim()) newErrors.street = true;
     if (!shippingForm.zipcode.trim()) newErrors.zipcode = true;
     if (!shippingForm.city.trim()) newErrors.city = true;
     if (!shippingForm.email.trim()) newErrors.email = true;
-
-    // Invoice required fields (if different address)
-    if (!sameAsShipping) {
-      if (!invoiceForm.firstname.trim()) newErrors.invoice_firstname = true;
-      if (!invoiceForm.surname.trim()) newErrors.invoice_surname = true;
-      if (!invoiceForm.street.trim()) newErrors.invoice_street = true;
-      if (!invoiceForm.zipcode.trim()) newErrors.invoice_zipcode = true;
-      if (!invoiceForm.city.trim()) newErrors.invoice_city = true;
-    }
+    if (!shippingForm.phone.trim()) newErrors.phone = true;
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -385,7 +356,6 @@ function ShoppingCart() {
       .join("\n");
 
     const shippingCountry = countries.find((c) => c.code === shippingForm.country)?.name || "";
-    const invoiceCountry = countries.find((c) => c.code === invoiceForm.country)?.name || "";
 
     const shippingAddress = `
 Country: ${shippingCountry}
@@ -399,19 +369,6 @@ City: ${shippingForm.city}
 VAT: ${shippingForm.vat}
 Email: ${shippingForm.email}
 Phone: ${shippingForm.phone}`.trim();
-
-    let invoiceAddress = "Same as shipping address";
-    if (!sameAsShipping) {
-      invoiceAddress = `
-Country: ${invoiceCountry}
-Company: ${invoiceForm.company}
-Name: ${invoiceForm.firstname} ${invoiceForm.surname}
-Street: ${invoiceForm.street}
-Address suffix: ${invoiceForm.addressSuffix}
-Province/State: ${invoiceForm.province}
-Zipcode: ${invoiceForm.zipcode}
-City: ${invoiceForm.city}`.trim();
-    }
 
     const orderTable = cartItems
       .map(
@@ -460,20 +417,6 @@ City: ${invoiceForm.city}`.trim();
         <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Phone:</td><td>${shippingForm.phone || "-"}</td></tr>
       </table>
 
-      <h2 style="border-bottom:2px solid #000;padding-bottom:8px">Invoice Address</h2>
-      ${sameAsShipping
-        ? "<p>Same as shipping address</p>"
-        : `<table>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Country:</td><td>${invoiceCountry}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Company:</td><td>${invoiceForm.company || "-"}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Name:</td><td>${invoiceForm.firstname} ${invoiceForm.surname}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Street:</td><td>${invoiceForm.street}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Address suffix:</td><td>${invoiceForm.addressSuffix || "-"}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Province/State:</td><td>${invoiceForm.province || "-"}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">Zipcode:</td><td>${invoiceForm.zipcode}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;font-weight:bold">City:</td><td>${invoiceForm.city}</td></tr>
-      </table>`
-      }
     `;
 
     const templateParams = {
@@ -490,11 +433,13 @@ City: ${invoiceForm.city}`.trim();
         templateParams,
         "BuyCXk9xX2tRB9w-2"
       );
-      setSendStatus("success");
+      const orderData = [...cartItems];
+      const orderTotal = subtotal;
+      clearCart();
+      navigate("/order-success", { state: { orderItems: orderData, subtotal: orderTotal } });
     } catch (error) {
       console.error("Email send error:", error);
       setSendStatus(error?.text || error?.message || "Unknown error");
-    } finally {
       setIsSending(false);
     }
   };
@@ -522,11 +467,11 @@ City: ${invoiceForm.city}`.trim();
               </thead>
               <tbody>
                 {cartItems.map((item) => (
-                  <tr key={item.folderName}>
+                  <tr key={item.slug}>
                     <td className="product-cell">
                       <div className="product-image">
                         <img
-                          src={`/prints/${item.folderName}/main.webp`}
+                          src={item.mainImage}
                           alt={item.name}
                         />
                       </div>
@@ -537,7 +482,7 @@ City: ${invoiceForm.city}`.trim();
                       <select
                         value={item.quantity}
                         onChange={(e) =>
-                          updateQuantity(item.folderName, parseInt(e.target.value))
+                          updateQuantity(item.slug, parseInt(e.target.value))
                         }
                       >
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
@@ -551,7 +496,7 @@ City: ${invoiceForm.city}`.trim();
                       <div className="price">${item.price * item.quantity}</div>
                       <button
                         className="remove-btn"
-                        onClick={() => removeFromCart(item.folderName)}
+                        onClick={() => removeFromCart(item.slug)}
                       >
                         - Remove
                       </button>
@@ -666,100 +611,14 @@ City: ${invoiceForm.city}`.trim();
               <div className="form-row">
                 <FormInput
                   type="tel"
-                  placeholder="Phone"
+                  placeholder="Phone *"
                   value={shippingForm.phone}
                   onChange={(val) => handleShippingChange("phone", val)}
+                  error={errors.phone}
                 />
               </div>
 
               <div className="mandatory-note">*Mandatory data</div>
-
-              <div className="invoice-section">
-                <h2 className="section-title">Invoice address</h2>
-
-                {!sameAsShipping && (
-                  <div className="invoice-form">
-                    <div className="form-row">
-                      <CountrySelect
-                        value={invoiceForm.country}
-                        onChange={(val) => handleInvoiceChange("country", val)}
-                      />
-                    </div>
-
-                    <div className="form-row">
-                      <FormInput
-                        placeholder="Company"
-                        value={invoiceForm.company}
-                        onChange={(val) => handleInvoiceChange("company", val)}
-                      />
-                    </div>
-
-                    <div className="form-row two-columns">
-                      <FormInput
-                        placeholder="Firstname *"
-                        value={invoiceForm.firstname}
-                        onChange={(val) => handleInvoiceChange("firstname", val)}
-                        error={errors.invoice_firstname}
-                      />
-                      <FormInput
-                        placeholder="Surname *"
-                        value={invoiceForm.surname}
-                        onChange={(val) => handleInvoiceChange("surname", val)}
-                        error={errors.invoice_surname}
-                      />
-                    </div>
-
-                    <div className="form-row">
-                      <FormInput
-                        placeholder="Street *"
-                        value={invoiceForm.street}
-                        onChange={(val) => handleInvoiceChange("street", val)}
-                        error={errors.invoice_street}
-                      />
-                    </div>
-
-                    <div className="form-row">
-                      <FormInput
-                        placeholder="Address suffix"
-                        value={invoiceForm.addressSuffix}
-                        onChange={(val) => handleInvoiceChange("addressSuffix", val)}
-                      />
-                    </div>
-
-                    <div className="form-row">
-                      <FormInput
-                        placeholder="Province/State"
-                        value={invoiceForm.province}
-                        onChange={(val) => handleInvoiceChange("province", val)}
-                      />
-                    </div>
-
-                    <div className="form-row two-columns">
-                      <FormInput
-                        placeholder="Zipcode *"
-                        value={invoiceForm.zipcode}
-                        onChange={(val) => handleInvoiceChange("zipcode", val)}
-                        error={errors.invoice_zipcode}
-                      />
-                      <FormInput
-                        placeholder="City *"
-                        value={invoiceForm.city}
-                        onChange={(val) => handleInvoiceChange("city", val)}
-                        error={errors.invoice_city}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    checked={sameAsShipping}
-                    onChange={(e) => setSameAsShipping(e.target.checked)}
-                  />
-                  <span>My invoice address is the same as my shipping address</span>
-                </label>
-              </div>
 
               <button className="order-btn" onClick={handleSubmit} disabled={isSending}>
                 {isSending ? "Sending..." : "Send mail to make order"}

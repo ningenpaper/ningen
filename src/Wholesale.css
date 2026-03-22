@@ -1,0 +1,69 @@
+.wholesale-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+}
+
+.wholesale-title {
+  font-family: "Fifteen", monospace;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.wholesale-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wholesale-textarea {
+  width: 30rem;
+  height: 10rem;
+  padding: 1rem;
+  font-family: "Fifteen", monospace;
+  font-size: 1rem;
+  line-height: 1.4;
+  border: 1px solid #000;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+}
+
+.wholesale-textarea:focus {
+  border-color: #666;
+}
+
+.wholesale-btn {
+  font-family: "Fifteen", monospace;
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+}
+
+.wholesale-btn:hover {
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
+@media screen and (max-width: 768px) {
+  .wholesale-title {
+    font-size: 1.3rem;
+  }
+
+  .wholesale-textarea {
+    width: 85vw;
+    height: 8rem;
+    font-size: 0.9rem;
+  }
+
+  .wholesale-btn {
+    font-size: 0.9rem;
+  }
+}

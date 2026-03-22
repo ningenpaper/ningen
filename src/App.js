@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Papa from "papaparse";
 import Main from "./Main";
 import IndexLibrary from "./IndexLibrary";
 import ProductList from "./ProductList";
@@ -9,6 +8,8 @@ import ShoppingCart from "./ShoppingCart";
 import Others from "./Others";
 import Projects from "./Projects";
 import About from "./About";
+import Wholesale from "./Wholesale";
+import OrderSuccess from "./OrderSuccess";
 import { CartProvider } from "./CartContext";
 import "./reset.css";
 import "./body.css";
@@ -17,21 +18,10 @@ function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // ningen-prints Google Sheet CSV URL
-    const SHEET_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSXjubWwylELlxJi67h2un3d9B6LXb0SR01vh2lTPPyPDR4i8LBLErNly86YDl9z9qtrJ_4AIDqBkzC/pub?output=csv";
-
-    fetch(SHEET_URL)
-      .then((response) => response.text())
+    fetch("/api/prints")
+      .then((response) => response.json())
       .then((data) => {
-        Papa.parse(data, {
-          header: true,
-          skipEmptyLines: true,
-          complete: (results) => {
-            console.log("Products data:", results.data);
-            setProducts(results.data);
-          },
-        });
+        setProducts(data);
       })
       .catch((error) => {
         console.error("Error fetching products data:", error);
@@ -45,11 +35,13 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/index" element={<IndexLibrary />} />
           <Route path="/prints" element={<ProductList products={products} />} />
-          <Route path="/product/:folderName" element={<ProductDetail products={products} />} />
+          <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/cart" element={<ShoppingCart />} />
           <Route path="/others" element={<Others />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/about" element={<About />} />
+          <Route path="/wholesale" element={<Wholesale />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

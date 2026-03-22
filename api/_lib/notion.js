@@ -43,8 +43,6 @@ function getPropertyValue(property) {
         property.files?.[0]?.external?.url ||
         ""
       );
-    case "checkbox":
-      return property.checkbox || false;
     default:
       return "";
   }
@@ -60,6 +58,7 @@ async function getImagesFromPage(pageId) {
   let currentSection = null;
 
   for (const block of blocks.results) {
+    // Check heading_2 blocks
     if (block.type === "heading_2") {
       const text = getPlainText(block.heading_2.rich_text)
         .trim().toUpperCase().replace(/^#+\s*/, "");
@@ -74,6 +73,7 @@ async function getImagesFromPage(pageId) {
       }
     }
 
+    // Check paragraph blocks used as section markers (e.g. "##MAIN")
     if (block.type === "paragraph") {
       const text = getPlainText(block.paragraph.rich_text)
         .trim().toUpperCase().replace(/^#+\s*/, "");

@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/prints/[slug].js": {
-      "includeFiles": "api/_lib/**"
-    }
-  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
