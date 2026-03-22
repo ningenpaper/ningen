@@ -3,7 +3,7 @@ const {
   slugify,
   getPropertyValue,
   getImagesFromPage,
-} = require("../_lib/notion");
+} = require("./_lib/notion");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") {
