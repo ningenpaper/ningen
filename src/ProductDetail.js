@@ -1,24 +1,38 @@
 import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useCart } from "./CartContext";
 import "./ProductDetail.css";
 
-function ProductDetail({ products }) {
-  const { folderName } = useParams();
+function ProductDetail() {
+  const { slug } = useParams();
   const { addToCart, cartCount } = useCart();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const product = products.find((p) => p["Folder Name"] === folderName);
+  useEffect(() => {
+    fetch(`/api/prints/${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching product:", error);
+        setLoading(false);
+      });
+  }, [slug]);
 
   const handleAddToCart = () => {
     addToCart(product, 1);
   };
 
+  if (loading) {
+    return <div className="container">Loading...</div>;
+  }
+
   if (!product) {
     return <div className="container">Product not found</div>;
   }
-
-  const category = product["Category"];
-  const price = parseInt(product["Price"]) || 0;
-  const imagePath = `/prints/${folderName}`;
 
   return (
     <>
@@ -34,17 +48,25 @@ function ProductDetail({ products }) {
 
       <div className="item">
         <div className="item-image">
-          <img src={`${imagePath}/main.webp`} alt={product["Product Name"]} />
+          <img src={product.mainImage} alt={product.name} />
         </div>
 
         <div className="item-info">
-          <div className="title">{product["Product Name"]}</div>
+          <div className="title">{product.name}</div>
 
           <div className="price-container">
             <div className="price-info">
-              <p id="total">PRICE: ${price}</p>
+              {product.soldOut ? (
+                <p id="total">SOLD OUT</p>
+              ) : (
+                <p id="total">PRICE: ${product.price}</p>
+              )}
             </div>
-            <button className="checkout-btn" onClick={handleAddToCart}>
+            <button
+              className="checkout-btn"
+              onClick={handleAddToCart}
+              disabled={product.soldOut}
+            >
               ADD TO CART
             </button>
           </div>
@@ -52,59 +74,44 @@ function ProductDetail({ products }) {
       </div>
 
       <div className="des">
-        {product["Author"] && (
+        {product.author && (
           <>
-            Text: {product["Author"]} <br />
+            Text: {product.author} <br />
           </>
         )}
-        {product["Designer"] && (
+        {product.designer && (
           <>
-            Design: {product["Designer"]}
+            Design: {product.designer}
             <br />
             <br />
           </>
         )}
-        {product["Size"] && (
+        {product.size && (
           <>
-            {product["Size"]} <br />
+            {product.size} <br />
           </>
         )}
-        {product["Pages"] && (
+        {product.pages && (
           <>
-            {product["Pages"]} pages <br />
+            {product.pages} pages <br />
           </>
         )}
-        {product["Year"] && (
-          <>
-            Printed {product["Year"]}
-          </>
-        )}
+        {product.year && <>Printed {product.year}</>}
       </div>
 
-      <div className="content">{product["Description"]}</div>
+      <div className="content">{product.description}</div>
 
       <div className="detail-images">
-        <img
-          src={`${imagePath}/detail-1.webp`}
-          alt={`${product["Product Name"]} detail 1`}
-          onError={(e) => {
-            e.target.style.display = "none";
-          }}
-        />
-        <img
-          src={`${imagePath}/detail-2.webp`}
-          alt={`${product["Product Name"]} detail 2`}
-          onError={(e) => {
-            e.target.style.display = "none";
-          }}
-        />
-        <img
-          src={`${imagePath}/detail-3.webp`}
-          alt={`${product["Product Name"]} detail 3`}
-          onError={(e) => {
-            e.target.style.display = "none";
-          }}
-        />
+        {product.detailImages?.map((url, index) => (
+          <img
+            key={index}
+            src={url}
+            alt={`${product.name} detail ${index + 1}`}
+            onError={(e) => {
+              e.target.style.display = "none";
+            }}
+          />
+        ))}
       </div>
 
       <div className="footer">
