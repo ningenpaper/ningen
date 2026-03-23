@@ -56,17 +56,9 @@ function ProductDetail() {
 
           <div className="price-container">
             <div className="price-info">
-              {product.soldOut ? (
-                <p id="total">SOLD OUT</p>
-              ) : (
-                <p id="total">PRICE: ${product.price}</p>
-              )}
+              <p id="total">PRICE: ${product.price}</p>
             </div>
-            <button
-              className="checkout-btn"
-              onClick={handleAddToCart}
-              disabled={product.soldOut}
-            >
+            <button className="checkout-btn" onClick={handleAddToCart}>
               ADD TO CART
             </button>
           </div>

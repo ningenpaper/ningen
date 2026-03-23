@@ -75,11 +75,6 @@ label input {
   margin-bottom: 1rem;
 }
 
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
 @media (max-width: 768px) {
   .item-image img {
     width: 100%;

@@ -34,7 +34,6 @@ module.exports = async function handler(req, res) {
       slug: slugify(name),
       name,
       price: getPropertyValue(props["Price"]) || 0,
-      soldOut: getPropertyValue(props["Sold Out"]) || false,
       language: getPropertyValue(props["Language(s)"]),
       year: getPropertyValue(props["Year"]),
       author: getPropertyValue(props["Author"]),
