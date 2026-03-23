@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import { useCart } from "./CartContext";
 import "./ProductDetail.css";
 
+const SOLD_OUT_SLUGS = ["concert-cancel-culture-stop"];
+
 function ProductDetail() {
   const { slug } = useParams();
   const { addToCart, cartCount } = useCart();
+  const isSoldOut = SOLD_OUT_SLUGS.includes(slug);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -56,9 +59,17 @@ function ProductDetail() {
 
           <div className="price-container">
             <div className="price-info">
-              <p id="total">PRICE: ${product.price}</p>
+              {isSoldOut ? (
+                <p id="total">SOLD OUT</p>
+              ) : (
+                <p id="total">PRICE: ${product.price}</p>
+              )}
             </div>
-            <button className="checkout-btn" onClick={handleAddToCart}>
+            <button
+              className="checkout-btn"
+              onClick={handleAddToCart}
+              disabled={isSoldOut}
+            >
               ADD TO CART
             </button>
           </div>
