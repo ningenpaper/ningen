@@ -37,7 +37,7 @@ function Main() {
   const sendMail = (e) => {
     e.preventDefault();
     window.location.href = `mailto:ningenpaperpress@gmail.com?subject=Message from Website&body=${encodeURIComponent(
-      message
+      message,
     )}`;
   };
 
@@ -66,7 +66,7 @@ function Main() {
         <nav id="menu-list">
           <Link to="/prints">Prints</Link>
           <Link to="/projects">Projects</Link>
-          <Link to="/others">Public Audio</Link>
+          <Link to="/public-audio">Public Audio</Link>
           <Link to="/index">Pdf Library</Link>
           <Link to="/about">About</Link>
           <Link to="/wholesale">Wholesale</Link>
