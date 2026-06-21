@@ -84,7 +84,7 @@ body.body-public-audio {
 .pa-speaker {
   display: flex;
   align-items: center;
-  padding: 0 0.5rem;
+  padding: 0 0.5rem 0 1rem;
   flex-shrink: 0;
 }
 
@@ -194,10 +194,8 @@ body.body-public-audio {
 }
 .col-title {
   width: auto;
-  min-width: 10rem;
 }
 
-/* (5)(6) play column — bar 포함, 별도 컬럼 없음 */
 .col-play {
   width: 15rem;
   overflow: visible;
@@ -304,21 +302,43 @@ body.body-public-audio {
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
+  /* (3) 제목 + 링크 2배 */
   .pa-title {
-    font-size: 1rem;
+    font-size: 2rem;
+  }
+
+  .pa-site-link {
+    font-size: 1.56rem;
   }
 
   .pa-ticker {
-    padding: 0 0.3rem; /* 0.3rem + speaker 내부 0.5rem = 0.8rem → 테이블과 동일 */
+    padding: 0 0.3rem;
   }
 
   .pa-table-wrap {
     margin: 0.8rem;
   }
 
+  /* 날짜, 타이틀, 도시 숨김 */
   .col-date,
-  .col-artist,
+  .col-title,
   .col-city {
     display: none;
   }
+
+  /* 아티스트 표시 + 남은 공간 차지 */
+  .col-artist {
+    display: table-cell;
+    width: auto;
+  }
+
+  /* (1) play column — 버튼만, progress bar 숨김 */
+  .col-play {
+    width: 3rem;
+  }
+
+  .pa-progress-track {
+    display: none;
+  }
+
 }
