@@ -5,7 +5,7 @@ import { ReactComponent as PauseIcon } from "./icon/Pause.svg";
 import { ReactComponent as CdIcon } from "./icon/CD-button.svg";
 import "./Others.css";
 
-const MIN_ROWS = 20;
+const ROW_H = 32; // 2rem at default 16px font
 
 const TEST_AUDIO = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
 
@@ -27,7 +27,9 @@ function Others() {
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const [sortAsc, setSortAsc] = useState(true);
+  const [wrapHeight, setWrapHeight] = useState(0);
   const audioRef = useRef(null);
+  const tableWrapRef = useRef(null);
 
   useEffect(() => {
     fetch("/api/public-audio")
@@ -47,6 +49,16 @@ function Others() {
   useEffect(() => {
     document.body.classList.add("body-public-audio");
     return () => document.body.classList.remove("body-public-audio");
+  }, []);
+
+  useEffect(() => {
+    const el = tableWrapRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setWrapHeight(entry.contentRect.height);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   function playItem(item) {
@@ -95,7 +107,8 @@ function Others() {
     return sortAsc ? dateA - dateB : dateB - dateA;
   });
 
-  const emptyRowCount = Math.max(0, MIN_ROWS - sortedItems.length);
+  const visibleRows = wrapHeight > 0 ? Math.floor((wrapHeight - ROW_H) / ROW_H) : 20;
+  const emptyRowCount = Math.max(0, visibleRows - sortedItems.length);
 
   return (
     <div className="pa-page">
@@ -132,7 +145,7 @@ function Others() {
       </div>
 
       {/* Table */}
-      <div className="pa-table-wrap">
+      <div className="pa-table-wrap" ref={tableWrapRef}>
         <table className="pa-table">
           <thead>
             <tr>
