@@ -42,6 +42,28 @@ async function getPageText(pageId) {
   return lines.join("\n\n").trim();
 }
 
+async function resolveArchiveUrl(url) {
+  const match = url.match(/archive\.org\/details\/([^/?#]+)/);
+  if (!match) return url;
+
+  const identifier = match[1];
+
+  try {
+    const res = await fetch(`https://archive.org/metadata/${identifier}/files`);
+    const data = await res.json();
+    const mp3 = data.result?.find(
+      (f) => f.source === "original" && f.name.toLowerCase().endsWith(".mp3")
+    );
+    if (mp3) {
+      return `https://archive.org/download/${identifier}/${encodeURIComponent(mp3.name)}`;
+    }
+  } catch (e) {
+    console.error("archive.org metadata fetch failed:", e);
+  }
+
+  return `https://archive.org/download/${identifier}/${identifier}.mp3`;
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -65,33 +87,31 @@ module.exports = async function handler(req, res) {
       }),
     ]);
 
-    const audioItems = response.results.map((page) => {
-      const props = page.properties;
-      const title = getFirstValue(props, ["Title"]);
-      const artist = getFirstValue(props, ["Artist"]);
-      const city = getFirstValue(props, ["City"]);
-      const date = getFirstValue(props, ["Date"]);
-      const playEnabled = getPropertyValue(props["Audio Upload Check"]) === true;
-      const audioLink = getFirstValue(props, ["Audio Link"]);
-      const resolvedUrl = audioLink.replace(
-        /archive\.org\/details\/([^/?#]+).*/,
-        "archive.org/download/$1/$1.mp3"
-      );
-      const audioUrl = playEnabled && audioLink ? resolvedUrl : "";
-      const cdLink = getFirstValue(props, ["CD Link"]);
-      const fallbackTitle = title || artist || city || date || page.id;
+    const audioItems = await Promise.all(
+      response.results.map(async (page) => {
+        const props = page.properties;
+        const title = getFirstValue(props, ["Title"]);
+        const artist = getFirstValue(props, ["Artist"]);
+        const city = getFirstValue(props, ["City"]);
+        const date = getFirstValue(props, ["Date"]);
+        const playEnabled = getPropertyValue(props["Audio Upload Check"]) === true;
+        const audioLink = getFirstValue(props, ["Audio Link"]);
+        const audioUrl = playEnabled && audioLink ? await resolveArchiveUrl(audioLink) : "";
+        const cdLink = getFirstValue(props, ["CD Link"]);
+        const fallbackTitle = title || artist || city || date || page.id;
 
-      return {
-        id: page.id,
-        slug: slugify(fallbackTitle),
-        title,
-        artist,
-        city,
-        date,
-        audioUrl,
-        cdLink,
-      };
-    });
+        return {
+          id: page.id,
+          slug: slugify(fallbackTitle),
+          title,
+          artist,
+          city,
+          date,
+          audioUrl,
+          cdLink,
+        };
+      })
+    );
 
     res.setHeader("Cache-Control", "s-maxage=600, stale-while-revalidate=1200");
     return res.status(200).json({ intro, items: audioItems });
