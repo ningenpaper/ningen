@@ -36,6 +36,7 @@ function Others() {
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [loadingId, setLoadingId] = useState(null);
   const [sortAsc, setSortAsc] = useState(true);
   const [wrapHeight, setWrapHeight] = useState(0);
   const audioRef = useRef(null);
@@ -92,12 +93,19 @@ function Others() {
     const audio = new Audio(item.audioUrl);
     audioRef.current = audio;
     setPlayingId(item.id);
+    setLoadingId(item.id);
     setIsPaused(false);
     setProgress(0);
     setCurrentTime(0);
     setDuration(0);
 
     audio.play().catch(console.error);
+    audio.addEventListener("playing", () => {
+      setLoadingId(null);
+    });
+    audio.addEventListener("error", () => {
+      setLoadingId(null);
+    });
     audio.addEventListener("loadedmetadata", () => {
       setDuration(audio.duration || 0);
     });
@@ -109,6 +117,7 @@ function Others() {
     });
     audio.addEventListener("ended", () => {
       setPlayingId(null);
+      setLoadingId(null);
       setProgress(0);
       setCurrentTime(0);
       setDuration(0);
@@ -218,12 +227,17 @@ function Others() {
                             onClick={() => playItem(item)}
                             aria-label={isActive && !isPaused ? "pause" : "play"}
                           >
-                            {isActive && !isPaused
-                              ? <PauseIcon className="pa-btn-icon" />
-                              : <PlayIcon className="pa-btn-icon" />
+                            {loadingId === item.id
+                              ? null
+                              : isActive && !isPaused
+                                ? <PauseIcon className="pa-btn-icon" />
+                                : <PlayIcon className="pa-btn-icon" />
                             }
                           </button>
-                          {isActive && (
+                          {isActive && loadingId === item.id && (
+                            <span className="pa-time-current">Loading...</span>
+                          )}
+                          {isActive && loadingId !== item.id && (
                             <div className="pa-progress-container">
                               <span className="pa-time-current">{formatTime(currentTime)}</span>
                               <div
