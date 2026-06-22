@@ -234,7 +234,7 @@ function Others() {
                             <span className="pa-loading-dots">Wait...</span>
                           </button>
                           {isActive && loadingId === item.id && (
-                            <span className="pa-loading-text">Loading...</span>
+                            <span className="pa-loading-text">Please wait...</span>
                           )}
                           {isActive && loadingId !== item.id && (
                             <div className="pa-progress-container">
