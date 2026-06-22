@@ -231,10 +231,10 @@ function Others() {
                               ? <PauseIcon className="pa-btn-icon" />
                               : <PlayIcon className="pa-btn-icon" />
                             }
-                            <span className="pa-loading-dots">...</span>
+                            <span className="pa-loading-dots">Wait...</span>
                           </button>
                           {isActive && loadingId === item.id && (
-                            <span className="pa-time-current">Loading...</span>
+                            <span className="pa-loading-text">Loading...</span>
                           )}
                           {isActive && loadingId !== item.id && (
                             <div className="pa-progress-container">
