@@ -19,13 +19,23 @@ const TEST_ITEM = {
   cdLink: "",
 };
 
+function formatTime(sec) {
+  if (!isFinite(sec) || isNaN(sec) || sec < 0) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
 function Others() {
   const [items, setItems] = useState([]);
   const [intro, setIntro] = useState("");
+  const [introLink, setIntroLink] = useState("");
   const [loading, setLoading] = useState(true);
   const [playingId, setPlayingId] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [sortAsc, setSortAsc] = useState(true);
   const [wrapHeight, setWrapHeight] = useState(0);
   const audioRef = useRef(null);
@@ -35,8 +45,11 @@ function Others() {
     fetch("/api/public-audio")
       .then((r) => r.json())
       .then((data) => {
+        const raw = data.intro || "";
+        const parts = raw.split("||");
+        setIntro(parts[0].trim());
+        setIntroLink(parts[1]?.trim() || "");
         setItems(data.items || []);
-        setIntro(data.intro || "");
       })
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -81,14 +94,24 @@ function Others() {
     setPlayingId(item.id);
     setIsPaused(false);
     setProgress(0);
+    setCurrentTime(0);
+    setDuration(0);
 
     audio.play().catch(console.error);
+    audio.addEventListener("loadedmetadata", () => {
+      setDuration(audio.duration || 0);
+    });
     audio.addEventListener("timeupdate", () => {
-      setProgress(audio.duration ? (audio.currentTime / audio.duration) * 100 : 0);
+      const dur = audio.duration;
+      setProgress(dur ? (audio.currentTime / dur) * 100 : 0);
+      setCurrentTime(audio.currentTime || 0);
+      if (dur) setDuration(dur);
     });
     audio.addEventListener("ended", () => {
       setPlayingId(null);
       setProgress(0);
+      setCurrentTime(0);
+      setDuration(0);
     });
   }
 
@@ -110,12 +133,18 @@ function Others() {
   const visibleRows = wrapHeight > 0 ? Math.floor((wrapHeight - ROW_H) / ROW_H) : 20;
   const emptyRowCount = Math.max(0, visibleRows - sortedItems.length);
 
+  const TickerTag = introLink ? "a" : "span";
+
   return (
     <div className="pa-page">
       {/* Header */}
       <header className="pa-header">
         <div className="pa-header-left">
-          <h1 className="pa-title">Ningen Public Audio</h1>
+          <h1 className="pa-title">
+            N<span className="pa-title-lower">ingen</span>{" "}
+            P<span className="pa-title-lower">ublic</span>{" "}
+            A<span className="pa-title-lower">udio</span>
+          </h1>
           <a href="/" className="pa-site-link">www.ningenpaperpress.com</a>
         </div>
       </header>
@@ -128,9 +157,14 @@ function Others() {
         <div className="pa-ticker-track">
           <div className="pa-ticker-inner">
             {Array.from({ length: 5 }, (_, i) => (
-              <span key={i} className="pa-ticker-text" aria-hidden={i > 0 ? "true" : undefined}>
+              <TickerTag
+                key={i}
+                className="pa-ticker-text"
+                aria-hidden={i > 0 ? "true" : undefined}
+                {...(introLink ? { href: introLink, target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 {intro || "----> Ningen Public Audio <----"}
-              </span>
+              </TickerTag>
             ))}
           </div>
         </div>
@@ -169,9 +203,10 @@ function Others() {
             {!loading &&
               sortedItems.map((item, i) => {
                 const isActive = playingId === item.id;
+                const num = sortAsc ? i + 1 : sortedItems.length - i;
                 return (
                   <tr key={item.id} className={isActive ? "pa-row pa-row-active" : "pa-row"}>
-                    <td className="col-num">{String(i + 1).padStart(3, "0")}</td>
+                    <td className="col-num">{String(num).padStart(3, "0")}</td>
                     <td className="col-date">{item.date}</td>
                     <td className="col-artist">{item.artist}</td>
                     <td className="col-title">{item.title}</td>
@@ -189,19 +224,25 @@ function Others() {
                             }
                           </button>
                           {isActive && (
-                            <div
-                              className="pa-progress-track"
-                              onClick={(e) => {
-                                if (!audioRef.current) return;
-                                const rect = e.currentTarget.getBoundingClientRect();
-                                const ratio = (e.clientX - rect.left) / rect.width;
-                                audioRef.current.currentTime = ratio * audioRef.current.duration;
-                              }}
-                            >
+                            <div className="pa-progress-container">
+                              <span className="pa-time-current">{formatTime(currentTime)}</span>
                               <div
-                                className="pa-progress-fill"
-                                style={{ width: `${progress}%` }}
-                              />
+                                className="pa-progress-track"
+                                onClick={(e) => {
+                                  if (!audioRef.current) return;
+                                  const rect = e.currentTarget.getBoundingClientRect();
+                                  const ratio = (e.clientX - rect.left) / rect.width;
+                                  audioRef.current.currentTime = ratio * audioRef.current.duration;
+                                }}
+                              >
+                                <div
+                                  className="pa-progress-fill"
+                                  style={{ width: `${progress}%` }}
+                                />
+                              </div>
+                              <span className="pa-time-remaining">
+                                -{formatTime(Math.max(0, duration - currentTime))}
+                              </span>
                             </div>
                           )}
                         </div>
