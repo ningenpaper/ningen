@@ -130,7 +130,7 @@ function Others() {
     return sortAsc ? dateA - dateB : dateB - dateA;
   });
 
-  const visibleRows = wrapHeight > 0 ? Math.floor((wrapHeight - ROW_H) / ROW_H) : 20;
+  const visibleRows = wrapHeight > 0 ? Math.ceil((wrapHeight - ROW_H) / ROW_H) + 1 : 20;
   const emptyRowCount = Math.max(0, visibleRows - sortedItems.length);
 
   const TickerTag = introLink ? "a" : "span";
