@@ -117,8 +117,12 @@ body.body-public-audio {
 }
 
 @keyframes pa-scroll {
-  from { transform: translateX(-20%); } /* -20% = 5개 중 1개 너비 */
-  to   { transform: translateX(0%); }
+  from {
+    transform: translateX(-20%);
+  } /* -20% = 5개 중 1개 너비 */
+  to {
+    transform: translateX(0%);
+  }
 }
 
 .pa-ticker-text {
@@ -276,7 +280,7 @@ a.pa-ticker-text:hover {
 
 .pa-time-current,
 .pa-time-remaining {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   font-family: "Acumin", "acumin-pro", Arial, sans-serif;
   white-space: nowrap;
   flex-shrink: 0;
@@ -373,5 +377,4 @@ a.pa-ticker-text:hover {
   .pa-progress-track {
     display: none;
   }
-
 }
