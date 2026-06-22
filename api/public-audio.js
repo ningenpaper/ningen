@@ -71,9 +71,13 @@ module.exports = async function handler(req, res) {
       const artist = getFirstValue(props, ["Artist"]);
       const city = getFirstValue(props, ["City"]);
       const date = getFirstValue(props, ["Date"]);
-      const playEnabled = getPropertyValue(props["Play"]) === true;
-      const playFileName = getFirstValue(props, ["Play File Name"]);
-      const audioUrl = playEnabled && playFileName ? `/audio/${playFileName}` : "";
+      const playEnabled = getPropertyValue(props["Audio Upload Check"]) === true;
+      const audioLink = getFirstValue(props, ["Audio Link"]);
+      const resolvedUrl = audioLink.replace(
+        /archive\.org\/details\/([^/?#]+).*/,
+        "archive.org/download/$1/$1.mp3"
+      );
+      const audioUrl = playEnabled && audioLink ? resolvedUrl : "";
       const cdLink = getFirstValue(props, ["CD Link"]);
       const fallbackTitle = title || artist || city || date || page.id;
 

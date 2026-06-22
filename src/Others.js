@@ -7,7 +7,7 @@ import "./Others.css";
 
 const ROW_H = 32; // 2rem at default 16px font
 
-const TEST_AUDIO = "/audio/sample-sound.mp3";
+const TEST_AUDIO = "https://archive.org/download/sample-sound/sample-sound.mp3";
 
 const TEST_ITEM = {
   id: "test-001",
