@@ -35,6 +35,8 @@ function getPropertyValue(property) {
       return property.multi_select?.map((s) => s.name).join(", ") || "";
     case "url":
       return property.url || "";
+    case "checkbox":
+      return property.checkbox ?? false;
     case "date":
       return property.date?.start || "";
     case "files":

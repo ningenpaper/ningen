@@ -71,7 +71,9 @@ module.exports = async function handler(req, res) {
       const artist = getFirstValue(props, ["Artist"]);
       const city = getFirstValue(props, ["City"]);
       const date = getFirstValue(props, ["Date"]);
-      const audioUrl = getFirstValue(props, ["Audio", "Audio URL", "Play", "SoundCloud", "MP3"]);
+      const playEnabled = getPropertyValue(props["Play"]) === true;
+      const playFileName = getFirstValue(props, ["Play File Name"]);
+      const audioUrl = playEnabled && playFileName ? `/audio/${playFileName}` : "";
       const cdLink = getFirstValue(props, ["CD Link"]);
       const fallbackTitle = title || artist || city || date || page.id;
 

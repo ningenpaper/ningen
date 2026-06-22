@@ -7,7 +7,7 @@ import "./Others.css";
 
 const ROW_H = 32; // 2rem at default 16px font
 
-const TEST_AUDIO = "https://drive.google.com/file/d/1xINbK1dZUaCClj1vWakuzB5bKE23R59a/view?usp=sharing";
+const TEST_AUDIO = "/audio/sample-sound.mp3";
 
 const TEST_ITEM = {
   id: "test-001",

@@ -4,3 +4,4 @@ build
 .env.local
 .env*.local
 .vercel
+public/audio/
