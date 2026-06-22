@@ -227,11 +227,9 @@ function Others() {
                             onClick={() => playItem(item)}
                             aria-label={isActive && !isPaused ? "pause" : "play"}
                           >
-                            {loadingId === item.id
-                              ? null
-                              : isActive && !isPaused
-                                ? <PauseIcon className="pa-btn-icon" />
-                                : <PlayIcon className="pa-btn-icon" />
+                            {isActive && !isPaused && loadingId !== item.id
+                              ? <PauseIcon className="pa-btn-icon" />
+                              : <PlayIcon className="pa-btn-icon" />
                             }
                           </button>
                           {isActive && loadingId === item.id && (
