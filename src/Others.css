@@ -62,7 +62,7 @@ body.body-public-audio {
 
 .pa-title-lower {
   font-family: "Times New Roman", Times, serif;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .pa-site-link {
@@ -339,13 +339,16 @@ a.pa-ticker-text:hover {
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
-  /* (3) 제목 + 링크 2배 */
   .pa-title {
     font-size: 2rem;
   }
 
+  .pa-title-lower {
+    font-weight: 600;
+  }
+
   .pa-site-link {
-    font-size: 1.56rem;
+    font-size: 1rem;
   }
 
   .pa-ticker {
@@ -369,12 +372,12 @@ a.pa-ticker-text:hover {
     width: auto;
   }
 
-  /* (1) play column — 버튼만, progress bar 숨김 */
+  /* play column — 버튼만, progress bar + 시간 숨김 */
   .col-play {
     width: 3rem;
   }
 
-  .pa-progress-track {
+  .pa-progress-container {
     display: none;
   }
 }
