@@ -223,7 +223,7 @@ function Others() {
                       {item.audioUrl && (
                         <div className="pa-play-wrap">
                           <button
-                            className="pa-play-btn"
+                            className={`pa-play-btn${loadingId === item.id ? " pa-play-btn--loading" : ""}`}
                             onClick={() => playItem(item)}
                             aria-label={isActive && !isPaused ? "pause" : "play"}
                           >
@@ -231,6 +231,7 @@ function Others() {
                               ? <PauseIcon className="pa-btn-icon" />
                               : <PlayIcon className="pa-btn-icon" />
                             }
+                            <span className="pa-loading-dots">...</span>
                           </button>
                           {isActive && loadingId === item.id && (
                             <span className="pa-time-current">Loading...</span>

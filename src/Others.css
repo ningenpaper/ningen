@@ -269,6 +269,10 @@ a.pa-ticker-text:hover {
   opacity: 0.6;
 }
 
+.pa-loading-dots {
+  display: none;
+}
+
 /* 진행 바 컨테이너 (시간 라벨 포함) */
 .pa-progress-container {
   display: flex;
@@ -379,5 +383,15 @@ a.pa-ticker-text:hover {
 
   .pa-progress-container {
     display: none;
+  }
+
+  .pa-play-btn--loading .pa-btn-icon {
+    display: none;
+  }
+
+  .pa-play-btn--loading .pa-loading-dots {
+    display: inline;
+    font-size: 0.8rem;
+    font-family: "Acumin", "acumin-pro", Arial, sans-serif;
   }
 }
