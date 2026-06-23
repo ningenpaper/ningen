@@ -11,6 +11,7 @@ import About from "./About";
 import Wholesale from "./Wholesale";
 import OrderSuccess from "./OrderSuccess";
 import { CartProvider } from "./CartContext";
+import { AudioProvider } from "./AudioContext";
 import "./reset.css";
 import "./body.css";
 
@@ -29,6 +30,7 @@ function App() {
   }, []);
 
   return (
+    <AudioProvider>
     <CartProvider>
       <BrowserRouter>
         <Routes>
@@ -46,6 +48,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </CartProvider>
+    </AudioProvider>
   );
 }
 

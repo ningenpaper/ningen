@@ -3,6 +3,7 @@ import { ReactComponent as SpeakerIcon } from "./icon/speaker.svg";
 import { ReactComponent as PlayIcon } from "./icon/Play.svg";
 import { ReactComponent as PauseIcon } from "./icon/Pause.svg";
 import { ReactComponent as CdIcon } from "./icon/CD-button.svg";
+import { useAudio } from "./AudioContext";
 import "./Others.css";
 
 const ROW_H = 32; // 2rem at default 16px font
@@ -27,19 +28,14 @@ function formatTime(sec) {
 }
 
 function Others() {
+  const { playingId, isPaused, progress, currentTime, duration, loadingId, playItem, audioRef } = useAudio();
+
   const [items, setItems] = useState([]);
   const [intro, setIntro] = useState("");
   const [introLink, setIntroLink] = useState("");
   const [loading, setLoading] = useState(true);
-  const [playingId, setPlayingId] = useState(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [loadingId, setLoadingId] = useState(null);
   const [sortAsc, setSortAsc] = useState(true);
   const [wrapHeight, setWrapHeight] = useState(0);
-  const audioRef = useRef(null);
   const tableWrapRef = useRef(null);
 
   useEffect(() => {
@@ -57,10 +53,6 @@ function Others() {
   }, []);
 
   useEffect(() => {
-    return () => audioRef.current?.pause();
-  }, []);
-
-  useEffect(() => {
     document.body.classList.add("body-public-audio");
     return () => document.body.classList.remove("body-public-audio");
   }, []);
@@ -74,55 +66,6 @@ function Others() {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-
-  function playItem(item) {
-    if (!item.audioUrl) return;
-
-    if (playingId === item.id) {
-      if (audioRef.current?.paused) {
-        audioRef.current.play();
-        setIsPaused(false);
-      } else {
-        audioRef.current?.pause();
-        setIsPaused(true);
-      }
-      return;
-    }
-
-    audioRef.current?.pause();
-    const audio = new Audio(item.audioUrl);
-    audioRef.current = audio;
-    setPlayingId(item.id);
-    setLoadingId(item.id);
-    setIsPaused(false);
-    setProgress(0);
-    setCurrentTime(0);
-    setDuration(0);
-
-    audio.play().catch(console.error);
-    audio.addEventListener("playing", () => {
-      setLoadingId(null);
-    });
-    audio.addEventListener("error", () => {
-      setLoadingId(null);
-    });
-    audio.addEventListener("loadedmetadata", () => {
-      setDuration(audio.duration || 0);
-    });
-    audio.addEventListener("timeupdate", () => {
-      const dur = audio.duration;
-      setProgress(dur ? (audio.currentTime / dur) * 100 : 0);
-      setCurrentTime(audio.currentTime || 0);
-      if (dur) setDuration(dur);
-    });
-    audio.addEventListener("ended", () => {
-      setPlayingId(null);
-      setLoadingId(null);
-      setProgress(0);
-      setCurrentTime(0);
-      setDuration(0);
-    });
-  }
 
   function toggleSort() {
     setSortAsc((prev) => !prev);
