@@ -3,6 +3,7 @@ import { ReactComponent as SpeakerIcon } from "./icon/speaker.svg";
 import { ReactComponent as PlayIcon } from "./icon/Play.svg";
 import { ReactComponent as PauseIcon } from "./icon/Pause.svg";
 import { ReactComponent as CdIcon } from "./icon/CD-button.svg";
+import { Link } from "react-router-dom";
 import { useAudio } from "./AudioContext";
 import "./Others.css";
 
@@ -97,7 +98,7 @@ function Others() {
             P<span className="pa-title-lower">ublic</span>{" "}
             A<span className="pa-title-lower">udio</span>
           </h1>
-          <a href="/" className="pa-site-link">www.ningenpaperpress.com</a>
+          <Link to="/" className="pa-site-link">www.ningenpaperpress.com</Link>
         </div>
       </header>
 
