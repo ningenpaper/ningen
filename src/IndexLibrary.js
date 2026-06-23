@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./IndexLibrary.css";
 
 function IndexLibrary() {
@@ -42,7 +43,7 @@ function IndexLibrary() {
   return (
     <>
       <div className="header">
-        <a href="/">ningen paper press</a> introduces virtual pdfs you can read.
+        <Link to="/">ningen paper press</Link> introduces virtual pdfs you can read.
       </div>
 
       <div className="list-of-books">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Wholesale.css";
 
 function Wholesale() {
@@ -14,7 +15,7 @@ function Wholesale() {
   return (
     <>
       <div className="header">
-        <a href="/">ningen paper press</a> sells in wholesale.
+        <Link to="/">ningen paper press</Link> sells in wholesale.
       </div>
 
       <div className="wholesale-page">

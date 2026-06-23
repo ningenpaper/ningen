@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Projects.css";
 
 function Projects() {
@@ -73,7 +74,7 @@ function Projects() {
   return (
     <>
       <div className="header">
-        <a href="/">Go back</a>
+        <Link to="/">Go back</Link>
       </div>
 
       <div id="translation" onClick={handleClick}>

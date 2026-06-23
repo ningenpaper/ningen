@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./About.css";
 
 function About() {
@@ -50,7 +51,7 @@ function About() {
   return (
     <>
       <div className="header">
-        <a href="/">Go back</a>
+        <Link to="/">Go back</Link>
       </div>
 
       <div id="translation" onClick={handleClick}>
