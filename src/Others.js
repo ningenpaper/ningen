@@ -29,7 +29,8 @@ function formatTime(sec) {
 }
 
 function Others() {
-  const { playingId, isPaused, progress, currentTime, duration, loadingId, playItem, audioRef } = useAudio();
+  const { playingId, isPaused, progress, currentTime, duration, loadingId, playItem, audioRef } =
+    useAudio();
 
   const [items, setItems] = useState([]);
   const [intro, setIntro] = useState("");
@@ -73,9 +74,10 @@ function Others() {
   }
 
   // API 없는 환경(npm start)이면 TEST_ITEM, 있으면 실제 데이터 + audioUrl 없는 항목에 테스트 URL 주입
-  const baseItems = items.length > 0
-    ? items.map((item) => ({ ...item, audioUrl: item.audioUrl || TEST_AUDIO }))
-    : [TEST_ITEM];
+  const baseItems =
+    items.length > 0
+      ? items.map((item) => ({ ...item, audioUrl: item.audioUrl || TEST_AUDIO }))
+      : [TEST_ITEM];
 
   const sortedItems = [...baseItems].sort((a, b) => {
     const dateA = new Date(a.date || 0);
@@ -94,11 +96,13 @@ function Others() {
       <header className="pa-header">
         <div className="pa-header-left">
           <h1 className="pa-title">
-            N<span className="pa-title-lower">ingen</span>{" "}
-            P<span className="pa-title-lower">ublic</span>{" "}
-            A<span className="pa-title-lower">udio</span>
+            N<span className="pa-title-lower">ingen</span> P
+            <span className="pa-title-lower">ublic</span> A
+            <span className="pa-title-lower">udio</span>
           </h1>
-          <Link to="/" className="pa-site-link">www.ningenpaperpress.com</Link>
+          <Link to="/" className="pa-site-link">
+            www.ningenpaperpress.com
+          </Link>
         </div>
       </header>
 
@@ -114,7 +118,9 @@ function Others() {
                 key={i}
                 className="pa-ticker-text"
                 aria-hidden={i > 0 ? "true" : undefined}
-                {...(introLink ? { href: introLink, target: "_blank", rel: "noopener noreferrer" } : {})}
+                {...(introLink
+                  ? { href: introLink, target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {intro || "----> Ningen Public Audio <----"}
               </TickerTag>
@@ -123,7 +129,7 @@ function Others() {
         </div>
         <a
           className="pa-submit-link"
-          href="#"
+          href="https://forms.gle/oNgGumQnP2MzdDq46"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -150,7 +156,9 @@ function Others() {
           <tbody>
             {loading && (
               <tr>
-                <td colSpan={7} className="pa-status">Loading...</td>
+                <td colSpan={7} className="pa-status">
+                  Loading...
+                </td>
               </tr>
             )}
             {!loading &&
@@ -171,10 +179,11 @@ function Others() {
                             onClick={() => playItem(item)}
                             aria-label={isActive && !isPaused ? "pause" : "play"}
                           >
-                            {isActive && !isPaused && loadingId !== item.id
-                              ? <PauseIcon className="pa-btn-icon" />
-                              : <PlayIcon className="pa-btn-icon" />
-                            }
+                            {isActive && !isPaused && loadingId !== item.id ? (
+                              <PauseIcon className="pa-btn-icon" />
+                            ) : (
+                              <PlayIcon className="pa-btn-icon" />
+                            )}
                             <span className="pa-loading-dots">Wait...</span>
                           </button>
                           {isActive && loadingId === item.id && (
