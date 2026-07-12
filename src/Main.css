@@ -77,9 +77,22 @@
 }
 
 button {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  border: 1px solid #000;
+  background: transparent;
+  color: #000;
+  box-shadow: none;
   font-family: "fifteen";
   padding: 0.5rem;
   font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  color: #ff0000;
+  border-color: #ff0000;
 }
 
 #des {
