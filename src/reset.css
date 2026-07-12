@@ -147,4 +147,10 @@ a:hover {
     margin: 0;
     margin-bottom: 10rem;
   }
+
+  .footer {
+    position: static;
+    bottom: auto;
+    margin-top: 2rem;
+  }
 }

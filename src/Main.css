@@ -8,8 +8,10 @@
 
 #timedate {
   font-family: "fifteen";
-  font-size: 2rem;
+  font-size: clamp(1.1rem, 4.5vw, 2rem);
   color: #0000ff;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 #title {
@@ -153,6 +155,7 @@ button:hover {
 
   #message {
     width: 90%;
+    height: 4rem;
     font-size: 0.9rem;
   }
 
@@ -172,10 +175,6 @@ button:hover {
     margin-top: 2rem;
   }
 
-  #timedate {
-    font-size: 1.9rem;
-  }
-
   #title,
   #header-description,
   #menu-list,
@@ -183,11 +182,5 @@ button:hover {
   #des,
   #links {
     font-size: 1.2rem;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  #timedate {
-    font-size: 1.7rem;
   }
 }
