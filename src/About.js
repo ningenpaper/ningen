@@ -59,33 +59,95 @@ function About() {
       </div>
 
       <div className="members">
-        <p>
-          <a
-            href="https://www.instagram.com/ganghyeonpaeg/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ganghyeon Paeg
-          </a>
-        </p>
-        <p>
-          <a
-            href="https://www.instagram.com/chaeyunahn/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Chae Ahn
-          </a>
-        </p>
-        <p>
-          <a
-            href="https://www.instagram.com/chauigang/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Uigang Cha
-          </a>
-        </p>
+        <div className="member">
+          <p>
+            <a
+              href="https://www.instagram.com/ganghyeonpaeg/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ganghyeon Paeg
+            </a>
+          </p>
+          <div className="member-photo">
+            <img src="/profile/ganghyeon-paeg.JPG" alt="Ganghyeon Paeg" />
+          </div>
+        </div>
+
+        <div className="member">
+          <p>
+            <a
+              href="https://www.instagram.com/chaeyunahn/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Chae Ahn
+            </a>
+          </p>
+          <div className="member-photo">
+            <img src="/profile/chae-ahn.JPG" alt="Chae Ahn" />
+          </div>
+        </div>
+
+        <div className="member">
+          <p>
+            <a
+              href="https://www.instagram.com/chauigang/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Uigang Cha
+            </a>
+          </p>
+          <div className="member-photo">
+            <img src="/profile/uigang-cha.JPG" alt="Uigang Cha" />
+          </div>
+        </div>
+
+        <div className="member">
+          <p>
+            <a
+              href="https://www.instagram.com/kiimseungyeop/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Seungyeop Kim
+            </a>
+          </p>
+          <div className="member-photo">
+            <img src="/profile/seungyeop-kim.JPG" alt="Seungyeop Kim" />
+          </div>
+        </div>
+
+        <div className="member">
+          <p>
+            <a
+              href="https://www.instagram.com/hotpot_dj/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              James
+            </a>
+          </p>
+          <div className="member-photo">
+            <img src="/profile/james.JPG" alt="James" />
+          </div>
+        </div>
+
+        <div className="member">
+          <p>
+            <a
+              href="https://www.instagram.com/gimharae/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Gimharae
+            </a>
+          </p>
+          <div className="member-photo">
+            <img src="/profile/gimhare.PNG" alt="Gimharae" />
+          </div>
+        </div>
       </div>
 
       <div className="footer">

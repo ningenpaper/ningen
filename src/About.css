@@ -13,7 +13,13 @@ img {
 
 .members {
   display: flex;
-  gap: 8rem;
+  flex-wrap: wrap;
+  gap: 2rem 1rem;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
 }
 
 .members p {
@@ -31,6 +37,32 @@ img {
   color: #ff0000;
 }
 
+.member-photo {
+  position: relative;
+  width: 12rem;
+  aspect-ratio: 1 / 1;
+  margin-top: 0.8rem;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+}
+
+.member-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg);
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   #translation {
     width: auto;
@@ -39,7 +71,7 @@ img {
 
   .members {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.5rem;
   }
 
   .members p {
@@ -47,9 +79,12 @@ img {
     margin-top: 1rem;
   }
 
-  img {
-    width: 90%;
-    height: 100%;
-    padding: 1rem;
+  .member-photo {
+    width: 60vw;
+    max-width: 16rem;
+  }
+
+  .member-photo::after {
+    background-color: #dbe2e3;
   }
 }
