@@ -3,11 +3,66 @@
   font-weight: 400;
   font-style: normal;
   font-size: 1rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background-color: #fff;
   margin: 0;
+}
+
+button,
+input,
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  color: inherit;
+}
+
+#reset-btn,
+#checklist-reset-btn {
+  border: 1px solid #000;
+  background: #fff;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #000;
+  background: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  margin: 0 0.3rem 0 0;
+  cursor: pointer;
+  flex: none;
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #000;
+}
+
+input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #000;
+  border-radius: 50%;
 }
 
 .page-wrapper {
