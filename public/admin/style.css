@@ -1,0 +1,175 @@
+* {
+  font-family: "acumin-pro", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+}
+
+body {
+  background-color: #fff;
+  margin: 0;
+}
+
+.page-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 60vmin;
+  transform: translate(-50%, -50%) rotate(-1deg);
+}
+
+.tabs {
+  display: flex;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  border-bottom: none;
+  background: #eee;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #fff;
+}
+
+.a4-container {
+  width: 100%;
+  aspect-ratio: 1 / 1.4142;
+  background: #fff;
+  border: 1px solid #000;
+  overflow-y: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .page-wrapper {
+    width: 80vmin;
+  }
+}
+
+.checklist {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+}
+
+.checklist li {
+  margin-bottom: 0.4rem;
+}
+
+.checklist li.done label {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.note {
+  margin: 0.2rem 0 0.6rem 1.5rem;
+  color: #666;
+}
+
+.owner {
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.checklist-flow {
+  color: #666;
+}
+
+.checklist-progress {
+  margin-top: 1rem;
+}
+
+details.checklist-section {
+  border: 1px solid #000;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+details.checklist-section summary {
+  cursor: pointer;
+}
+
+details.checklist-section[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+details.checklist-section.all-done summary {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+details.calc-section {
+  border: 1px solid #000;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+details.calc-section summary {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+details.calc-section[open] summary {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.calc-subtotal {
+  color: #666;
+  white-space: nowrap;
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.qty-btn {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid #000;
+  background: #fff;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.qty-input {
+  width: 4rem;
+  text-align: center;
+  border: 1px solid #000;
+  padding: 0.2rem;
+}
+
+.placeholder {
+  color: #999;
+}
+
+.copyable {
+  cursor: pointer;
+  text-decoration: underline dotted;
+}
+
+details.manual {
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+details.manual summary {
+  cursor: pointer;
+}
+
+details.manual ul,
+details.manual ol {
+  padding-left: 1.25rem;
+}

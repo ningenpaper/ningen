@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Ningen</title>
+    <link rel="stylesheet" href="https://use.typekit.net/kml1jpd.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div class="tabs">
+        <button type="button" class="tab-btn active" data-tab="calculator">요금 계산기</button>
+        <button type="button" class="tab-btn" data-tab="checklist">오피스 체크리스트</button>
+      </div>
+      <div class="a4-container">
+        <div class="tab-panel" data-panel="calculator">
+          <h1>견적서</h1>
+          <div id="receipt-items">
+            <p class="placeholder">아래 항목을 입력해주세요...</p>
+          </div>
+          <h3>합계: <span id="grand-total">₩0</span></h3>
+          <button id="reset-btn" type="button">전체 초기화</button>
+
+          <details class="calc-section">
+            <summary>
+              <span>01. 프린트 · 복사 · 스캔</span>
+              <span class="calc-subtotal" data-sum="A">₩0</span>
+            </summary>
+            <p>
+              <label for="a-bw">흑백 (매) — 100원/매</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="a-bw" data-step="-1">−</button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="a-bw"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="a-bw" data-step="1">+</button>
+              </span>
+            </p>
+            <p>
+              <label for="a-color">컬러 (매) — 300원/매</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="a-color" data-step="-1">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="a-color"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="a-color" data-step="1">+</button>
+              </span>
+            </p>
+            <p>
+              <label for="a-scan">스캔 (매) — 100원/매 (흑백/컬러 무관)</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="a-scan" data-step="-1">−</button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="a-scan"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="a-scan" data-step="1">+</button>
+              </span>
+            </p>
+            <p>
+              <label for="a-cut">단순 재단 (건) — 4,000원/건 (전주 제지 백색 A4 기준)</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="a-cut" data-step="-1">−</button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="a-cut"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="a-cut" data-step="1">+</button>
+              </span>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" id="a-printerchange" />
+                특정 프린터 기종 변경/선택 (재단 건당 +2,000원)
+              </label>
+            </p>
+          </details>
+
+          <details class="calc-section">
+            <summary>
+              <span>02. 중철 제본 zine</span>
+              <span class="calc-subtotal" data-sum="B">₩0</span>
+            </summary>
+            <p>
+              기본가 권당 A5 3,000원 / A4 4,000원 (표지 포함 28p 흑백 2도 기준). 28p 초과 시
+              페이지당 +50원. 컬러 인쇄 시 페이지당 +100원. 100부 이상이면 전체 규칙 적용 후 권당
+              10% 할인.
+            </p>
+            <p>
+              <label for="b-qty">부수</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="b-qty" data-step="-4">−</button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="b-qty"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="b-qty" data-step="4">+</button>
+              </span>
+            </p>
+            <p>
+              <label for="b-pages">페이지 수 (표지 포함, 기준 28p)</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="b-pages" data-step="-4">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="b-pages"
+                  value="28"
+                />
+                <button type="button" class="qty-btn" data-target="b-pages" data-step="4">+</button>
+              </span>
+            </p>
+            <p>
+              규격:<br />
+              <label
+                ><input type="radio" name="b-size" value="a5" checked /> A5 (3,000원 기준)</label
+              ><br />
+              <label><input type="radio" name="b-size" value="a4" /> A4 (4,000원 기준)</label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" id="b-color" />
+                컬러 인쇄 (+100원/페이지)
+              </label>
+            </p>
+          </details>
+
+          <details class="calc-section">
+            <summary>
+              <span>03. 링 제본 zine</span>
+              <span class="calc-subtotal" data-sum="C">₩0</span>
+            </summary>
+            <p>
+              60부 미만 기준: A4 24p 이하 권당 5,000원 / A5 24p 이하 권당 4,000원. 24p 초과 시
+              페이지당 +50원. 컬러 인쇄 시 페이지당 +150원. 비규격은 건당 권당 +1,000원. 60부
+              이상이면 전체 규칙 적용 후 권당 10% 할인.
+            </p>
+            <p>
+              <label for="c-qty">부수</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="c-qty" data-step="-4">−</button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="c-qty"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="c-qty" data-step="4">+</button>
+              </span>
+            </p>
+            <p>
+              <label for="c-pages">페이지 수 (표지 포함, 기준 24p)</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="c-pages" data-step="-4">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="c-pages"
+                  value="24"
+                />
+                <button type="button" class="qty-btn" data-target="c-pages" data-step="4">+</button>
+              </span>
+            </p>
+            <p>
+              규격:<br />
+              <label
+                ><input type="radio" name="c-size" value="a4" checked /> A4 (5,000원 기준)</label
+              ><br />
+              <label><input type="radio" name="c-size" value="a5" /> A5 (4,000원 기준)</label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" id="c-color" />
+                컬러 인쇄 (+150원/페이지) </label
+              ><br />
+              <label>
+                <input type="checkbox" id="c-nonstandard" />
+                비규격 (건당 권당 +1,000원)
+              </label>
+            </p>
+          </details>
+
+          <details class="calc-section">
+            <summary>
+              <span>04. 특수 규격 재단 제본</span>
+              <span class="calc-subtotal" data-sum="D">₩0</span>
+            </summary>
+            <p>
+              서로 다른 규격을 각 1건으로 계산하며 권당 +1,000원. 예: 2가지 규격을 섞으면 권당
+              +2,000원. ※ 난이도/상황에 따라 불가능한 경우가 있으며, 추가 요금 협의가 필요할 수
+              있습니다.
+            </p>
+            <p>
+              <label for="d-formats">한 권에 섞는 규격 수</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="d-formats" data-step="-1">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="d-formats"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="d-formats" data-step="1">
+                  +
+                </button>
+              </span>
+            </p>
+            <p>
+              <label for="d-qty">권수</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="d-qty" data-step="-1">−</button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="d-qty"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="d-qty" data-step="1">+</button>
+              </span>
+            </p>
+          </details>
+
+          <details class="calc-section">
+            <summary>
+              <span>05. 종이</span>
+              <span class="calc-subtotal" data-sum="E">₩0</span>
+            </summary>
+            <p>
+              선방 입고 용지는 A4 규격 120g 이하, 레이저 전용 용지만 가능하며 트레싱지·트레팔 등
+              특수 용지는 불가합니다.
+            </p>
+            <p>
+              <label for="e-color80">컬러 용지 80g (장) — 300원/장</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="e-color80" data-step="-1">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="e-color80"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="e-color80" data-step="1">
+                  +
+                </button>
+              </span>
+            </p>
+            <p>
+              <label for="e-special">특수 용지 (장) — 500원/장</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="e-special" data-step="-1">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="e-special"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="e-special" data-step="1">
+                  +
+                </button>
+              </span>
+            </p>
+            <p>
+              <label for="e-heavy">120g 이상 용지 (장) — 500원/장 (컬러/특수 포함)</label><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="e-heavy" data-step="-1">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="e-heavy"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="e-heavy" data-step="1">+</button>
+              </span>
+            </p>
+          </details>
+
+          <h2>♫︎슬기로운 프린터 사용 생활♫︎</h2>
+          <details class="manual">
+            <summary>프린터 사용</summary>
+            <ol>
+              <li>보편적인 낱장 인쇄는 ApeosPort-V 3060 이용</li>
+              <li>대량 zine 인쇄는 DocuPrint CM415 AP 이용</li>
+              <li>A3 / 많은 컬러 인쇄는 전주에 생산 요청</li>
+              <li>뻑난 종이는 종이 쓰레기통에 버리기</li>
+            </ol>
+          </details>
+
+          <details class="manual">
+            <summary>기종 안내</summary>
+            <ul>
+              <li>
+                <strong>DocuCentre-II 2055</strong> : 2006년에 나온 가장 오래된 모델, 독특한
+                스타일에 적합, A3가능
+              </li>
+              <li>
+                <strong>ApeosPort-V 3060</strong> : 보편적인 제록스 흑백 복합기, 다량 흑백 인쇄에
+                적합, A3가능
+              </li>
+              <li>
+                <strong>DocuPrint CM415 AP</strong> : 고속 컬러 제록스 프린터, 분 당 50매, 간단한
+                컬러인쇄에 적합
+              </li>
+              <li>
+                <strong>DocuPrint M225 z</strong> : 내부 문서 처리 인쇄, 계약서 인쇄, 인보이스 인쇄
+                등에
+              </li>
+              <li>
+                <strong>DocuPrint M355 df</strong> : 기본적인 제록스 스타일, 120g 이하 종이 사용
+                권장, 스캐너가 좋음
+              </li>
+              <li><strong>DocuPrint 3055</strong> : 오래된 모델, 독특한 질감, A3까지 가능</li>
+              <li>
+                <strong>DocuPrint 2010</strong> : 체험용 이용 / 고객이 스스로 연결해 인쇄하는 일에
+                적합
+              </li>
+            </ul>
+          </details>
+
+          <details class="manual">
+            <summary>사고 해결 요령</summary>
+            <ol>
+              <li>
+                종이 걸림 문제
+                <p class="note">
+                  → 프린터가 시키는대로, 프린터 뒤 뚜껑을 따고 다시 덮고 걸린 종이를 살살 뺀다.
+                </p>
+              </li>
+              <li>
+                토너가 뭉쳐서 나와요
+                <p class="note">
+                  → 특수 종이를 사용했거나, 두꺼운 용지를 사용해서 이미 토너 롤러가 한번 더러워진
+                  상태이기 때문에, 80g 복사용지를 2매 정도 넣고 다시 인쇄를 넣어서 내부를 청소한 뒤
+                  다시 시도.
+                </p>
+              </li>
+            </ol>
+            <p>
+              제록스 아저씨 전화번호:
+              <span
+                class="copyable"
+                data-copy="01099487450"
+                tabindex="0"
+                role="button"
+                title="클릭하여 복사"
+                >010 9948 7450</span
+              >
+            </p>
+          </details>
+
+          <details class="manual">
+            <summary>토너 주문</summary>
+            <p>기종별 잔량 체크 후 네이버 스토어로 카드 주문</p>
+            <p>모델명 검색 → 토너 검색 → 해적판 토너로 구입 (저렴이 버전)</p>
+          </details>
+        </div>
+
+        <div class="tab-panel" data-panel="checklist" hidden>
+          <p class="checklist-progress">
+            <strong>진행 상황: <span id="checklist-progress">0 / 0</span></strong>
+          </p>
+          <button id="checklist-reset-btn" type="button">체크리스트 초기화</button>
+
+          <details class="checklist-section">
+            <summary>출근</summary>
+            <ul class="checklist">
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="open-1" /> 공간 불 키고, 커튼 빗살
+                  비추게 열어두기</label
+                >
+              </li>
+              <li>
+                <label><input type="checkbox" class="chk" data-id="open-2" /> 주변 정리</label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="open-3" /> 음악 틀기 (닌겐 스포티파이
+                  활용)</label
+                >
+              </li>
+            </ul>
+          </details>
+
+          <details class="checklist-section">
+            <summary>업무 체크</summary>
+
+            <h3>(1) 메일박스 확인</h3>
+            <ul class="checklist">
+              <li>
+                <label><input type="checkbox" class="chk" data-id="mail-1" /> C/S</label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="mail-2" /> 제안메일 체크
+                  <em>*대표 보고</em></label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="mail-3" /> 인쇄 주문 건 견적 및
+                  출고일 안내</label
+                >
+              </li>
+              <li>
+                <label><input type="checkbox" class="chk" data-id="mail-4" /> 퍼블릭 오디오</label>
+              </li>
+            </ul>
+
+            <h3>(2) 인쇄 업무 체크</h3>
+            <ul class="checklist">
+              <li>
+                <label><input type="checkbox" class="chk" data-id="print-1" /> 낱장 인쇄</label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="print-2" /> 중철제본 / 링제본
+                  인쇄</label
+                >
+              </li>
+              <li>
+                <label><input type="checkbox" class="chk" data-id="print-3" /> 재단</label>
+              </li>
+              <li>
+                <label><input type="checkbox" class="chk" data-id="print-4" /> 코팅</label>
+              </li>
+            </ul>
+
+            <h3>(3) 워크인 응대</h3>
+            <ul class="checklist">
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="walkin-1" /> 닌겐페이퍼프레스 /
+                  닌겐프린트센터 소개와 설명</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="walkin-2" /> 출간물 요약 설명</label
+                >
+              </li>
+              <li>
+                <label><input type="checkbox" class="chk" data-id="walkin-3" /> 가격 안내</label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="walkin-4" /> 결제 (카드 또는
+                  계좌이체)</label
+                >
+                <p class="note">
+                  출판물·CD 현장구매는 비과세 / 인쇄물 포함 모든 것은 과세 · 카드결제 시 10% 추가
+                </p>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="walkin-5" /> 할인 고객 뱃지
+                  체크</label
+                >
+                <p class="note">할인 고객은 뱃지 소지 시 언제든지 10% 할인</p>
+              </li>
+            </ul>
+          </details>
+
+          <details class="checklist-section">
+            <summary>퇴근</summary>
+            <ul class="checklist">
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="close-1" /> 책상 및 주변 정리 후
+                  빗자루질·걸레질 (간단하게 보이는 곳만)</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="close-2" /> 에어컨 / 공기청정기 /
+                  소등</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="close-3" /> 설거지 거리 확인
+                  <em>(자신이 이용한 것은 스스로 정리)</em></label
+                >
+              </li>
+              <li>
+                <label><input type="checkbox" class="chk" data-id="close-4" /> 커튼 닫기</label>
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="close-5" /> (가끔) 쓰레기통이 다 차면
+                  비우기</label
+                >
+              </li>
+              <li>
+                <label
+                  ><input type="checkbox" class="chk" data-id="close-6" /> 건물에 아무도 없으면 전체
+                  소등 후 중문 꼭 잠그기 <em>[비번 2000]</em></label
+                >
+                <p class="note">*안 하면 관리소장이 불같이 화냅니다</p>
+              </li>
+            </ul>
+          </details>
+
+          <h2>♫︎사무실 지킴이 에티켓♫︎</h2>
+          <details class="manual">
+            <summary>고객 응대 및 상담 매뉴얼</summary>
+            <p>상냥한 응대는 기본입니다. 손님에겐 언제나 공평하고 공정한 태도로 응대합니다.</p>
+            <ul>
+              <li>
+                어떤 일로 찾아오셨는지 묻기 → 인쇄 업무 → 예상 견적 안내 → 출고일 안내
+                <ul>
+                  <li>빠르게 처리 가능한 것은 현장 대기, 및 익일 출고 가능으로 안내</li>
+                  <li>
+                    복잡한 업무 (500매가 넘어가는 많은 분량의 인쇄, 50부가 넘어가는 제본 등)는
+                    입고된 용지, 가능한 사양에 따라서, 공휴일 제외 최대 7일 소요
+                  </li>
+                </ul>
+              </li>
+              <li>
+                도서 구매
+                <ul>
+                  <li>가격 안내 (숙지사항)</li>
+                  <li>상품 소개 (숙지사항)</li>
+                </ul>
+              </li>
+              <li>
+                인덱스 라이브러리 이용 (무료)
+                <ul>
+                  <li>
+                    원하는 페이지를 스캔하거나, 다시 인쇄 해 제본하는 일은 인쇄 가격표와 동일하게
+                    적용
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </details>
+
+          <details class="manual">
+            <summary>결제 관리</summary>
+            <p><strong>워크인 고객 응대</strong><br />구경 → 도서 설명 → 카드/현금 결제 → 포장</p>
+            <p>
+              <strong>온라인 고객 응대</strong><br />메일 박스 체크 → 인보이스 → 페이팔 요청 → 결제
+              받기 → 결제 확인 → 우체국 발송
+            </p>
+          </details>
+
+          <details class="manual">
+            <summary>공간 이용 관련</summary>
+            <p>
+              1층 샷다 자물쇠 비번 1000<br />
+              2층 중문 비번 2000<br />
+              닌겐 비번 0313<br />
+              와이파이 KT_GIGA_BD72 / 비번
+              <span
+                class="copyable"
+                data-copy="71ch02fj55"
+                tabindex="0"
+                role="button"
+                title="클릭하여 복사"
+                >71ch02fj55</span
+              >
+            </p>
+            <p>
+              비품은 근무 일 이외에도 언제든지 이용할 수 있습니다.<br />
+              커피 원두 / 물 / 차 / 간단한 간식거리 등 비품이 비어있을 경우 대표에게 보고
+              올려주세요.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
