@@ -26,10 +26,12 @@ textarea {
 
 #reset-btn,
 #checklist-reset-btn {
-  border: 1px solid #000;
-  background: #fff;
-  padding: 0.4rem 0.8rem;
+  border: none;
+  background: none;
+  padding: 0;
+  text-decoration: underline;
   cursor: pointer;
+  margin-bottom: 0.5rem;
 }
 
 input[type="checkbox"],
