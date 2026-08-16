@@ -10,14 +10,10 @@ import Projects from "./Projects";
 import About from "./About";
 import Wholesale from "./Wholesale";
 import OrderSuccess from "./OrderSuccess";
-import Admin from "./Admin";
 import { CartProvider } from "./CartContext";
 import { AudioProvider } from "./AudioContext";
 import "./reset.css";
 import "./body.css";
-
-const isAdminHost =
-  typeof window !== "undefined" && window.location.hostname.startsWith("admin.");
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -32,16 +28,6 @@ function App() {
         console.error("Error fetching products data:", error);
       });
   }, []);
-
-  if (isAdminHost) {
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<Admin />} />
-        </Routes>
-      </BrowserRouter>
-    );
-  }
 
   return (
     <AudioProvider>
@@ -59,7 +45,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/wholesale" element={<Wholesale />} />
           <Route path="/order-success" element={<OrderSuccess />} />
-          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>
