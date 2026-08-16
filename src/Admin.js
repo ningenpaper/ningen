@@ -295,273 +295,10 @@ export default function Admin() {
           ) : (
             <>
               <div hidden={activeTab !== "calculator"}>
-                <h1>프린트 · 제본 요금 계산기</h1>
-                <p>필요한 항목에 수량을 입력하면 아래 견적서에 실시간으로 합계가 계산됩니다.</p>
-
-                <hr />
-
-                <h2>01. 프린트 · 복사 · 스캔</h2>
-                <p>
-                  <label htmlFor="a-bw">흑백 (매) — 100원/매</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="a-bw"
-                    min="0"
-                    value={calc.aBw}
-                    onChange={(e) => setField("aBw", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="a-color">컬러 (매) — 300원/매</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="a-color"
-                    min="0"
-                    value={calc.aColor}
-                    onChange={(e) => setField("aColor", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="a-scan">스캔 (매) — 100원/매 (흑백/컬러 무관)</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="a-scan"
-                    min="0"
-                    value={calc.aScan}
-                    onChange={(e) => setField("aScan", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="a-cut">단순 재단 (건) — 4,000원/건 (전주 제지 백색 A4 기준)</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="a-cut"
-                    min="0"
-                    value={calc.aCut}
-                    onChange={(e) => setField("aCut", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={calc.aPrinterChange}
-                      onChange={(e) => setField("aPrinterChange", e.target.checked)}
-                    />
-                    특정 프린터 기종 변경/선택 (재단 건당 +2,000원)
-                  </label>
-                </p>
-                <p>
-                  <strong>소계: {won(A.total)}</strong>
-                </p>
-
-                <hr />
-
-                <h2>02. 중철 제본 zine</h2>
-                <p>
-                  기본가 권당 3,000원 (표지 포함 A5 28p 흑백 2도 기준). 28p 초과 시 페이지당 +50원.
-                  컬러 인쇄 시 페이지당 +100원. 100부 이상이면 전체 규칙 적용 후 권당 10% 할인.
-                </p>
-                <p>
-                  <label htmlFor="b-qty">부수</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="b-qty"
-                    min="0"
-                    value={calc.bQty}
-                    onChange={(e) => setField("bQty", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="b-pages">페이지 수 (표지 포함, 기준 28p)</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="b-pages"
-                    min="0"
-                    value={calc.bPages}
-                    onChange={(e) => setField("bPages", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={calc.bColor}
-                      onChange={(e) => setField("bColor", e.target.checked)}
-                    />
-                    컬러 인쇄 (+100원/페이지)
-                  </label>
-                </p>
-                <p>
-                  <strong>소계: {won(B.total)}</strong>
-                </p>
-
-                <hr />
-
-                <h2>03. 링 제본 zine</h2>
-                <p>
-                  60부 미만 기준: A4 24p 이하 권당 5,000원 / A5 24p 이하 권당 4,000원. 24p 초과 시
-                  페이지당 +50원. 컬러 인쇄 시 페이지당 +150원. 비규격은 건당 권당 +1,000원. 60부
-                  이상이면 전체 규칙 적용 후 권당 10% 할인.
-                </p>
-                <p>
-                  <label htmlFor="c-qty">부수</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="c-qty"
-                    min="0"
-                    value={calc.cQty}
-                    onChange={(e) => setField("cQty", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="c-pages">페이지 수 (표지 포함, 기준 24p)</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="c-pages"
-                    min="0"
-                    value={calc.cPages}
-                    onChange={(e) => setField("cPages", e.target.value)}
-                  />
-                </p>
-                <p>
-                  규격:
-                  <br />
-                  <label>
-                    <input
-                      type="radio"
-                      name="c-size"
-                      checked={calc.cSize === "a4"}
-                      onChange={() => setField("cSize", "a4")}
-                    />{" "}
-                    A4 (5,000원 기준)
-                  </label>
-                  <br />
-                  <label>
-                    <input
-                      type="radio"
-                      name="c-size"
-                      checked={calc.cSize === "a5"}
-                      onChange={() => setField("cSize", "a5")}
-                    />{" "}
-                    A5 (4,000원 기준)
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={calc.cColor}
-                      onChange={(e) => setField("cColor", e.target.checked)}
-                    />
-                    컬러 인쇄 (+150원/페이지)
-                  </label>
-                  <br />
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={calc.cNonstandard}
-                      onChange={(e) => setField("cNonstandard", e.target.checked)}
-                    />
-                    비규격 (건당 권당 +1,000원)
-                  </label>
-                </p>
-                <p>
-                  <strong>소계: {won(C.total)}</strong>
-                </p>
-
-                <hr />
-
-                <h2>04. 특수 규격 재단 제본</h2>
-                <p>
-                  서로 다른 규격을 각 1건으로 계산하며 권당 +1,000원. 예: 2가지 규격을 섞으면 권당
-                  +2,000원. ※ 난이도/상황에 따라 불가능한 경우가 있으며, 추가 요금 협의가 필요할 수
-                  있습니다.
-                </p>
-                <p>
-                  <label htmlFor="d-formats">한 권에 섞는 규격 수</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="d-formats"
-                    min="0"
-                    value={calc.dFormats}
-                    onChange={(e) => setField("dFormats", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="d-qty">권수</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="d-qty"
-                    min="0"
-                    value={calc.dQty}
-                    onChange={(e) => setField("dQty", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <strong>소계: {won(D.total)}</strong>
-                </p>
-
-                <hr />
-
-                <h2>05. 종이</h2>
-                <p>
-                  선방 입고 용지는 A4 규격 120g 이하, 레이저 전용 용지만 가능하며 트레싱지·트레팔 등
-                  특수 용지는 불가합니다.
-                </p>
-                <p>
-                  <label htmlFor="e-color80">컬러 용지 80g (장) — 300원/장</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="e-color80"
-                    min="0"
-                    value={calc.eColor80}
-                    onChange={(e) => setField("eColor80", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="e-special">특수 용지 (장) — 500원/장</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="e-special"
-                    min="0"
-                    value={calc.eSpecial}
-                    onChange={(e) => setField("eSpecial", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <label htmlFor="e-heavy">120g 이상 용지 (장) — 500원/장 (컬러/특수 포함)</label>
-                  <br />
-                  <input
-                    type="number"
-                    id="e-heavy"
-                    min="0"
-                    value={calc.eHeavy}
-                    onChange={(e) => setField("eHeavy", e.target.value)}
-                  />
-                </p>
-                <p>
-                  <strong>소계: {won(E.total)}</strong>
-                </p>
-
-                <hr />
-
-                <h2>견적서</h2>
+                <h1>견적서</h1>
                 <div>
                   {allItems.length === 0 ? (
-                    <p>— 항목을 입력해주세요 —</p>
+                    <p>아래 항목을 입력해주세요...</p>
                   ) : (
                     <ul>
                       {allItems.map(([label, amt]) => (
@@ -578,61 +315,327 @@ export default function Admin() {
                 </button>
 
                 <p>
-                  <small>가격은 안내용 자동 견적이며, 실제 결제 금액은 인쇄소 확인 후 확정됩니다.</small>
+                  <small>가격은 안내용 자동 견적입니다.</small>
                 </p>
+
+                <details className="admin-calc-section">
+                  <summary>
+                    <span>01. 프린트 · 복사 · 스캔</span>
+                    <span className="admin-section-subtotal">{won(A.total)}</span>
+                  </summary>
+                  <p>
+                    <label htmlFor="a-bw">흑백 (매) — 100원/매</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="a-bw"
+                      min="0"
+                      value={calc.aBw}
+                      onChange={(e) => setField("aBw", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="a-color">컬러 (매) — 300원/매</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="a-color"
+                      min="0"
+                      value={calc.aColor}
+                      onChange={(e) => setField("aColor", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="a-scan">스캔 (매) — 100원/매 (흑백/컬러 무관)</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="a-scan"
+                      min="0"
+                      value={calc.aScan}
+                      onChange={(e) => setField("aScan", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="a-cut">단순 재단 (건) — 4,000원/건 (전주 제지 백색 A4 기준)</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="a-cut"
+                      min="0"
+                      value={calc.aCut}
+                      onChange={(e) => setField("aCut", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={calc.aPrinterChange}
+                        onChange={(e) => setField("aPrinterChange", e.target.checked)}
+                      />
+                      특정 프린터 기종 변경/선택 (재단 건당 +2,000원)
+                    </label>
+                  </p>
+                </details>
+
+                <details className="admin-calc-section">
+                  <summary>
+                    <span>02. 중철 제본 zine</span>
+                    <span className="admin-section-subtotal">{won(B.total)}</span>
+                  </summary>
+                  <p>
+                    기본가 권당 3,000원 (표지 포함 A5 28p 흑백 2도 기준). 28p 초과 시 페이지당 +50원.
+                    컬러 인쇄 시 페이지당 +100원. 100부 이상이면 전체 규칙 적용 후 권당 10% 할인.
+                  </p>
+                  <p>
+                    <label htmlFor="b-qty">부수</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="b-qty"
+                      min="0"
+                      value={calc.bQty}
+                      onChange={(e) => setField("bQty", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="b-pages">페이지 수 (표지 포함, 기준 28p)</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="b-pages"
+                      min="0"
+                      value={calc.bPages}
+                      onChange={(e) => setField("bPages", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={calc.bColor}
+                        onChange={(e) => setField("bColor", e.target.checked)}
+                      />
+                      컬러 인쇄 (+100원/페이지)
+                    </label>
+                  </p>
+                </details>
+
+                <details className="admin-calc-section">
+                  <summary>
+                    <span>03. 링 제본 zine</span>
+                    <span className="admin-section-subtotal">{won(C.total)}</span>
+                  </summary>
+                  <p>
+                    60부 미만 기준: A4 24p 이하 권당 5,000원 / A5 24p 이하 권당 4,000원. 24p 초과 시
+                    페이지당 +50원. 컬러 인쇄 시 페이지당 +150원. 비규격은 건당 권당 +1,000원. 60부
+                    이상이면 전체 규칙 적용 후 권당 10% 할인.
+                  </p>
+                  <p>
+                    <label htmlFor="c-qty">부수</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="c-qty"
+                      min="0"
+                      value={calc.cQty}
+                      onChange={(e) => setField("cQty", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="c-pages">페이지 수 (표지 포함, 기준 24p)</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="c-pages"
+                      min="0"
+                      value={calc.cPages}
+                      onChange={(e) => setField("cPages", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    규격:
+                    <br />
+                    <label>
+                      <input
+                        type="radio"
+                        name="c-size"
+                        checked={calc.cSize === "a4"}
+                        onChange={() => setField("cSize", "a4")}
+                      />{" "}
+                      A4 (5,000원 기준)
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        type="radio"
+                        name="c-size"
+                        checked={calc.cSize === "a5"}
+                        onChange={() => setField("cSize", "a5")}
+                      />{" "}
+                      A5 (4,000원 기준)
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={calc.cColor}
+                        onChange={(e) => setField("cColor", e.target.checked)}
+                      />
+                      컬러 인쇄 (+150원/페이지)
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={calc.cNonstandard}
+                        onChange={(e) => setField("cNonstandard", e.target.checked)}
+                      />
+                      비규격 (건당 권당 +1,000원)
+                    </label>
+                  </p>
+                </details>
+
+                <details className="admin-calc-section">
+                  <summary>
+                    <span>04. 특수 규격 재단 제본</span>
+                    <span className="admin-section-subtotal">{won(D.total)}</span>
+                  </summary>
+                  <p>
+                    서로 다른 규격을 각 1건으로 계산하며 권당 +1,000원. 예: 2가지 규격을 섞으면 권당
+                    +2,000원. ※ 난이도/상황에 따라 불가능한 경우가 있으며, 추가 요금 협의가 필요할 수
+                    있습니다.
+                  </p>
+                  <p>
+                    <label htmlFor="d-formats">한 권에 섞는 규격 수</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="d-formats"
+                      min="0"
+                      value={calc.dFormats}
+                      onChange={(e) => setField("dFormats", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="d-qty">권수</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="d-qty"
+                      min="0"
+                      value={calc.dQty}
+                      onChange={(e) => setField("dQty", e.target.value)}
+                    />
+                  </p>
+                </details>
+
+                <details className="admin-calc-section">
+                  <summary>
+                    <span>05. 종이</span>
+                    <span className="admin-section-subtotal">{won(E.total)}</span>
+                  </summary>
+                  <p>
+                    선방 입고 용지는 A4 규격 120g 이하, 레이저 전용 용지만 가능하며 트레싱지·트레팔 등
+                    특수 용지는 불가합니다.
+                  </p>
+                  <p>
+                    <label htmlFor="e-color80">컬러 용지 80g (장) — 300원/장</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="e-color80"
+                      min="0"
+                      value={calc.eColor80}
+                      onChange={(e) => setField("eColor80", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="e-special">특수 용지 (장) — 500원/장</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="e-special"
+                      min="0"
+                      value={calc.eSpecial}
+                      onChange={(e) => setField("eSpecial", e.target.value)}
+                    />
+                  </p>
+                  <p>
+                    <label htmlFor="e-heavy">120g 이상 용지 (장) — 500원/장 (컬러/특수 포함)</label>
+                    <br />
+                    <input
+                      type="number"
+                      id="e-heavy"
+                      min="0"
+                      value={calc.eHeavy}
+                      onChange={(e) => setField("eHeavy", e.target.value)}
+                    />
+                  </p>
+                </details>
+
+                <details className="admin-manual">
+                  <summary>프린터 사용</summary>
+                  <ol>
+                    <li>보편적인 낱장 인쇄는 ApeosPort-V 3060 이용</li>
+                    <li>대량 zine 인쇄는 DocuPrint CM415 AP 이용</li>
+                    <li>A3 / 많은 컬러 인쇄는 전주에 생산 요청</li>
+                    <li>뻑난 종이는 종이 쓰레기통에 버리기</li>
+                  </ol>
+                </details>
               </div>
 
               <div hidden={activeTab !== "checklist"}>
                 <h1>오피스 체크리스트</h1>
-                <p className="admin-flow">
-                  출근 → 업무 체크 → 퇴근 → <em>*잔업</em>
-                </p>
 
-                <h2>출근</h2>
-                <ul className="admin-checklist">
-                  {OPEN_ITEMS.map((item) => (
-                    <ChecklistRow
-                      key={item.id}
-                      item={item}
-                      checked={checked[item.id]}
-                      onToggle={toggleChecked}
-                    />
+                <details className="admin-checklist-section">
+                  <summary>출근</summary>
+                  <ul className="admin-checklist">
+                    {OPEN_ITEMS.map((item) => (
+                      <ChecklistRow
+                        key={item.id}
+                        item={item}
+                        checked={checked[item.id]}
+                        onToggle={toggleChecked}
+                      />
+                    ))}
+                  </ul>
+                </details>
+
+                <details className="admin-checklist-section">
+                  <summary>업무 체크</summary>
+                  {WORK_GROUPS.map((group) => (
+                    <div key={group.heading}>
+                      <h3>{group.heading}</h3>
+                      <ul className="admin-checklist">
+                        {group.items.map((item) => (
+                          <ChecklistRow
+                            key={item.id}
+                            item={item}
+                            checked={checked[item.id]}
+                            onToggle={toggleChecked}
+                          />
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
-                <p className="admin-note">간단한 오피스 업무 해결 후에는 개인 업무를 할 수 있음</p>
+                </details>
 
-                <hr />
-
-                <h2>업무 체크리스트</h2>
-                {WORK_GROUPS.map((group) => (
-                  <div key={group.heading}>
-                    <h3>{group.heading}</h3>
-                    <ul className="admin-checklist">
-                      {group.items.map((item) => (
-                        <ChecklistRow
-                          key={item.id}
-                          item={item}
-                          checked={checked[item.id]}
-                          onToggle={toggleChecked}
-                        />
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-
-                <hr />
-
-                <h2>퇴근</h2>
-                <ul className="admin-checklist">
-                  {CLOSE_ITEMS.map((item) => (
-                    <ChecklistRow
-                      key={item.id}
-                      item={item}
-                      checked={checked[item.id]}
-                      onToggle={toggleChecked}
-                    />
-                  ))}
-                </ul>
+                <details className="admin-checklist-section">
+                  <summary>퇴근</summary>
+                  <ul className="admin-checklist">
+                    {CLOSE_ITEMS.map((item) => (
+                      <ChecklistRow
+                        key={item.id}
+                        item={item}
+                        checked={checked[item.id]}
+                        onToggle={toggleChecked}
+                      />
+                    ))}
+                  </ul>
+                </details>
 
                 <p className="admin-progress">
                   <strong>
