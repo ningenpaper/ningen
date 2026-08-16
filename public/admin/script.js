@@ -103,6 +103,7 @@
       box.appendChild(ul);
     }
     $('grand-total').textContent = won(grand);
+    $('grand-total-card').textContent = won(grand * 1.1);
   }
 
   document.querySelectorAll('.qty-input').forEach(el => {
