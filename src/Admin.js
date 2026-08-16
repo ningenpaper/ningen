@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./Admin.css";
+import styles from "./Admin.module.css";
 
 const PASSCODE = "0313";
 const UNLOCK_KEY = "ningen-admin-unlocked";
@@ -182,12 +182,12 @@ function loadCheckedState() {
 
 function ChecklistRow({ item, checked, onToggle }) {
   return (
-    <li className={checked ? "admin-done" : undefined}>
+    <li className={checked ? styles.done : undefined}>
       <label>
         <input type="checkbox" checked={!!checked} onChange={() => onToggle(item.id)} />{" "}
         {item.label} {item.emphasis && <em>{item.emphasis}</em>}
       </label>
-      {item.note && <p className="admin-note">{item.note}</p>}
+      {item.note && <p className={styles.note}>{item.note}</p>}
     </li>
   );
 }
@@ -211,7 +211,7 @@ function PasswordGate({ onUnlock }) {
   }
 
   return (
-    <div className="admin-gate">
+    <div className={styles.gate}>
       <h1>오피스 관리 도구</h1>
       <p>접속 비밀번호를 입력하세요</p>
       <form onSubmit={handleSubmit}>
@@ -227,7 +227,7 @@ function PasswordGate({ onUnlock }) {
         />
         <button type="submit">입장</button>
       </form>
-      {error && <p className="admin-gate-error">비밀번호가 올바르지 않습니다</p>}
+      {error && <p className={styles.gateError}>비밀번호가 올바르지 않습니다</p>}
     </div>
   );
 }
@@ -268,20 +268,24 @@ export default function Admin() {
   const checklistDone = ALL_CHECKLIST_IDS.filter((id) => checked[id]).length;
 
   return (
-    <div className="admin-page">
-      <div className="admin-page-wrapper">
+    <div className={styles.page}>
+      <div className={styles.pageWrapper}>
         {unlocked && (
-          <div className="admin-tabs">
+          <div className={styles.tabs}>
             <button
               type="button"
-              className={activeTab === "calculator" ? "admin-tab-btn admin-active" : "admin-tab-btn"}
+              className={
+                activeTab === "calculator" ? `${styles.tabBtn} ${styles.active}` : styles.tabBtn
+              }
               onClick={() => setActiveTab("calculator")}
             >
               요금 계산기
             </button>
             <button
               type="button"
-              className={activeTab === "checklist" ? "admin-tab-btn admin-active" : "admin-tab-btn"}
+              className={
+                activeTab === "checklist" ? `${styles.tabBtn} ${styles.active}` : styles.tabBtn
+              }
               onClick={() => setActiveTab("checklist")}
             >
               오피스 체크리스트
@@ -289,7 +293,7 @@ export default function Admin() {
           </div>
         )}
 
-        <div className="admin-a4-container">
+        <div className={styles.a4Container}>
           {!unlocked ? (
             <PasswordGate onUnlock={() => setUnlocked(true)} />
           ) : (
@@ -318,10 +322,10 @@ export default function Admin() {
                   <small>가격은 안내용 자동 견적입니다.</small>
                 </p>
 
-                <details className="admin-calc-section">
+                <details className={styles.calcSection}>
                   <summary>
                     <span>01. 프린트 · 복사 · 스캔</span>
-                    <span className="admin-section-subtotal">{won(A.total)}</span>
+                    <span className={styles.sectionSubtotal}>{won(A.total)}</span>
                   </summary>
                   <p>
                     <label htmlFor="a-bw">흑백 (매) — 100원/매</label>
@@ -379,10 +383,10 @@ export default function Admin() {
                   </p>
                 </details>
 
-                <details className="admin-calc-section">
+                <details className={styles.calcSection}>
                   <summary>
                     <span>02. 중철 제본 zine</span>
-                    <span className="admin-section-subtotal">{won(B.total)}</span>
+                    <span className={styles.sectionSubtotal}>{won(B.total)}</span>
                   </summary>
                   <p>
                     기본가 권당 3,000원 (표지 포함 A5 28p 흑백 2도 기준). 28p 초과 시 페이지당 +50원.
@@ -422,10 +426,10 @@ export default function Admin() {
                   </p>
                 </details>
 
-                <details className="admin-calc-section">
+                <details className={styles.calcSection}>
                   <summary>
                     <span>03. 링 제본 zine</span>
-                    <span className="admin-section-subtotal">{won(C.total)}</span>
+                    <span className={styles.sectionSubtotal}>{won(C.total)}</span>
                   </summary>
                   <p>
                     60부 미만 기준: A4 24p 이하 권당 5,000원 / A5 24p 이하 권당 4,000원. 24p 초과 시
@@ -498,10 +502,10 @@ export default function Admin() {
                   </p>
                 </details>
 
-                <details className="admin-calc-section">
+                <details className={styles.calcSection}>
                   <summary>
                     <span>04. 특수 규격 재단 제본</span>
-                    <span className="admin-section-subtotal">{won(D.total)}</span>
+                    <span className={styles.sectionSubtotal}>{won(D.total)}</span>
                   </summary>
                   <p>
                     서로 다른 규격을 각 1건으로 계산하며 권당 +1,000원. 예: 2가지 규격을 섞으면 권당
@@ -532,10 +536,10 @@ export default function Admin() {
                   </p>
                 </details>
 
-                <details className="admin-calc-section">
+                <details className={styles.calcSection}>
                   <summary>
                     <span>05. 종이</span>
-                    <span className="admin-section-subtotal">{won(E.total)}</span>
+                    <span className={styles.sectionSubtotal}>{won(E.total)}</span>
                   </summary>
                   <p>
                     선방 입고 용지는 A4 규격 120g 이하, 레이저 전용 용지만 가능하며 트레싱지·트레팔 등
@@ -576,7 +580,7 @@ export default function Admin() {
                   </p>
                 </details>
 
-                <details className="admin-manual">
+                <details className={styles.manual}>
                   <summary>프린터 사용</summary>
                   <ol>
                     <li>보편적인 낱장 인쇄는 ApeosPort-V 3060 이용</li>
@@ -590,9 +594,9 @@ export default function Admin() {
               <div hidden={activeTab !== "checklist"}>
                 <h1>오피스 체크리스트</h1>
 
-                <details className="admin-checklist-section">
+                <details className={styles.checklistSection}>
                   <summary>출근</summary>
-                  <ul className="admin-checklist">
+                  <ul className={styles.checklist}>
                     {OPEN_ITEMS.map((item) => (
                       <ChecklistRow
                         key={item.id}
@@ -604,12 +608,12 @@ export default function Admin() {
                   </ul>
                 </details>
 
-                <details className="admin-checklist-section">
+                <details className={styles.checklistSection}>
                   <summary>업무 체크</summary>
                   {WORK_GROUPS.map((group) => (
                     <div key={group.heading}>
                       <h3>{group.heading}</h3>
-                      <ul className="admin-checklist">
+                      <ul className={styles.checklist}>
                         {group.items.map((item) => (
                           <ChecklistRow
                             key={item.id}
@@ -623,9 +627,9 @@ export default function Admin() {
                   ))}
                 </details>
 
-                <details className="admin-checklist-section">
+                <details className={styles.checklistSection}>
                   <summary>퇴근</summary>
-                  <ul className="admin-checklist">
+                  <ul className={styles.checklist}>
                     {CLOSE_ITEMS.map((item) => (
                       <ChecklistRow
                         key={item.id}
@@ -637,7 +641,7 @@ export default function Admin() {
                   </ul>
                 </details>
 
-                <p className="admin-progress">
+                <p className={styles.progress}>
                   <strong>
                     진행 상황: {checklistDone} / {ALL_CHECKLIST_IDS.length}
                   </strong>
@@ -650,7 +654,7 @@ export default function Admin() {
 
                 <h2>참고 매뉴얼</h2>
 
-                <details className="admin-manual">
+                <details className={styles.manual}>
                   <summary>고객 응대 및 상담 매뉴얼</summary>
                   <p>상냥한 응대는 기본입니다. 손님에겐 언제나 공평하고 공정한 태도로 응대합니다.</p>
                   <ul>
@@ -680,17 +684,7 @@ export default function Admin() {
                   </ul>
                 </details>
 
-                <details className="admin-manual">
-                  <summary>프린터 사용</summary>
-                  <ol>
-                    <li>보편적인 낱장 인쇄는 ApeosPort-V 3060 이용</li>
-                    <li>대량 zine 인쇄는 DocuPrint CM415 AP 이용</li>
-                    <li>A3 / 많은 컬러 인쇄는 전주에 생산 요청</li>
-                    <li>뻑난 종이는 종이 쓰레기통에 버리기</li>
-                  </ol>
-                </details>
-
-                <details className="admin-manual">
+                <details className={styles.manual}>
                   <summary>결제 관리</summary>
                   <p>
                     <strong>워크인 고객 응대</strong>
@@ -704,7 +698,7 @@ export default function Admin() {
                   </p>
                 </details>
 
-                <details className="admin-manual">
+                <details className={styles.manual}>
                   <summary>공간 이용 관련</summary>
                   <p>
                     1층 샷다 자물쇠 비번 1000
