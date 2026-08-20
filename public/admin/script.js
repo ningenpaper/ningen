@@ -47,9 +47,9 @@
     const nonstandard = checked('c-nonstandard');
     const size = document.querySelector('input[name="c-size"]:checked').value;
     if (qty <= 0) return { total: 0, items: [] };
-    const base = size === 'a4' ? 5000 : 4000;
+    const base = size === 'a4' ? (color ? 6000 : 5000) : (color ? 5000 : 4000);
     const extraPages = Math.max(0, pages - 24);
-    let perCopy = base + extraPages * 50 + (color ? pages * 150 : 0) + (nonstandard ? 1000 : 0);
+    let perCopy = base + extraPages * (color ? 100 : 50) + (nonstandard ? 800 : 0);
     let total = perCopy * qty;
     const discounted = qty >= 60;
     if (discounted) total *= 0.9;

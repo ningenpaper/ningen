@@ -161,9 +161,9 @@
               <span class="calc-subtotal" data-sum="C">₩0</span>
             </summary>
             <p>
-              60부 미만 기준: A4 24p 이하 권당 5,000원 / A5 24p 이하 권당 4,000원. 24p 초과 시
-              페이지당 +50원. 컬러 인쇄 시 페이지당 +150원. 비규격은 건당 권당 +1,000원. 60부
-              이상이면 전체 규칙 적용 후 권당 10% 할인.
+              60부 미만 기준: A4 24p 이하 흑백 권당 5,000원 / 컬러 권당 6,000원. A5 24p 이하
+              흑백 권당 4,000원 / 컬러 권당 5,000원. 24p 초과 시 페이지당 흑백 +50원, 컬러
+              +100원. 비규격은 건당 권당 +800원. 60부 이상이면 전체 규칙 적용 후 권당 10% 할인.
             </p>
             <p>
               <label for="c-qty">부수</label><br />
@@ -200,18 +200,22 @@
             <p>
               규격:<br />
               <label
-                ><input type="radio" name="c-size" value="a4" checked /> A4 (5,000원 기준)</label
+                ><input type="radio" name="c-size" value="a4" checked /> A4 (흑백 5,000원 / 컬러
+                6,000원 기준)</label
               ><br />
-              <label><input type="radio" name="c-size" value="a5" /> A5 (4,000원 기준)</label>
+              <label
+                ><input type="radio" name="c-size" value="a5" /> A5 (흑백 4,000원 / 컬러 5,000원
+                기준)</label
+              >
             </p>
             <p>
               <label>
                 <input type="checkbox" id="c-color" />
-                컬러 인쇄 (+150원/페이지) </label
+                컬러 인쇄 (기준가 상승 + 24p 초과분 페이지당 +100원, 흑백은 +50원) </label
               ><br />
               <label>
                 <input type="checkbox" id="c-nonstandard" />
-                비규격 (건당 권당 +1,000원)
+                비규격 (건당 권당 +800원)
               </label>
             </p>
           </details>
