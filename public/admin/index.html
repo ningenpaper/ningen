@@ -76,7 +76,7 @@
               </span>
             </p>
             <p>
-              <label for="a-cut">단순 재단 (건) — 4,000원/건 (전주 제지 백색 A4 기준)</label><br />
+              <label for="a-cut">단순 재단 (건) — 4,000원/건</label><br />
               <span class="qty-control">
                 <button type="button" class="qty-btn" data-target="a-cut" data-step="-1">−</button>
                 <input
@@ -90,12 +90,6 @@
                 <button type="button" class="qty-btn" data-target="a-cut" data-step="1">+</button>
               </span>
             </p>
-            <p>
-              <label>
-                <input type="checkbox" id="a-printerchange" />
-                특정 프린터 기종 변경/선택 (재단 건당 +2,000원)
-              </label>
-            </p>
           </details>
 
           <details class="calc-section">
@@ -103,10 +97,10 @@
               <span>02. 중철 제본 zine</span>
               <span class="calc-subtotal" data-sum="B">₩0</span>
             </summary>
-            <p>
+            <p class="rule">
               기본가 권당 A5 3,000원 / A4 4,000원 (표지 포함 28p 흑백 2도 기준). 28p 초과 시
-              페이지당 +50원. 컬러 인쇄 시 페이지당 +100원. 100부 이상이면 전체 규칙 적용 후 권당
-              10% 할인.
+              페이지당 +50원. 컬러 인쇄 시 페이지당 +100원. 50부 이상이면 전체 규칙 적용 후 권당 10%
+              할인.
             </p>
             <p>
               <label for="b-qty">부수</label><br />
@@ -160,15 +154,17 @@
               <span>03. 링 제본 zine</span>
               <span class="calc-subtotal" data-sum="C">₩0</span>
             </summary>
-            <p>
-              60부 미만 기준: A4 24p 이하 흑백 권당 5,000원 / 컬러 권당 6,000원. A5 24p 이하
-              흑백 권당 4,000원 / 컬러 권당 5,000원. 24p 초과 시 페이지당 흑백 +50원, 컬러
-              +100원. 비규격은 건당 권당 +800원. 60부 이상이면 전체 규칙 적용 후 권당 10% 할인.
+            <p class="rule">
+              50부 미만 기준: 권당 4,500원 (표지 포함 A4 24p 이하 / 흑백 2도 기준). 24p 초과 시
+              페이지당 +50원. 컬러 인쇄 시 페이지당 +100원(흑백 초과 가산과 별도 적용, 둘 다 합산).
+              A5·A6는 단순 재단으로 보고 부수와 무관하게 파일당 재단 1건 +4,000원 추가. 비규격은
+              건당 권당 +1,000원. 페이지 수·부수 모두 4배수일 필요 없음. 50부 이상이면 위 규칙(A5·A6
+              재단비 제외) 적용 후 권당 10% 할인.
             </p>
             <p>
               <label for="c-qty">부수</label><br />
               <span class="qty-control">
-                <button type="button" class="qty-btn" data-target="c-qty" data-step="-4">−</button>
+                <button type="button" class="qty-btn" data-target="c-qty" data-step="-1">−</button>
                 <input
                   type="text"
                   inputmode="numeric"
@@ -177,13 +173,13 @@
                   id="c-qty"
                   value="0"
                 />
-                <button type="button" class="qty-btn" data-target="c-qty" data-step="4">+</button>
+                <button type="button" class="qty-btn" data-target="c-qty" data-step="1">+</button>
               </span>
             </p>
             <p>
               <label for="c-pages">페이지 수 (표지 포함, 기준 24p)</label><br />
               <span class="qty-control">
-                <button type="button" class="qty-btn" data-target="c-pages" data-step="-4">
+                <button type="button" class="qty-btn" data-target="c-pages" data-step="-1">
                   −
                 </button>
                 <input
@@ -194,28 +190,27 @@
                   id="c-pages"
                   value="24"
                 />
-                <button type="button" class="qty-btn" data-target="c-pages" data-step="4">+</button>
+                <button type="button" class="qty-btn" data-target="c-pages" data-step="1">+</button>
               </span>
             </p>
             <p>
               규격:<br />
+              <label><input type="radio" name="c-size" value="a4" checked /> A4</label><br />
               <label
-                ><input type="radio" name="c-size" value="a4" checked /> A4 (흑백 5,000원 / 컬러
-                6,000원 기준)</label
+                ><input type="radio" name="c-size" value="a5" /> A5 (단순 재단 +4,000원/파일)</label
               ><br />
               <label
-                ><input type="radio" name="c-size" value="a5" /> A5 (흑백 4,000원 / 컬러 5,000원
-                기준)</label
+                ><input type="radio" name="c-size" value="a6" /> A6 (단순 재단 +4,000원/파일)</label
               >
             </p>
             <p>
               <label>
                 <input type="checkbox" id="c-color" />
-                컬러 인쇄 (기준가 상승 + 24p 초과분 페이지당 +100원, 흑백은 +50원) </label
+                컬러 인쇄 (+100원/페이지) </label
               ><br />
               <label>
                 <input type="checkbox" id="c-nonstandard" />
-                비규격 (건당 권당 +800원)
+                비규격 (건당 권당 +1,000원)
               </label>
             </p>
           </details>
@@ -225,7 +220,7 @@
               <span>04. 특수 규격 재단 제본</span>
               <span class="calc-subtotal" data-sum="D">₩0</span>
             </summary>
-            <p>
+            <p class="rule">
               서로 다른 규격을 각 1건으로 계산하며 권당 +1,000원. 예: 2가지 규격을 섞으면 권당
               +2,000원. ※ 난이도/상황에 따라 불가능한 경우가 있으며, 추가 요금 협의가 필요할 수
               있습니다.
@@ -271,9 +266,9 @@
               <span>05. 종이</span>
               <span class="calc-subtotal" data-sum="E">₩0</span>
             </summary>
-            <p>
-              선방 입고 용지는 A4 규격 120g 이하, 레이저 전용 용지만 가능하며 트레싱지·트레팔 등
-              특수 용지는 불가합니다.
+            <p class="rule">
+              기본 용지(밀카베이지 70g / 밀카화이트 70g)는 인쇄 가격에 포함. 선방 입고 용지는 A4
+              규격 120g 이하, 레이저 전용 용지만 가능하며 트레싱지·트레팔 등 특수 용지는 불가합니다.
             </p>
             <p>
               <label for="e-color80">컬러 용지 80g (장) — 300원/장</label><br />
@@ -295,7 +290,27 @@
               </span>
             </p>
             <p>
-              <label for="e-special">특수 용지 (장) — 500원/장</label><br />
+              <label for="e-heavy"
+                >120g 용지 (장) — 500원/장 (컬러 120g · 문캔 90/120g · 아트지/스노우지 120g · 백상지
+                120g)</label
+              ><br />
+              <span class="qty-control">
+                <button type="button" class="qty-btn" data-target="e-heavy" data-step="-1">
+                  −
+                </button>
+                <input
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  class="qty-input"
+                  id="e-heavy"
+                  value="0"
+                />
+                <button type="button" class="qty-btn" data-target="e-heavy" data-step="1">+</button>
+              </span>
+            </p>
+            <p>
+              <label for="e-special">트레싱지 / 트레팔지 (장) — 1,000원/장</label><br />
               <span class="qty-control">
                 <button type="button" class="qty-btn" data-target="e-special" data-step="-1">
                   −
@@ -311,23 +326,6 @@
                 <button type="button" class="qty-btn" data-target="e-special" data-step="1">
                   +
                 </button>
-              </span>
-            </p>
-            <p>
-              <label for="e-heavy">120g 이상 용지 (장) — 500원/장 (컬러/특수 포함)</label><br />
-              <span class="qty-control">
-                <button type="button" class="qty-btn" data-target="e-heavy" data-step="-1">
-                  −
-                </button>
-                <input
-                  type="text"
-                  inputmode="numeric"
-                  pattern="[0-9]*"
-                  class="qty-input"
-                  id="e-heavy"
-                  value="0"
-                />
-                <button type="button" class="qty-btn" data-target="e-heavy" data-step="1">+</button>
               </span>
             </p>
           </details>

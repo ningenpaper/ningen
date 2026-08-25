@@ -14,13 +14,12 @@
     const scan = num('a-scan') * 100;
     const cutCount = num('a-cut');
     const cutBase = cutCount * 4000;
-    const cutExtra = checked('a-printerchange') ? cutCount * 2000 : 0;
-    const total = bw + color + scan + cutBase + cutExtra;
+    const total = bw + color + scan + cutBase;
     const items = [];
     if (bw) items.push(['흑백 인쇄 · ' + num('a-bw') + '매', bw]);
     if (color) items.push(['컬러 인쇄 · ' + num('a-color') + '매', color]);
     if (scan) items.push(['스캔 · ' + num('a-scan') + '매', scan]);
-    if (cutBase) items.push(['단순 재단 · ' + cutCount + '건', cutBase + cutExtra]);
+    if (cutBase) items.push(['단순 재단 · ' + cutCount + '건', cutBase]);
     return { total, items };
   }
 
@@ -34,7 +33,7 @@
     const extraPages = Math.max(0, pages - 28);
     let perCopy = base + extraPages * 50 + (color ? pages * 100 : 0);
     let total = perCopy * qty;
-    const discounted = qty >= 100;
+    const discounted = qty >= 50;
     if (discounted) total *= 0.9;
     const items = [['중철제본 zine · ' + qty + '부 (' + size.toUpperCase() + ' ' + pages + 'p' + (color ? ' 컬러' : ' 흑백') + ')' + (discounted ? ' [10%↓]' : ''), total]];
     return { total, items };
@@ -47,14 +46,15 @@
     const nonstandard = checked('c-nonstandard');
     const size = document.querySelector('input[name="c-size"]:checked').value;
     if (qty <= 0) return { total: 0, items: [] };
-    const base = size === 'a4' ? (color ? 6000 : 5000) : (color ? 5000 : 4000);
     const extraPages = Math.max(0, pages - 24);
-    let perCopy = base + extraPages * (color ? 100 : 50) + (nonstandard ? 800 : 0);
+    let perCopy = 4500 + extraPages * 50 + (color ? pages * 100 : 0) + (nonstandard ? 1000 : 0);
     let total = perCopy * qty;
-    const discounted = qty >= 60;
+    const discounted = qty >= 50;
     if (discounted) total *= 0.9;
+    const cutFee = (size === 'a5' || size === 'a6') ? 4000 : 0;
     const items = [['링제본 zine · ' + qty + '부 (' + size.toUpperCase() + ' ' + pages + 'p' + (color ? ' 컬러' : ' 흑백') + ')' + (discounted ? ' [10%↓]' : ''), total]];
-    return { total, items };
+    if (cutFee) items.push(['↳ ' + size.toUpperCase() + ' 단순 재단 (파일당 1건)', cutFee]);
+    return { total: total + cutFee, items };
   }
 
   function calcD(){
@@ -68,13 +68,13 @@
 
   function calcE(){
     const c80 = num('e-color80') * 300;
-    const special = num('e-special') * 500;
     const heavy = num('e-heavy') * 500;
-    const total = c80 + special + heavy;
+    const special = num('e-special') * 1000;
+    const total = c80 + heavy + special;
     const items = [];
     if (c80) items.push(['컬러 용지 80g · ' + num('e-color80') + '장', c80]);
-    if (special) items.push(['특수 용지 · ' + num('e-special') + '장', special]);
-    if (heavy) items.push(['120g 이상 용지 · ' + num('e-heavy') + '장', heavy]);
+    if (heavy) items.push(['120g 용지 · ' + num('e-heavy') + '장', heavy]);
+    if (special) items.push(['트레싱지/트레팔지 · ' + num('e-special') + '장', special]);
     return { total, items };
   }
 
