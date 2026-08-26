@@ -498,7 +498,12 @@ function Main() {
             </label>
             <label>
               {t.pf.pickupDate}
-              <input type="date" name="pickupDate" className="print-form__field" />
+              <input
+                type="text"
+                name="pickupDate"
+                className="print-form__field"
+                placeholder="YYYY-MM-DD"
+              />
             </label>
           </div>
 

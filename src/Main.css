@@ -443,7 +443,7 @@ button:hover {
 }
 
 /* ===== RESPONSIVE ===== */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1050px) {
   .main-page {
     flex-direction: column;
   }
