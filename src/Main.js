@@ -35,7 +35,7 @@ function Main() {
     </>
   );
 
-  const t = {
+  const translations = {
     en: {
       printRequest: "Print Request",
       pf: {
@@ -126,7 +126,11 @@ function Main() {
         sendRequest: "인쇄 요청 보내기",
       },
     },
-  }[lang];
+  };
+  const t = translations[lang];
+  // the print request mail always goes out in Korean, regardless of the
+  // KR/EN display toggle, since it's read by the Korean-speaking publisher
+  const krPf = translations.kr.pf;
 
   // clock ticker
   useEffect(() => {
@@ -159,32 +163,40 @@ function Main() {
   const sendPrintRequest = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    const get = (key) => data.get(key) || "-";
+    // radio "value"s are the same keys used in the KR translations
+    // (e.g. value="print" -> krPf.print), so this doubles as a translator
+    const get = (key) => {
+      const value = data.get(key);
+      if (!value) return "-";
+      return krPf[value] || value;
+    };
     const finishedSize =
-      get("finishedSize") === "custom"
-        ? `custom (${get("customWidth")} x ${get("customHeight")})`
+      data.get("finishedSize") === "custom"
+        ? `비규격 (${data.get("customWidth") || "-"} x ${data.get("customHeight") || "-"})`
         : get("finishedSize");
 
     const body = [
-      `Service mode: ${get("serviceMode")}`,
-      `Document service: ${get("documentService")}`,
-      `Book service: ${get("bookService")}`,
-      `Number of pages: ${get("numberOfPages")}`,
-      `Number of copies: ${get("numberOfCopies")}`,
-      `Finished size: ${finishedSize}`,
-      `Print format: ${get("printFormat")}`,
-      `Ink color: ${get("inkColor")}`,
-      `Paper: ${get("paper")}`,
+      `${krPf.serviceType}: ${get("serviceMode")}`,
+      `${krPf.documentService}: ${get("documentService")}`,
+      `${krPf.bookService}: ${get("bookService")}`,
+      `${krPf.numberOfPages}: ${data.get("numberOfPages") || "-"}`,
+      `${krPf.numberOfCopies}: ${data.get("numberOfCopies") || "-"}`,
+      `${krPf.finishedSize}: ${finishedSize}`,
+      `${krPf.printFormat}: ${get("printFormat")}`,
+      `${krPf.inkColor}: ${get("inkColor")}`,
+      `${krPf.paper}: ${get("paper")}`,
       "",
-      `Name: ${get("name")}`,
-      `Phone: ${get("phone")}`,
-      `Email: ${get("email")}`,
-      `Desired pickup date: ${get("pickupDate")}`,
+      `${krPf.name}: ${data.get("name") || "-"}`,
+      `${krPf.phone}: ${data.get("phone") || "-"}`,
+      `${krPf.email}: ${data.get("email") || "-"}`,
+      `${krPf.pickupDate}: ${data.get("pickupDate") || "-"}`,
       "",
-      `Notes: ${get("notes")}`,
+      `${krPf.notes}: ${data.get("notes") || "-"}`,
     ].join("\n");
 
-    window.location.href = `mailto:ningenpaperpress@gmail.com?subject=Print Request from Website&body=${encodeURIComponent(
+    window.location.href = `mailto:ningenpaperpress@gmail.com?subject=${encodeURIComponent(
+      "웹사이트 인쇄 요청",
+    )}&body=${encodeURIComponent(
       body,
     )}`;
   };
