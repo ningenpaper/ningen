@@ -56,7 +56,7 @@ function Main() {
         inkColor: "Ink Color",
         paper: "Paper",
         black: "Black",
-        fullColor: "Full Color",
+        fullColor: "Full color",
         plain70: "Plain 70g",
         color80: "Color 80g",
         color120: "Color 120g",
