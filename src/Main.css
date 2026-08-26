@@ -4,15 +4,15 @@
 }
 
 .left {
-  width: calc(60vw - 2rem);
+  width: 55vw;
   position: fixed;
   top: 2rem;
   left: 2rem;
 }
 
 .right {
-  width: 40vw;
-  margin-left: 60vw;
+  width: 45vw;
+  margin-left: 55vw;
 }
 
 /* ===== LEFT COLUMN: CLOCK, TITLE, NAV ===== */
@@ -70,19 +70,8 @@
 }
 
 /* ===== RIGHT COLUMN: KOREAN LANGUAGE MODE ===== */
-.right.lang-kr,
-.right.lang-kr textarea,
-.right.lang-kr button {
-  font-family: "Pretendard";
-}
-
-.right.lang-kr #print-request,
-.right.lang-kr #contact,
-.right.lang-kr #message,
-.right.lang-kr button,
-.right.lang-kr #des,
-.right.lang-kr #links {
-  font-size: 1rem;
+.right.lang-kr #print-request {
+  font-size: 1.2rem;
 }
 
 /* ===== PRINT REQUEST HEADER (title + language toggle) ===== */
@@ -90,12 +79,17 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 1.5rem;
 }
 
 #print-request,
 #lang-toggle {
   font-family: "fifteen";
   font-size: 1.35rem;
+}
+
+#print-request img {
+  width: 0.81rem;
 }
 
 #lang-toggle {
@@ -105,18 +99,76 @@
   user-select: none;
 }
 
-/* ===== PRINT REQUEST FORM (block: print-form) ===== */
-.print-form {
-  font-family: "Pretendard";
-  font-size: 0.8rem;
-  margin-top: 0.9rem;
-  margin-bottom: 0.9rem;
+#lang-toggle:hover {
+  color: #ff0000;
+  border-color: #ff0000;
 }
 
-.print-form__section-title {
+.btn-send {
+  font-family: "fifteen";
+  font-size: 1.35rem;
+  padding: 0.2rem 0.3rem;
+}
+
+/* ===== PRINT REQUEST FORM (block: print-form) ===== */
+.print-form {
+  --pf-field-font-size: 1.1rem;
+  font-family: "Pretendard";
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+  border: 3px double #000;
+}
+
+/* Korean labels run visually larger than the English originals, so every
+   print-form font-size is scaled down ~80% in Korean mode */
+.right.lang-kr .print-form {
+  --pf-field-font-size: 0.88rem;
+}
+
+.right.lang-kr .print-form__col-title {
+  font-size: 0.96rem;
+}
+
+.right.lang-kr .print-form__textarea {
+  font-size: 0.72rem;
+}
+
+.right.lang-kr .print-form .btn-send {
+  font-size: 1.08rem;
+}
+
+/* titles: same class and same dark header band everywhere (Service Type,
+   Document service, Customer Info, Notes, ...) */
+.print-form__col-title {
   font-weight: bold;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  font-family: "fifteen";
+  font-size: 1.2rem;
+  color: #000000;
+  background: var(--color-dark-gray);
+  padding: 0.4rem 0.6rem;
+  border-bottom: 3px double #000;
+}
+
+.print-form > .print-form__col-title {
+  border-top: 3px double #000;
+}
+
+.print-form > .print-form__col-title:first-child {
+  border-top: none;
+}
+
+/* titles nested in a column: bleed the band to the column's padded edges */
+.print-form__col > .print-form__col-title {
+  margin: 0 -0.6rem 0.3rem;
+}
+
+.print-form__col > .print-form__col-title:first-child {
+  margin-top: -0.6rem;
+}
+
+/* the content under a title */
+.print-form__col-body {
+  padding: 0;
 }
 
 .print-form__row {
@@ -124,20 +176,26 @@
   gap: 1.5rem;
   align-items: center;
   flex-wrap: wrap;
+  padding: 0.6rem;
+  border-top: 3px double #000;
+}
+
+.print-form__row:first-child {
+  border-top: none;
 }
 
 .print-form__row--checkboxes {
   gap: 1rem 1.5rem;
-  margin-bottom: 0.5rem;
+  border-top: none;
 }
 
 .print-form__row--top {
-  margin-bottom: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 
 .print-form__error {
   color: #ff0000;
-  margin-bottom: 0.7rem;
+  padding: 0 0.6rem 0.6rem;
 }
 
 .print-form label {
@@ -166,9 +224,8 @@
 /* column groups (document/book service, size/format/paper, ...) */
 .print-form__columns {
   display: flex;
-  gap: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  border-top: 3px double #000;
 }
 
 .print-form__columns--even .print-form__col {
@@ -180,16 +237,25 @@
   flex-direction: column;
   gap: 0.3rem;
   min-width: 6rem;
+  padding: 0.6rem;
+  border-left: 3px double #000;
 }
 
-.print-form__col-title {
-  font-weight: bold;
-  margin-bottom: 0.2rem;
+.print-form__col:first-child {
+  border-left: none;
+}
+
+/* the option list under a column title */
+.print-form__col > .print-form__col-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 /* a column stacking two option groups (e.g. print format + ink color) */
-.print-form__col--stacked .print-form__col-title:not(:first-child) {
+.print-form__col--stacked > .print-form__col-title:not(:first-child) {
   margin-top: 0.6rem;
+  border-top: 3px double #000;
 }
 
 /* custom finished-size inputs: plain div, not a <label>, so typing a
@@ -205,7 +271,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  padding: 0.6rem;
 }
 
 .print-form__customer-info label {
@@ -219,26 +285,29 @@
   max-width: 20rem;
 }
 
-.print-form__textarea {
-  display: block;
-  width: 100%;
-  min-height: 4rem;
-  height: 6rem;
-  resize: vertical;
-  background-color: white;
-  font-family: "fifteen";
-  font-size: 1rem;
-}
-
 /* text/number inputs */
 .print-form__field {
   font-family: "Pretendard";
-  font-size: 0.8rem;
+  font-size: var(--pf-field-font-size);
   border: 1px solid #000;
   background: transparent;
   padding: 0.2rem 0.4rem;
   width: 100%;
   margin-top: 0.2rem;
+}
+
+.print-form__textarea {
+  display: block;
+  width: calc(100% - 1.2rem);
+  max-width: 40rem;
+  height: 6rem;
+  margin: 0.6rem;
+  padding: 0.54rem;
+  line-height: 1.2;
+  resize: vertical;
+  background-color: white;
+  font-family: "fifteen";
+  font-size: 0.9rem;
 }
 
 .print-form__field--small {
@@ -287,8 +356,9 @@
 }
 
 #message {
-  width: 27rem;
-  height: 1.8rem;
+  width: 100%;
+  max-width: 40rem;
+  height: 6rem;
   padding: 0.54rem;
   line-height: 1.2;
   font-family: "fifteen";
@@ -349,7 +419,7 @@ button:hover {
 .tag {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 1rem;
   text-align: left;
   position: fixed;
@@ -357,6 +427,19 @@ button:hover {
   font-size: 1.35rem;
   bottom: 8rem;
   left: 1.8rem;
+}
+
+/* staircase: each heading climbs higher than the last */
+.tag h2 {
+  margin-bottom: 1rem;
+}
+
+.tag h3 {
+  margin-bottom: 2rem;
+}
+
+.tag h4 {
+  margin-bottom: 3rem;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -388,6 +471,13 @@ button:hover {
 
   .fixed img {
     display: none;
+  }
+
+  .tag,
+  .tag h2,
+  .tag h3,
+  .tag h4 {
+    margin-bottom: 0;
   }
 
   .tag {

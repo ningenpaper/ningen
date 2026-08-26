@@ -20,24 +20,24 @@ function Main() {
   const [bookService, setBookService] = useState("");
   const [numberOfPages, setNumberOfPages] = useState("");
   const pagesMultipleOf4Error =
-    bookService === "saddleStitch" &&
-    numberOfPages !== "" &&
-    Number(numberOfPages) % 4 !== 0;
+    bookService === "saddleStitch" && numberOfPages !== "" && Number(numberOfPages) % 4 !== 0;
+
+  // contact section stays English regardless of the KR/EN toggle
+  const contact = "Contact";
+  const placeholder = "Feel free to reach us anytime and anywhere...";
+  const send = "Send Message";
+  const des = (
+    <>
+      Do you want to make your own book? <br />
+      If you have any provocative contents, <br />
+      please reach our publisher. <br />
+      We are always waiting for you.
+    </>
+  );
 
   const t = {
     en: {
       printRequest: "Print Request",
-      contact: "Contact",
-      placeholder: "Feel free to reach us anytime and anywhere...",
-      send: "Send Message",
-      des: (
-        <>
-          Do you want to make your own book? <br />
-          If you have any provocative contents, <br />
-          please reach our publisher. <br />
-          We are always waiting for you.
-        </>
-      ),
       pf: {
         serviceType: "Service Type",
         documentService: "Document service",
@@ -74,26 +74,15 @@ function Main() {
         phone: "Phone Number",
         email: "Email",
         pickupDate: "Desired Pickup Date",
-        notes: "Special Requests / Notes",
+        notes: "Special Requests",
         notesPlaceholder:
           "Please describe in detail any binding of multiple files with different sizes, non-standard sizes, special printing, or paper pre-order inquiries.",
-        pagesMultipleOf4:
-          "Saddle Stitch Binding requires a multiple of 4 pages.",
+        pagesMultipleOf4: "Saddle Stitch Binding requires a multiple of 4 pages.",
+        sendRequest: "Send Print Request",
       },
     },
     kr: {
       printRequest: "인쇄 요청",
-      contact: "문의",
-      placeholder: "언제 어디서든 편하게 연락주세요...",
-      send: "메시지 보내기",
-      des: (
-        <>
-          당신만의 책을 만들고 싶으신가요? <br />
-          도발적인 콘텐츠가 있다면, <br />
-          저희 출판사로 연락 주세요. <br />
-          언제나 기다리고 있겠습니다.
-        </>
-      ),
       pf: {
         serviceType: "서비스 종류",
         documentService: "문서 서비스",
@@ -130,10 +119,11 @@ function Main() {
         phone: "연락처",
         email: "이메일",
         pickupDate: "희망 수령일",
-        notes: "요청 사항 / 메모",
+        notes: "요청 사항",
         notesPlaceholder:
           "규격이 다른 여러 파일의 제본, 비규격, 특수인쇄, 종이 선발입고 문의를 자세히 작성 바랍니다.",
         pagesMultipleOf4: "중철 제본은 4의 배수 페이지만 가능합니다.",
+        sendRequest: "인쇄 요청 보내기",
       },
     },
   }[lang];
@@ -165,6 +155,40 @@ function Main() {
     )}`;
   };
 
+  // print request form submit -> builds a plain-text summary and opens mail client
+  const sendPrintRequest = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const get = (key) => data.get(key) || "-";
+    const finishedSize =
+      get("finishedSize") === "custom"
+        ? `custom (${get("customWidth")} x ${get("customHeight")})`
+        : get("finishedSize");
+
+    const body = [
+      `Service mode: ${get("serviceMode")}`,
+      `Document service: ${get("documentService")}`,
+      `Book service: ${get("bookService")}`,
+      `Number of pages: ${get("numberOfPages")}`,
+      `Number of copies: ${get("numberOfCopies")}`,
+      `Finished size: ${finishedSize}`,
+      `Print format: ${get("printFormat")}`,
+      `Ink color: ${get("inkColor")}`,
+      `Paper: ${get("paper")}`,
+      "",
+      `Name: ${get("name")}`,
+      `Phone: ${get("phone")}`,
+      `Email: ${get("email")}`,
+      `Desired pickup date: ${get("pickupDate")}`,
+      "",
+      `Notes: ${get("notes")}`,
+    ].join("\n");
+
+    window.location.href = `mailto:ningenpaperpress@gmail.com?subject=Print Request from Website&body=${encodeURIComponent(
+      body,
+    )}`;
+  };
+
   return (
     <div className="main-page">
       {/* left column: identity, clock, nav */}
@@ -187,7 +211,7 @@ function Main() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              3F, Chungmuro 50-7, Seoul, South Korea
+              LOCATION: 3F, Chungmuro 50-7, Seoul, South Korea
             </a>
             <br />
             Can you check the index below...? Please...
@@ -204,261 +228,25 @@ function Main() {
         </nav>
       </div>
 
-      {/* right column: print request form, contact form, links */}
+      {/* right column: contact form, print request form, links */}
       <div className={`right${lang === "kr" ? " lang-kr" : ""}`}>
-        <div className="request-row">
-          <div id="print-request">{t.printRequest}</div>
-          <div
-            id="lang-toggle"
-            onClick={() => setLang(lang === "en" ? "kr" : "en")}
-          >
-            {lang === "en" ? "KR" : "EN"}
-          </div>
-        </div>
-
-        {/* print request form (BEM block: print-form) */}
-        <div id="print-form" className="print-form">
-          {/* service type: design+print disables the spec fields below */}
-          <div className="print-form__section-title">{t.pf.serviceType}</div>
-          <div className="print-form__row print-form__row--checkboxes">
-            <label>
-              <input
-                type="radio"
-                name="serviceMode"
-                checked={serviceMode === "design"}
-                onChange={() => setServiceMode("design")}
-              />{" "}
-              {t.pf.designAndPrint}
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="serviceMode"
-                checked={serviceMode === "print"}
-                onChange={() => setServiceMode("print")}
-              />{" "}
-              {t.pf.printOnly}
-            </label>
-          </div>
-
-          <fieldset
-            className="print-form__fieldset"
-            disabled={serviceMode === "design"}
-          >
-            {/* document vs. book service */}
-            <div className="print-form__columns print-form__columns--even">
-              <div className="print-form__col">
-                <div className="print-form__col-title">
-                  {t.pf.documentService}
-                </div>
-                <label>
-                  <input type="radio" name="documentService" /> {t.pf.print}
-                </label>
-                <label>
-                  <input type="radio" name="documentService" /> {t.pf.copy}
-                </label>
-                <label>
-                  <input type="radio" name="documentService" /> {t.pf.scan}
-                </label>
-              </div>
-
-              <div className="print-form__col">
-                <div className="print-form__col-title">
-                  {t.pf.bookService}
-                </div>
-                <label>
-                  <input
-                    type="radio"
-                    name="bookService"
-                    checked={bookService === "noBind"}
-                    onChange={() => setBookService("noBind")}
-                  />{" "}
-                  {t.pf.noBind}
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="bookService"
-                    checked={bookService === "saddleStitch"}
-                    onChange={() => setBookService("saddleStitch")}
-                  />{" "}
-                  {t.pf.saddleStitch}
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="bookService"
-                    checked={bookService === "ringBinding"}
-                    onChange={() => setBookService("ringBinding")}
-                  />{" "}
-                  {t.pf.ringBinding}
-                </label>
-              </div>
-            </div>
-
-            {/* page / copy counts */}
-            <div className="print-form__row print-form__row--top">
-              <label>
-                {t.pf.numberOfPages}:{" "}
-                <input
-                  type="number"
-                  inputMode="numeric"
-                  step={bookService === "saddleStitch" ? 4 : 1}
-                  className="print-form__field print-form__field--small"
-                  value={numberOfPages}
-                  onChange={(e) => setNumberOfPages(e.target.value)}
-                />
-              </label>
-              <label>
-                {t.pf.numberOfCopies}:{" "}
-                <input
-                  type="number"
-                  inputMode="numeric"
-                  className="print-form__field print-form__field--small"
-                />
-              </label>
-            </div>
-            {pagesMultipleOf4Error && (
-              <div className="print-form__error">{t.pf.pagesMultipleOf4}</div>
-            )}
-
-            {/* finished size / print format & ink / paper */}
-            <div className="print-form__columns print-form__columns--even">
-              <div className="print-form__col">
-                <div className="print-form__col-title">
-                  {t.pf.finishedSize}
-                </div>
-                <label>
-                  <input type="radio" name="finishedSize" /> A4
-                </label>
-                <label>
-                  <input type="radio" name="finishedSize" /> A5
-                </label>
-                <div className="print-form__size-inputs">
-                  <input type="radio" name="finishedSize" />
-                  <input
-                    type="number"
-                    inputMode="numeric"
-                    step="10"
-                    className="print-form__field print-form__field--xs"
-                  />
-                  ×
-                  <input
-                    type="number"
-                    inputMode="numeric"
-                    step="10"
-                    className="print-form__field print-form__field--xs"
-                  />
-                </div>
-              </div>
-
-              <div className="print-form__col print-form__col--stacked">
-                <div className="print-form__col-title">
-                  {t.pf.printFormat}
-                </div>
-                <label>
-                  <input type="radio" name="printFormat" /> {t.pf.oneSided}
-                </label>
-                <label>
-                  <input type="radio" name="printFormat" /> {t.pf.doubleSided}
-                </label>
-
-                <div className="print-form__col-title">{t.pf.inkColor}</div>
-                <label>
-                  <input type="radio" name="inkColor" /> {t.pf.black}
-                </label>
-                <label>
-                  <input type="radio" name="inkColor" /> {t.pf.fullColor}
-                </label>
-              </div>
-
-              <div className="print-form__col">
-                <div className="print-form__col-title">{t.pf.paper}</div>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.plain70}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.color80}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.color120}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.munken90}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.munken120}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.glossCoated120}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.matteCoated120}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.uncoatedOffset120}
-                </label>
-                <label>
-                  <input type="radio" name="paper" /> {t.pf.tracing90}
-                </label>
-              </div>
-            </div>
-          </fieldset>
-
-          {/* customer info: always editable, even in design+print mode */}
-          <div className="print-form__section-title">
-            {t.pf.customerInfo}
-          </div>
-          <div className="print-form__customer-info">
-            <label>
-              {t.pf.name}
-              <input type="text" className="print-form__field" />
-            </label>
-            <label>
-              {t.pf.phone}
-              <input
-                type="text"
-                className="print-form__field"
-                placeholder="010-xxxx-xxxx"
-              />
-            </label>
-            <label>
-              {t.pf.email}
-              <input
-                type="text"
-                className="print-form__field"
-                placeholder="ningenpaperpress@gmail.com"
-              />
-            </label>
-            <label>
-              {t.pf.pickupDate}
-              <input type="date" className="print-form__field" />
-            </label>
-          </div>
-
-          {/* free-text notes: always editable, even in design+print mode */}
-          <div className="print-form__section-title">{t.pf.notes}</div>
-          <textarea
-            className="print-form__field print-form__textarea"
-            placeholder={t.pf.notesPlaceholder}
-          />
-        </div>
-
         <div id="contact">
-          {t.contact} <img src="/web-image/hand.png" alt="hand" />
+          {contact} <img src="/web-image/hand.png" alt="hand" />
         </div>
         <form onSubmit={sendMail}>
           <textarea
             id="message"
-            placeholder={t.placeholder}
+            placeholder={placeholder}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
           <br />
-          <button type="submit">{t.send}</button>
+          <button type="submit" className="btn-send">
+            {send}
+          </button>
         </form>
 
-        <div id="des">{t.des}</div>
+        <div id="des">{des}</div>
 
         <div id="links">
           <div>ningenpaperpress@gmail.com</div>
@@ -470,6 +258,266 @@ function Main() {
             @ningenpaper.press
           </a>
         </div>
+
+        <div className="request-row">
+          <div id="print-request">
+            {t.printRequest} <img src="/web-image/hand.png" alt="hand" />
+          </div>
+          <div id="lang-toggle" onClick={() => setLang(lang === "en" ? "kr" : "en")}>
+            {lang === "en" ? "KR" : "EN"}
+          </div>
+        </div>
+
+        {/* print request form (BEM block: print-form) */}
+        <form
+          id="print-form"
+          className="print-form"
+          onSubmit={sendPrintRequest}
+        >
+          {/* service type: design+print disables the spec fields below */}
+          <div className="print-form__col-title">{t.pf.serviceType}</div>
+          <div className="print-form__col-body print-form__row print-form__row--checkboxes">
+            <label>
+              <input
+                type="radio"
+                name="serviceMode"
+                value="designAndPrint"
+                checked={serviceMode === "design"}
+                onChange={() => setServiceMode("design")}
+              />{" "}
+              {t.pf.designAndPrint}
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="serviceMode"
+                value="printOnly"
+                checked={serviceMode === "print"}
+                onChange={() => setServiceMode("print")}
+              />{" "}
+              {t.pf.printOnly}
+            </label>
+          </div>
+
+          <fieldset className="print-form__fieldset" disabled={serviceMode === "design"}>
+            {/* document vs. book service */}
+            <div className="print-form__columns print-form__columns--even">
+              <div className="print-form__col">
+                <div className="print-form__col-title">{t.pf.documentService}</div>
+                <div className="print-form__col-body">
+                  <label>
+                    <input type="radio" name="documentService" value="print" /> {t.pf.print}
+                  </label>
+                  <label>
+                    <input type="radio" name="documentService" value="copy" /> {t.pf.copy}
+                  </label>
+                  <label>
+                    <input type="radio" name="documentService" value="scan" /> {t.pf.scan}
+                  </label>
+                </div>
+              </div>
+
+              <div className="print-form__col">
+                <div className="print-form__col-title">{t.pf.bookService}</div>
+                <div className="print-form__col-body">
+                  <label>
+                    <input
+                      type="radio"
+                      name="bookService"
+                      value="noBind"
+                      checked={bookService === "noBind"}
+                      onChange={() => setBookService("noBind")}
+                    />{" "}
+                    {t.pf.noBind}
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="bookService"
+                      value="saddleStitch"
+                      checked={bookService === "saddleStitch"}
+                      onChange={() => setBookService("saddleStitch")}
+                    />{" "}
+                    {t.pf.saddleStitch}
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="bookService"
+                      value="ringBinding"
+                      checked={bookService === "ringBinding"}
+                      onChange={() => setBookService("ringBinding")}
+                    />{" "}
+                    {t.pf.ringBinding}
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* page / copy counts */}
+            <div className="print-form__row print-form__row--top">
+              <label>
+                {t.pf.numberOfPages}:{" "}
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  name="numberOfPages"
+                  step={bookService === "saddleStitch" ? 4 : 1}
+                  className="print-form__field print-form__field--small"
+                  value={numberOfPages}
+                  onChange={(e) => setNumberOfPages(e.target.value)}
+                />
+              </label>
+              <label>
+                {t.pf.numberOfCopies}:{" "}
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  name="numberOfCopies"
+                  className="print-form__field print-form__field--small"
+                />
+              </label>
+            </div>
+            {pagesMultipleOf4Error && (
+              <div className="print-form__error">{t.pf.pagesMultipleOf4}</div>
+            )}
+
+            {/* finished size / print format & ink / paper */}
+            <div className="print-form__columns print-form__columns--even">
+              <div className="print-form__col">
+                <div className="print-form__col-title">{t.pf.finishedSize}</div>
+                <div className="print-form__col-body">
+                  <label>
+                    <input type="radio" name="finishedSize" value="A4" /> A4
+                  </label>
+                  <label>
+                    <input type="radio" name="finishedSize" value="A5" /> A5
+                  </label>
+                  <div className="print-form__size-inputs">
+                    <input type="radio" name="finishedSize" value="custom" />
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      name="customWidth"
+                      step="10"
+                      className="print-form__field print-form__field--xs"
+                    />
+                    ×
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      name="customHeight"
+                      step="10"
+                      className="print-form__field print-form__field--xs"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="print-form__col print-form__col--stacked">
+                <div className="print-form__col-title">{t.pf.printFormat}</div>
+                <div className="print-form__col-body">
+                  <label>
+                    <input type="radio" name="printFormat" value="oneSided" /> {t.pf.oneSided}
+                  </label>
+                  <label>
+                    <input type="radio" name="printFormat" value="doubleSided" /> {t.pf.doubleSided}
+                  </label>
+                </div>
+
+                <div className="print-form__col-title">{t.pf.inkColor}</div>
+                <div className="print-form__col-body">
+                  <label>
+                    <input type="radio" name="inkColor" value="black" /> {t.pf.black}
+                  </label>
+                  <label>
+                    <input type="radio" name="inkColor" value="fullColor" /> {t.pf.fullColor}
+                  </label>
+                </div>
+              </div>
+
+              <div className="print-form__col">
+                <div className="print-form__col-title">{t.pf.paper}</div>
+                <div className="print-form__col-body">
+                  <label>
+                    <input type="radio" name="paper" value="plain70" /> {t.pf.plain70}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="color80" /> {t.pf.color80}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="color120" /> {t.pf.color120}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="munken90" /> {t.pf.munken90}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="munken120" /> {t.pf.munken120}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="glossCoated120" /> {t.pf.glossCoated120}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="matteCoated120" /> {t.pf.matteCoated120}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="uncoatedOffset120" /> {t.pf.uncoatedOffset120}
+                  </label>
+                  <label>
+                    <input type="radio" name="paper" value="tracing90" /> {t.pf.tracing90}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          {/* customer info: always editable, even in design+print mode */}
+          <div className="print-form__col-title">{t.pf.customerInfo}</div>
+          <div className="print-form__col-body print-form__customer-info">
+            <label>
+              {t.pf.name}
+              <input type="text" name="name" className="print-form__field" />
+            </label>
+            <label>
+              {t.pf.phone}
+              <input
+                type="text"
+                name="phone"
+                className="print-form__field"
+                placeholder="010-xxxx-xxxx"
+              />
+            </label>
+            <label>
+              {t.pf.email}
+              <input
+                type="text"
+                name="email"
+                className="print-form__field"
+                placeholder="ningenpaperpress@gmail.com"
+              />
+            </label>
+            <label>
+              {t.pf.pickupDate}
+              <input type="date" name="pickupDate" className="print-form__field" />
+            </label>
+          </div>
+
+          {/* free-text notes: always editable, even in design+print mode */}
+          <div className="print-form__col-title">{t.pf.notes}</div>
+          <div className="print-form__col-body">
+            <textarea
+              name="notes"
+              className="print-form__field print-form__textarea"
+              placeholder={t.pf.notesPlaceholder}
+            />
+          </div>
+
+          <div className="print-form__row">
+            <button type="submit" className="btn-send">
+              {t.pf.sendRequest}
+            </button>
+          </div>
+        </form>
       </div>
 
       {/* fixed member photo + rotating tag, pinned to viewport */}
