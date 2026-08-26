@@ -306,6 +306,8 @@
   line-height: 1.2;
   resize: vertical;
   background-color: white;
+  border: 1px solid #000;
+  border-radius: 0;
   font-family: "fifteen";
   font-size: 0.9rem;
 }
@@ -364,6 +366,8 @@
   height: 6rem;
   padding: 0.54rem;
   line-height: 1.2;
+  border: 1px solid #000;
+  border-radius: 0;
   font-family: "fifteen";
   font-size: 0.9rem;
 }
