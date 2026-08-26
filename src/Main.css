@@ -325,6 +325,9 @@
 .print-form input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 0;
+  margin: 0;
   width: 0.85rem;
   height: 0.85rem;
   box-shadow: inset 0 1px 1.5px rgba(0, 0, 0, 0.8);
@@ -443,7 +446,7 @@ button:hover {
 }
 
 /* ===== RESPONSIVE ===== */
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 768px) {
   .main-page {
     flex-direction: column;
   }

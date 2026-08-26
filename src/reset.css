@@ -141,7 +141,7 @@ a:hover {
   color: #ff0000;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 768px) {
   :root {
     --color-dark-gray: #cbcfd8;
   }
