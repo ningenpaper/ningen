@@ -493,12 +493,60 @@ button:hover {
     margin-top: 2rem;
   }
 
-  #title,
-  #header-description,
-  #menu-list,
-  #contact,
-  #des,
-  #links {
+  /* typographic hierarchy: biggest/boldest first, decreasing by role,
+     with extra margin between each so blocks read as distinct groups */
+  #title {
+    font-size: 1.6rem;
+  }
+
+  #header-description {
+    font-size: 1rem;
+    margin-top: 0.8rem;
+  }
+
+  #menu-list {
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+    gap: 0.6rem;
+  }
+
+  #contact {
     font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  #des {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+
+  #links {
+    font-size: 1rem;
+    margin-top: 0.8rem;
+  }
+
+  #print-request {
+    font-size: 1.3rem;
+  }
+
+  /* the web layout's side-by-side 2fr/3fr column groups collapse into a
+     single stacked column, in the same left-to-right order */
+  .print-form__columns {
+    flex-direction: column;
+  }
+
+  .print-form__col {
+    border-left: none;
+    border-top: 3px double #000;
+  }
+
+  .print-form__col:first-child {
+    border-top: none;
+  }
+
+  /* the native checkbox/radio fill defaults to a warm off-white on some
+     mobile browsers; force the site's cool tone instead */
+  .print-form input[type="radio"] {
+    background: #eaf1fb;
   }
 }
