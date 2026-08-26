@@ -39,7 +39,7 @@ function Wholesale() {
       </div>
 
       <div className="footer">
-        2025 Ningen Paper Press. Check out our latest news{" "}
+        2023 Ningen Paper Press. Check out our latest news{" "}
         <a
           href="https://www.instagram.com/ningenpaper.press/"
           target="_blank"

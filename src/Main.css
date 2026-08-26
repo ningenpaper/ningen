@@ -1,21 +1,31 @@
+/* ===== PAGE LAYOUT ===== */
 .main-page {
   display: flex;
 }
 
 .left {
-  width: 60%;
+  width: calc(60vw - 2rem);
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
 }
 
+.right {
+  width: 40vw;
+  margin-left: 60vw;
+}
+
+/* ===== LEFT COLUMN: CLOCK, TITLE, NAV ===== */
 #timedate {
   font-family: "fifteen";
-  font-size: clamp(1.1rem, 4.5vw, 2rem);
+  font-size: clamp(0.99rem, 4.05vw, 1.8rem);
   color: #0000ff;
   max-width: 100%;
   overflow-wrap: break-word;
 }
 
 #title {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: "fifteen";
 }
 
@@ -30,7 +40,7 @@
 
 #header-description {
   font-family: "fifteen";
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 #header-description a {
@@ -44,10 +54,10 @@
 
 #menu-list {
   display: flex;
-  gap: 1rem;
+  gap: 0.9rem;
   font-family: "fifteen";
-  font-size: 1.5rem;
-  margin-top: 1.5rem;
+  font-size: 1.35rem;
+  margin-top: 1.35rem;
 }
 
 #menu-list a {
@@ -59,23 +69,230 @@
   color: #ff0000;
 }
 
-#contact {
-  margin-top: -0.2rem;
+/* ===== RIGHT COLUMN: KOREAN LANGUAGE MODE ===== */
+.right.lang-kr,
+.right.lang-kr textarea,
+.right.lang-kr button {
+  font-family: "Pretendard";
+}
+
+.right.lang-kr #print-request,
+.right.lang-kr #contact,
+.right.lang-kr #message,
+.right.lang-kr button,
+.right.lang-kr #des,
+.right.lang-kr #links {
+  font-size: 1rem;
+}
+
+/* ===== PRINT REQUEST HEADER (title + language toggle) ===== */
+.request-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#print-request,
+#lang-toggle {
   font-family: "fifteen";
-  font-size: 1.5rem;
+  font-size: 1.35rem;
+}
+
+#lang-toggle {
+  border: 1px solid black;
+  padding: 0.2rem 0.3rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ===== PRINT REQUEST FORM (block: print-form) ===== */
+.print-form {
+  font-family: "Pretendard";
+  font-size: 0.8rem;
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.print-form__section-title {
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.print-form__row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.print-form__row--checkboxes {
+  gap: 1rem 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.print-form__row--top {
+  margin-bottom: 0.3rem;
+}
+
+.print-form__error {
+  color: #ff0000;
+  margin-bottom: 0.7rem;
+}
+
+.print-form label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* service-type fieldset: disabled when "Design and Print" is selected */
+.print-form__fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.print-form__fieldset:disabled {
+  opacity: 0.1;
+}
+
+.print-form__fieldset:disabled * {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* column groups (document/book service, size/format/paper, ...) */
+.print-form__columns {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.print-form__columns--even .print-form__col {
+  flex: 1 1 0;
+}
+
+.print-form__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 6rem;
+}
+
+.print-form__col-title {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+/* a column stacking two option groups (e.g. print format + ink color) */
+.print-form__col--stacked .print-form__col-title:not(:first-child) {
+  margin-top: 0.6rem;
+}
+
+/* custom finished-size inputs: plain div, not a <label>, so typing a
+   number doesn't trigger the sibling radio's implicit label click */
+.print-form__size-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* customer info + notes: always editable regardless of fieldset state */
+.print-form__customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.print-form__customer-info label {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.print-form__customer-info .print-form__field {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.print-form__textarea {
+  display: block;
+  width: 100%;
+  min-height: 4rem;
+  height: 6rem;
+  resize: vertical;
+  background-color: white;
+  font-family: "fifteen";
+  font-size: 1rem;
+}
+
+/* text/number inputs */
+.print-form__field {
+  font-family: "Pretendard";
+  font-size: 0.8rem;
+  border: 1px solid #000;
+  background: transparent;
+  padding: 0.2rem 0.4rem;
+  width: 100%;
+  margin-top: 0.2rem;
+}
+
+.print-form__field--small {
+  width: 3rem;
+  margin-top: 0;
+}
+
+.print-form__field--xs {
+  width: 3.4rem;
+  margin-top: 0;
+  padding: 0.2rem 0.3rem;
+}
+
+/* checkbox/radio: square box with an inset shadow and an X mark when checked */
+.print-form input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0.85rem;
+  height: 0.85rem;
+  box-shadow: inset 0 1px 1.5px rgba(0, 0, 0, 0.8);
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.print-form input[type="radio"]:checked::after {
+  content: "✕";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
+/* ===== CONTACT FORM ===== */
+#contact {
+  margin-top: -0.18rem;
+  font-family: "fifteen";
+  font-size: 1.35rem;
 }
 
 #contact img {
-  width: 0.9rem;
+  width: 0.81rem;
 }
 
 #message {
-  width: 30rem;
-  height: 2rem;
-  padding: 0.6rem;
+  width: 27rem;
+  height: 1.8rem;
+  padding: 0.54rem;
   line-height: 1.2;
   font-family: "fifteen";
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 button {
@@ -87,8 +304,8 @@ button {
   color: #000;
   box-shadow: none;
   font-family: "fifteen";
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: 0.45rem;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -99,16 +316,16 @@ button:hover {
 
 #des {
   font-family: "fifteen";
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.35rem;
+  margin-top: 0.9rem;
+  margin-bottom: 0.45rem;
 }
 
 #links {
   font-family: "fifteen";
   display: flex;
   flex-direction: column;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   line-height: 1.2;
 }
 
@@ -121,20 +338,25 @@ button:hover {
   color: #ff0000;
 }
 
+/* ===== FIXED MEMBER PHOTO + TAG ===== */
 .fixed img {
-  height: 35rem;
+  height: 31.5rem;
   position: fixed;
   bottom: 0;
-  right: 2rem;
+  right: 1.8rem;
 }
 
 .tag {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
   position: fixed;
   font-family: "fifteen";
-  font-size: 1.5rem;
-  bottom: 50%;
-  right: 40%;
+  font-size: 1.35rem;
+  bottom: 8rem;
+  left: 1.8rem;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -146,6 +368,11 @@ button:hover {
   .left,
   .right {
     width: 100%;
+    margin-left: 0;
+  }
+
+  .left {
+    position: static;
   }
 
   #menu-list {
@@ -166,9 +393,10 @@ button:hover {
   .tag {
     position: static;
     flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
     font-size: 1.2rem;
     margin-top: 1rem;
-    text-align: center;
   }
 
   #contact {
