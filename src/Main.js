@@ -155,7 +155,7 @@ function Main() {
   const sendMail = (e) => {
     e.preventDefault();
     window.location.href = `mailto:ningenpaperpress@gmail.com?subject=Message from Website&body=${encodeURIComponent(
-      message,
+      message.replace(/\n/g, "\r\n"),
     )}`;
   };
 
@@ -192,7 +192,7 @@ function Main() {
       `${krPf.pickupDate}: ${data.get("pickupDate") || "-"}`,
       "",
       `${krPf.notes}: ${data.get("notes") || "-"}`,
-    ].join("\n");
+    ].join("\r\n");
 
     window.location.href = `mailto:ningenpaperpress@gmail.com?subject=${encodeURIComponent(
       "웹사이트 인쇄 요청",
