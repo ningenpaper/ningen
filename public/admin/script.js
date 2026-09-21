@@ -43,7 +43,8 @@
     const qty = num('c-qty');
     const pages = num('c-pages');
     const color = checked('c-color');
-    const nonstandard = checked('c-nonstandard');
+    const specialActive = num('d-formats') > 0 && num('d-qty') > 0;
+    const nonstandard = checked('c-nonstandard') && !specialActive;
     const size = document.querySelector('input[name="c-size"]:checked').value;
     if (qty <= 0) return { total: 0, items: [] };
     const extraPages = Math.max(0, pages - 24);

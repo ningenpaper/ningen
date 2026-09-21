@@ -105,7 +105,7 @@
             <p>
               <label for="b-qty">부수</label><br />
               <span class="qty-control">
-                <button type="button" class="qty-btn" data-target="b-qty" data-step="-4">−</button>
+                <button type="button" class="qty-btn" data-target="b-qty" data-step="-1">−</button>
                 <input
                   type="text"
                   inputmode="numeric"
@@ -114,7 +114,7 @@
                   id="b-qty"
                   value="0"
                 />
-                <button type="button" class="qty-btn" data-target="b-qty" data-step="4">+</button>
+                <button type="button" class="qty-btn" data-target="b-qty" data-step="1">+</button>
               </span>
             </p>
             <p>
@@ -210,7 +210,7 @@
               ><br />
               <label>
                 <input type="checkbox" id="c-nonstandard" />
-                비규격 (건당 권당 +1,000원)
+                비규격 (건당 권당 +1,000원, 04번 특수 규격 입력 시 04번 요금으로 대체)
               </label>
             </p>
           </details>
