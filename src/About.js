@@ -77,7 +77,7 @@ function About() {
         <div className="member">
           <p>
             <a
-              href="https://www.instagram.com/chaeyunahn/"
+              href="https://chaeahn.com/html/projects.html"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -121,31 +121,19 @@ function About() {
 
         <div className="member">
           <p>
-            <a
-              href="https://www.instagram.com/hotpot_dj/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              James
-            </a>
-          </p>
-          <div className="member-photo">
-            <img src="/profile/james.JPG" alt="James" />
-          </div>
-        </div>
-
-        <div className="member">
-          <p>
-            <a
-              href="https://www.instagram.com/gimharae/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.instagram.com/gimharae/" target="_blank" rel="noopener noreferrer">
               Gimharae
             </a>
           </p>
           <div className="member-photo">
             <img src="/profile/gimhare.PNG" alt="Gimharae" />
+          </div>
+        </div>
+
+        <div className="member">
+          <p>Kugel O</p>
+          <div className="member-photo">
+            <img src="/profile/kugel-o.JPG" alt="Kugel O" />
           </div>
         </div>
       </div>
