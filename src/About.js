@@ -131,7 +131,15 @@ function About() {
         </div>
 
         <div className="member">
-          <p>Kugel O</p>
+          <p>
+            <a
+              href="https://www.instagram.com/kugel____/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Kugel O
+            </a>
+          </p>
           <div className="member-photo">
             <img src="/profile/kugel-o.JPG" alt="Kugel O" />
           </div>
