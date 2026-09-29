@@ -32,7 +32,7 @@
           bar.setAttribute(
             "style",
             "position:fixed;top:0;left:0;right:0;z-index:999999;" +
-              "background:#000;color:#fff;font-family:'fifteen',monospace;font-size:13px;" +
+              "background:#000;color:#fff;font-family:'fifteen',monospace;font-size:19.5px;" +
               "line-height:1.4;padding:10px 14px;display:flex;align-items:center;" +
               "justify-content:space-between;gap:10px;",
           );
@@ -43,7 +43,10 @@
           // so point people at it instead of a dead button.
           if (isIOS) {
             bar.innerHTML =
-              "<span>Open this page in Safari to send email.</span>";
+              // the "fifteen" font renders "···" sitting low on the
+              // baseline, so nudge it up to visually center it
+              '<span>Click <span style="vertical-align:0.15em">···</span> ' +
+              "on the right and open in Safari.</span>";
           } else {
             bar.innerHTML =
               "<span>Emailing doesn't work in this in-app browser.</span>" +
